@@ -1,0 +1,26 @@
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  justify-content: center;
+  padding-block: var(--space-m);
+}
+
+.filter-tabs__btn {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: var(--weight-medium);
+  padding: var(--space-2xs) var(--space-s);
+  border: 2px solid var(--color-pink);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-pink);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.filter-tabs__btn:hover,
+.filter-tabs__btn.is-active {
+  background: var(--color-pink);
+  color: var(--color-light);
+}

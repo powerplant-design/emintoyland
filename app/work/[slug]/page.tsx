@@ -41,7 +41,7 @@ export default async function WorkDetailPage({
           </p>
         )}
         {item.link && (
-          <a href={item.link} target="_blank" rel="noopener noreferrer" className="button button--primary" style={{ marginBlockStart: 'var(--space-m)' }}>
+          <a href={item.link} target="_blank" rel="noopener noreferrer" className="button button-primary" style={{ marginBlockStart: 'var(--space-m)' }}>
             View Project
           </a>
         )}

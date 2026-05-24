@@ -1,48 +1,34 @@
 import React from 'react';
-import Link from 'next/link';
 import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
+import { WorkFilter } from './filter';
 
 export const revalidate = 300;
 
 export default async function WorkPage() {
-  const data = await client.queries.workItemsConnection({
-    sort: 'publishedDate',
-    last: 50,
-  });
+  const [workData, categoriesData] = await Promise.all([
+    client.queries.workItemsConnection({ sort: 'publishedDate', last: 50 }),
+    client.queries.categoriesConnection({ last: 50 }),
+  ]);
 
-  const items = data.data.workItemsConnection.edges || [];
+  const items = (workData.data.workItemsConnection.edges || [])
+    .map((edge) => edge?.node)
+    .filter(Boolean) as any[];
+
+  const categories = (categoriesData.data.categoriesConnection.edges || [])
+    .map((edge) => edge?.node)
+    .filter(Boolean) as any[];
 
   return (
     <Layout>
-      <div className="wrapper section">
-        <h1>Work</h1>
-        <div className="grid" style={{ '--grid-min': '300px' } as React.CSSProperties}>
-          {items.map((edge) => {
-            const item = edge?.node;
-            if (!item) return null;
-            return (
-              <article key={item.id} className="card">
-                {item.image && (
-                  <img src={item.image} alt="" className="card__image" />
-                )}
-                <div className="card__body">
-                  <h2 className="card__title">
-                    <Link href={`/work/${item._sys.filename}`}>{item.title}</Link>
-                  </h2>
-                  {item.workType && <span className="card__category">{item.workType}</span>}
-                  {item.description && <p className="card__excerpt">{item.description}</p>}
-                  {item.link && (
-                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="button button--small button--primary" style={{ marginBlockStart: 'var(--space-s)' }}>
-                      View
-                    </a>
-                  )}
-                </div>
-              </article>
-            );
-          })}
+      <section className="page-header section" data-padding="small">
+        <div className="wrapper">
+          <h1>My Work</h1>
+          <p className="page-header__subtitle">Sex-positive content creation across podcasts, video, and print</p>
         </div>
-      </div>
+      </section>
+
+      <WorkFilter items={items} categories={categories} />
     </Layout>
   );
 }

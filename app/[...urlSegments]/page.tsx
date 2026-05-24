@@ -52,12 +52,14 @@ export async function generateStaticParams() {
     allPages.data.pagesConnection.edges.push(...pages.data.pagesConnection.edges);
   }
 
+  const explicitPages = ['home', 'about', 'contact', 'privacy-policy'];
+
   const params = allPages.data?.pagesConnection.edges
     .map((edge) => ({
       urlSegments: edge?.node?._sys.breadcrumbs || [],
     }))
     .filter((x) => x.urlSegments.length >= 1)
-    .filter((x) => !x.urlSegments.every((x) => x === 'home'));
+    .filter((x) => !x.urlSegments.every((x) => explicitPages.includes(x)));
 
   return params;
 }

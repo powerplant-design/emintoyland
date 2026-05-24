@@ -38,13 +38,16 @@
 
   /* Colors */
   --color-pink: #e6407e;
+  --color-pink-light: #fce4ec;
+  --color-pink-bg: #fdf2f8;
   --color-purple: #8b5cf6;
   --color-dark: #1a1a2e;
   --color-light: #ffffff;
   --color-text: #333333;
   --color-text-light: #6b7280;
   --color-bg: #ffffff;
-  --color-bg-alt: #faf5ff;
+  --color-bg-alt: #fdf2f8;
+  --color-bg-purple: #faf5ff;
   --color-border: #e5e7eb;
   --color-success: #10b981;
   --color-error: #ef4444;

@@ -1,0 +1,96 @@
+.hero-section {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: var(--color-light);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding-block: var(--space-3xl);
+}
+
+.hero-section__toy {
+  position: absolute;
+  bottom: 0;
+  max-width: 280px;
+  height: auto;
+  z-index: 1;
+}
+
+.hero-section__toy--left {
+  left: 0;
+}
+
+.hero-section__toy--right {
+  right: 0;
+}
+
+.hero-section__content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section__title {
+  font-size: var(--step-5);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+.hero-section__subtitle {
+  font-size: var(--step-1);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: var(--leading-relaxed);
+  margin-block-start: var(--space-s);
+  max-width: var(--measure-medium);
+  margin-inline: auto;
+}
+
+.hero-section__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  justify-content: center;
+  margin-block-start: var(--space-l);
+}
+
+.hero-section__actions .button-primary {
+  background-color: var(--color-pink);
+  color: var(--color-light);
+}
+
+.hero-section__actions .button-primary:hover {
+  background-color: #d02d6a;
+}
+
+.hero-section__actions .button-secondary {
+  background-color: transparent;
+  color: var(--color-light);
+  border-color: var(--color-light);
+}
+
+.hero-section__actions .button-secondary:hover {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+@media (width <= 48rem) {
+  .hero-section {
+    min-height: 60vh;
+    padding-block: var(--space-2xl);
+  }
+
+  .hero-section__toy {
+    max-width: 120px;
+  }
+
+  .hero-section__title {
+    font-size: var(--step-3);
+  }
+
+  .hero-section__subtitle {
+    font-size: var(--step-0);
+  }
+}

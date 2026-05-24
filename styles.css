@@ -7,5 +7,11 @@
 @import 'styles/blocks/footer.css';
 @import 'styles/blocks/form.css';
 @import 'styles/blocks/hero.css';
+@import 'styles/blocks/hero-section.css';
+@import 'styles/blocks/page-header.css';
+@import 'styles/blocks/filter-tabs.css';
+@import 'styles/blocks/sparkle-section.css';
+@import 'styles/blocks/about.css';
 @import 'styles/blocks/instagram-feed.css';
+@import 'styles/transitions.css';
 @import 'styles/exceptions.css';

@@ -1,408 +1,400 @@
-# Em in Toyland — Webflow to Self-Hosted CMS Migration Plan
+# Em in Toyland — Webflow to Kirby CMS + Eleventy Migration Plan
 
-**Site:** https://www.emintoyland.com  
-**Owner:** Emma Hewitt-Johnson, Sexologist  
-**Scraped:** 2026-05-24  
-**Current Platform:** Webflow (hosted, template: "Starfire" by Paperunikorn)  
-**Design/styling:** Power Plant Design
-
----
-
-## 1. Current Site Inventory
-
-### 1.1 Pages
-
-| Path | Type | Notes |
-|---|---|---|
-| `/` | Home | Hero, features, newsletter signup |
-| `/about` | Static | About Emma, bio, headshot |
-| `/work` | CMS List | Portfolio of work examples |
-| `/contact-me` | Form | Contact form (name, email, message) |
-| `/pricing` | Static + Commerce | Premium subscription upsell (hidden from nav) |
-| `/privacy-policy` | Static | Privacy policy |
-| `/blog-categories/*` | CMS Archive | 4 categories: featured-in, podcast, video, writing |
-| `/blog-posts/*` | CMS Detail | 7 public blog posts |
-| `/product/premium` | Commerce | Single product: Premium subscription $6.99 USD/month |
-| `/checkout` | Commerce | Webflow Commerce checkout |
-| `/order-confirmation` | Commerce | Order confirmation |
-| `/paypal-checkout` | Commerce | PayPal redirect |
-| ~~/sign-up~~ | Memberships | ~~REMOVED — not required~~ |
-| ~~/log-in~~ | Memberships | ~~REMOVED — not required~~ |
-| ~~/reset-password~~ | Memberships | ~~REMOVED — not required~~ |
-| ~~/update-password~~ | Memberships | ~~REMOVED — not required~~ |
-| ~~/user-account~~ | Memberships | ~~REMOVED — not required~~ |
-| ~~/access-denied~~ | Memberships | ~~REMOVED — not required~~ |
-| `/admin/styleguide` | Template | Boilerplate (not used) |
-| `/admin/licences` | Template | Boilerplate (not used) |
-| `/admin/changelog` | Template | Boilerplate (not used) |
-
-### 1.2 CMS Collections
-
-| Collection | Items | Fields |
-|---|---|---|
-| **Blog Posts** | 7 | title (text), slug (text), content (rich text), category (reference → Blog Categories), featured image (image), publish date (date) |
-| **Blog Categories** | 4 | name (text), slug (text), description (text) |
-| ~~Premium Posts~~ | ~~6~~ | ~~REMOVED — not required~~ |
-| ~~Premium Categories~~ | ~~3~~ | ~~REMOVED — not required~~ |
-| **Work/Portfolio** | ~5-8 | title (text), description (text), link (URL), image (image), type (text) |
-| **Instagram Feed** | ~4+ | image (image), instagram-link (URL) |
-
-### 1.3 Features & Integrations
-
-| Feature | Details |
-|---|---|
-| **Commerce** | 1 product (Premium subscription), $6.99 USD/month, Apple Pay, Google Pay, Stripe |
-| ~~Memberships~~ | ~~REMOVED — not required~~ |
-| **Contact Form** | Webflow native form → email notification |
-| **Google Analytics** | G-R7738E5V4S |
-| **Google Fonts** | Poppins (300, 400, 500, 600, 700, 800, 900) |
-| **Instagram Feed** | Embedded CMS collection linking to Instagram posts |
-| **Newsletter** | Not a dedicated service — likely Webflow form → email |
-| **Favicon** | Custom EIT favicon + apple touch icon |
-| **Open Graph** | Per-page OG title, description, image |
-| **Canonical URLs** | Set per page |
-| **Google Site Verification** | jUpAoXKsKzQuMwiRCkezi6GwnDC8vz3ARjc9iA-QZO4 |
-| **Responsive Design** | Mobile + desktop layouts, hamburger menu on mobile |
+**Site:** https://www.emintoyland.com
+**Owner:** Emma Hewitt-Johnson, Sexologist
+**Current Platform:** Webflow (template: "Starfire" by Paperunikorn)
+**Target Stack:** Kirby CMS (headless) + Eleventy + Netlify + MyHost NZ
+**Design/styling:** Power Plant Design (CUBE CSS, Utopia fluid scale)
 
 ---
 
-## 2. CMS Data Model (TinaCMS / Alternative)
+## Architecture
 
-### Collection: `pages` — Static site pages
+```
+┌─────────────────────┐     KQL API      ┌──────────────────┐     git push     ┌─────────┐
+│  Kirby CMS (Panel)  │ ──────────────→  │  Eleventy build  │ ──────────────→ │ Netlify │
+│  MyHost NZ ($9/mo)  │  (build time)    │  Static HTML/CSS │                 │  CDN    │
+│  PHP 8.2+           │                  │  Netlify deploy   │                 │ Public  │
+└─────────────────────┘                  └──────────────────┘                 └─────────┘
+        ↑ Content editing                        ↑ Page transitions
+        │ (Emma)                                  │ (Swup + Locomotive Scroll)
+```
 
-```typescript
-{
-  title: string        // Page title / H1
-  slug: string         // URL slug (unique)
-  metaDescription: string  // SEO meta description
-  ogImage?: image      // Open Graph image
-  body: rich-text      // Page content (MDX)
-  sections: object[]   // Optional: flexible page builder blocks
-  // Blocks:
-  // - hero { heading, subtext, cta_text, cta_link, background_image }
-  // - text_section { heading, body, image }
-  // - cta_section { heading, subtext, button_text, button_link }
+- **Kirby**: runs on MyHost NZ, admin-only traffic, serves KQL API
+- **Eleventy**: runs on Netlify, builds static site at deploy time
+- **Swup**: client-side page transitions on the static site
+- **Locomotive Scroll**: smooth scroll/parallax (destroy/re-init on page change)
+
+---
+
+## Phase 0: Try Kirby Locally (now, no signups)
+
+### Step 0.1 — Check PHP version
+```bash
+php -v
+```
+Kirby requires PHP 8.2+. If lower, install via Homebrew:
+```bash
+brew install php
+```
+
+### Step 0.2 — Download Kirby Plainkit
+```bash
+cd ~/Sites
+curl -L https://github.com/getkirby/plainkit/archive/refs/heads/main.zip -o kirby.zip
+unzip kirby.zip
+mv plainkit-main emintoyland-kirby
+cd emintoyland-kirby
+```
+
+### Step 0.3 — Install KQL plugin
+```bash
+curl -L https://github.com/getkirby/kql/archive/refs/heads/master.zip -o kql.zip
+unzip kql.zip -d site/plugins/
+rm kql.zip
+```
+
+### Step 0.4 — Install kirby-headless plugin (optional, for bearer token auth)
+```bash
+curl -L https://github.com/johannschopplich/kirby-headless/archive/refs/heads/main.zip -o headless.zip
+unzip headless.zip -d site/plugins/
+mv site/plugins/kirby-headless-main site/plugins/kirby-headless
+rm headless.zip
+```
+
+### Step 0.5 — Start Kirby
+```bash
+php -S localhost:8000 kirby/router.php
+```
+Open `http://localhost:8000/panel`, create admin account, explore the Panel.
+
+### Step 0.6 — Scaffold Eleventy project alongside it
+```bash
+cd ~/Sites
+mkdir emintoyland-eleventy
+cd emintoyland-eleventy
+npm init -y
+npm install @11ty/eleventy ofetch
+```
+
+### Step 0.7 — Create data file to fetch from Kirby
+`_data/kirby.js`:
+```js
+import { $fetch } from "ofetch";
+
+export default async function () {
+  const api = "http://localhost:8000/api/query";
+
+  const response = await $fetch(api, {
+    method: "post",
+    body: {
+      query: "kirby.pages",
+      select: {
+        title: true,
+        slug: true,
+        content: "page.text.kirbytext",
+      },
+    },
+  });
+
+  return response.result;
 }
 ```
 
-### Collection: `blogPosts` — Public blog articles
-
-```typescript
-{
-  title: string
-  slug: string
-  category: reference → blogCategories
-  excerpt: string
-  body: rich-text (MDX)
-  featuredImage: image
-  publishedDate: datetime
-  featured: boolean       // Optional: pin to top
-}
+### Step 0.8 — Run Eleventy
+```bash
+npx @11ty/eleventy --serve
 ```
+Visit `http://localhost:8080` — your Kirby content rendered as static HTML.
 
-### Collection: `blogCategories` — Blog categories
+---
 
-```typescript
-{
-  title: string
-  slug: string
-  description?: text
-}
-```
+## Phase 1: Sign Up & Set Up Hosting
 
-### Collection: ~~premiumPosts — REMOVED (not required)~~
-### Collection: ~~premiumCategories — REMOVED (not required)~~
+### Step 1.1 — Sign up for MyHost NZ
+- Plan: **Web Hosting Small** ($8.95/mo or $96/yr + GST)
+- Use discount code `50OFF` for 50% off first month
+- You'll get cPanel access, FTP credentials, SSL, daily backups
+- Servers in Auckland, NZ
 
-### Collection: `workItems` — Portfolio/Work examples
+### Step 1.2 — Sign up for Netlify
+- Free tier (100GB bandwidth, 300 build minutes/month)
+- Connect your GitHub repo
 
-```typescript
-{
-  title: string
-  slug: string
-  description: text
-  link: string       // External URL
-  image: image
-  workType: string   // e.g. "Podcast", "Video", "Writing", "Featured In"
-  publishedDate: datetime
-}
-```
+### Step 1.3 — Deploy Kirby to MyHost
+- Upload Kirby files via cPanel File Manager or FTP
+- Point a subdomain (e.g. `cms.emintoyland.com`) at MyHost for the Kirby Panel
+- Set up SSL via cPanel AutoSSL
+- Create an API-only Kirby user for Eleventy to use
 
-### Collection: `settings` — Site-wide config (singleton)
-
-```typescript
-{
-  siteTitle: string
-  siteDescription: string
-  logo: image
-  footerText: string
-  socialLinks: {
-    instagram: string
-    // others as needed
-  }
-  googleAnalyticsId: string
-}
-```
-
-### Collection: `instagramFeed` — Instagram embed images
-
-```typescript
-{
-  image: image
-  instagramUrl: string
-  publishedDate: datetime
-}
+### Step 1.4 — Set environment variables
+On MyHost, configure `site/config/config.php`:
+```php
+return [
+  'api' => ['basicAuth' => true],
+  'kql' => ['auth' => true],
+];
 ```
 
 ---
 
-## 3. TinaCMS Tech Stack
+## Phase 2: Build the Eleventy Site
 
-TinaCMS is built on the following technologies:
+### Step 2.1 — Project structure
+```
+emintoyland/
+├── _data/
+│   ├── kirby.js          # Fetches all content from KQL API
+│   └── site.json         # Site-wide settings
+├── _includes/
+│   └── layouts/
+│       ├── base.njk      # Root layout (html, head, meta tags, Swup, LS)
+│       └── page.njk      # Content page layout
+├── assets/
+│   └── styles/
+│       ├── settings.css  # Utopia tokens, colors, fonts (port from current)
+│       ├── compositions.css
+│       └── blocks/       # Component CSS (port from current)
+├── pages/
+│   ├── index.njk
+│   ├── about.njk
+│   ├── contact.njk
+│   └── work.njk
+├── posts/
+│   ├── posts.njk         # Blog listing
+│   └── [slug].njk        # Blog detail
+├── eleventy.config.js
+├── netlify.toml
+└── package.json
+```
 
-| Layer | Technology |
-|---|---|
-| **Admin UI** | React 18/19 |
-| **CLI / Tooling** | Node.js, `@tinacms/cli` (Vite-powered dev server) |
-| **Content Format** | Markdown, MDX, or JSON — stored in Git |
-| **GraphQL API** | Apollo/Express-based GraphQL server (auto-generated from schema) |
-| **Schema** | TypeScript (`tina/config.ts`) — auto-generates types + GraphQL schema |
-| **Database (self-hosted)** | MongoDB or Redis (for the Data Layer / content index) |
-| **Database (TinaCloud)** | Managed by Tina Inc. |
-| **Frontend Integration** | Next.js (first-class), Astro (experimental), any React framework |
-| **Visual Editing** | `useTina` React hook provides live preview + click-to-edit |
-| **Auth (TinaCloud)** | OAuth (GitHub, Google) — free tier supports 1 editor |
-| **Auth (self-hosted)** | Custom — you build it (NextAuth, Auth0, etc.) |
-| **Media (TinaCloud)** | Managed CDN, Git-backed media manager |
-| **Media (self-hosted)** | External (S3, Cloudinary) — no built-in media manager |
-| **License** | Apache 2.0 (open source) |
-| **Repository** | https://github.com/tinacms/tinacms |
+### Step 2.2 — Port CUBE CSS from current project
+- Copy `styles/settings.css` → `assets/styles/settings.css`
+- Copy `styles/compositions.css` → `assets/styles/compositions.css`
+- Copy `styles/blocks/` → `assets/styles/blocks/`
+- All stack-agnostic, no changes needed
 
-**Note on the free tier:** TinaCloud free tier supports 1 editor with visual editing, Git-backed content, and the managed GraphQL backend. For a site this size (static pages + blog), the free tier is perfectly adequate — you just connect your GitHub repo, add environment variables, and Emma edits content visually on the live site. No self-hosting of the backend needed.
+### Step 2.3 — Build Nunjucks templates
+- `base.njk`: HTML shell, SEO meta tags, link to CSS, Swup init, Locomotive Scroll init
+- `page.njk`: extends `base.njk`, content output, structured data
+- Blog listing, blog detail, work grid, etc.
 
----
+### Step 2.4 — Set up Swup
+```bash
+npm install swup
+```
+In `base.njk`:
+```html
+<main id="swup" class="transition-fade">
+  {{ content | safe }}
+</main>
 
-## 4. Recommended Tech Stack Options
+<script type="module">
+import Swup from 'swup';
+const swup = new Swup({ containers: ['#swup'] });
+</script>
+```
 
-### Option A: **TinaCMS + Next.js** (recommended)
+### Step 2.5 — Set up Locomotive Scroll v5 (Lenis-based)
+```bash
+npm install locomotive-scroll
+```
+```html
+<div data-scroll-container>
+  <main id="swup" class="transition-fade">
+    {{ content | safe }}
+  </main>
+</div>
 
-| Layer | Technology |
-|---|---|
-| CMS | TinaCMS + TinaCloud free tier (open-source, Git-backed, visual editing) |
-| Frontend Framework | Next.js 14+ (React, SSR/SSG/ISR) |
-| Hosting | Vercel / Netlify / self-hosted (Docker) |
-| Database (self-hosted Tina) | SQLite (local dev), MongoDB or Redis (production) |
-| Auth | Not needed (public site, no memberships) |
-| Commerce / Payments | Stripe (replace Webflow Commerce) |
-| Media Storage | Cloudinary / AWS S3 / TinaCloud Media |
-| Forms | React Hook Form + API route + email (Resend/SendGrid) |
-| Analytics | Google Analytics (keep existing) |
-| Fonts | Google Fonts via next/font |
-| Git | GitHub/GitLab (TinaCMS commits content as MDX) |
+<script type="module">
+import Swup from 'swup';
+import LocomotiveScroll from 'locomotive-scroll';
 
-**Pros:**
-- Visual in-context editing (click-to-edit on the page)
-- Content stored as MDX in Git (version-controlled, portable)
-- Great developer experience with Next.js
-- Incremental Static Regeneration (ISR) for fast builds
-- No vendor lock-in on hosting
+let scroll;
 
-**Cons:**
-- Self-hosting the Tina backend requires deploying a GraphQL daemon + database
-- TinaCloud (managed) is simpler but SaaS dependency
-- Self-hosted Tina lacks built-in media manager, search API, runtime branch switching
-- Steeper setup than alternatives
+function initScroll() {
+  scroll = new LocomotiveScroll({
+    lenisOptions: {
+      wrapper: window,
+      content: document.querySelector('[data-scroll-container]')
+    }
+  });
+}
 
-### Option B: **Payload CMS + Next.js** (recommended alternative)
+initScroll();
 
-| Layer | Technology |
-|---|---|
-| CMS | Payload CMS (open-source, self-hosted, REST/GraphQL) |
-| Frontend Framework | Next.js 14+ (or any frontend) |
-| Hosting | Vercel / Railway / Fly.io / self-hosted |
-| Database | PostgreSQL (Neon, Supabase, Railway) |
-| Auth | Built-in Payload auth + collections |
-| Commerce / Payments | Stripe plugin for Payload / custom |
-| Memberships | Payload auth with role-based access control |
-| Media | Built-in media upload + integration with S3/Cloudinary |
-| Forms | Payload forms plugin or custom |
-| Admin UI | Built-in admin panel (React) |
+const swup = new Swup({ containers: ['#swup'] });
 
-**Pros:**
-- Closest 1:1 mapping to Webflow CMS (collections, references, rich text)
-- TypeScript end-to-end, auto-generated types
-- Built-in auth, role-based access, draft/publish workflows
-- No SaaS dependency — fully self-hosted
-- Postgres-backed (familiar, scalable)
-- Admin panel included for editors
-- Active community, MIT license
-
-**Cons:**
-- No visual in-context editing (form-based admin panel)
-- Requires Postgres database to manage
-- More infrastructure than TinaCMS local mode
-
-### Option C: **Sanity CMS + Next.js**
-
-| Layer | Technology |
-|---|---|
-| CMS | Sanity (hosted SaaS, free tier) |
-| Frontend Framework | Next.js 14+ |
-| Hosting | Vercel / Netlify |
-| Media | Built-in Sanity CDN |
-| Auth / Memberships | Custom (NextAuth + Stripe) |
-| Forms | Custom React forms |
-
-**Pros:**
-- Polished hosted Studio UI for editors
-- Industry-leading rich text (Portable Text)
-- Real-time collaboration
-- Generous free tier
-
-**Cons:**
-- SaaS dependency — data stored on Sanity's servers
-- No visual in-context editing (form-based Studio)
-- Export/migration can be painful at scale
-- More expensive at higher tiers
+swup.hooks.on('content:replace', () => scroll.destroy());
+swup.hooks.on('page:view', () => initScroll());
+</script>
+```
 
 ---
 
-## 5. Migration Plan — Phase by Phase
+## Phase 3: Content Migration
 
-### Phase 1: Foundation (Week 1-2)
+### Step 3.1 — Set up Kirby content structure
+```
+content/
+├── site.txt              # Site settings (title, description, social links)
+├── home/
+│   └── home.txt          # Home page content
+├── about/
+│   └── about.txt         # About page
+├── contact/
+│   └── contact.txt       # Contact page
+├── work/
+│   ├── work.txt          # Work listing page
+│   └── work-item-1/
+│       └── work-item.txt # Individual work entry
+├── blog/
+│   ├── blog.txt          # Blog listing page
+│   └── post-title/
+│       └── post.txt      # Blog post
+└── categories/
+    ├── categories.txt
+    ├── featured-in/
+    │   └── category.txt
+    ├── podcast/
+    │   └── category.txt
+    ├── video/
+    │   └── category.txt
+    └── writing/
+        └── category.txt
+```
 
-- [ ] Set up Next.js project with TypeScript
-- [ ] Configure chosen CMS (Tina / Payload / Sanity)
-- [ ] Define all content collections/schemas (see Section 2)
-- [ ] Set up Git repository (GitHub)
-- [ ] Set up hosting environment (Vercel + Supabase/Neon for Payload, or Vercel + Redis for Tina self-hosted)
-- [ ] Configure domain DNS (prepare for cutover)
-- [ ] Set up staging environment for testing
+### Step 3.2 — Define Kirby blueprints
+Create `site/blueprints/pages/` with blueprints for:
+- `home.yml`
+- `about.yml`
+- `contact.yml`
+- `work.yml` (with work items as subpages or structure field)
+- `post.yml` (blog post)
+- `category.yml`
 
-### Phase 2: Design & Components (Week 2-3)
+### Step 3.3 — Migrate content from extracted MDX
+- 40 Webflow images already in `public/images/`
+- Content already extracted in `content/` folder
+- Transform MDX frontmatter to Kirby YAML + KirbyText format
 
-- [ ] Set up TinaCMS with Next.js (use the official Tina starter)
-- [ ] Configure `tina/config.ts` with collections from Section 2
-- [ ] Connect to GitHub repo + TinaCloud free tier
-- [ ] Audit current design (colors, typography, spacing, layout)
-- [ ] Extract current CSS/styling from Webflow (Poppins font, pink/purple color scheme, toy illustrations)
-- [ ] Rebuild global components in React/Next.js:
-  - Navbar (responsive, hamburger menu on mobile)
-  - Footer (with toy illustrations, link grid, credit text)
-  - Layout wrappers
-  - Button variants
-- [ ] Rebuild page templates:
-  - Home page layout
-  - Blog listing + detail pages
-  - Work/portfolio grid
-  - Contact page
-  - About page
-  - Pricing/subscription page
+---
 
-### Phase 3: Content Migration (Week 3-4)
+## Phase 4: Features & Integrations
 
-**Note:** These collections are removed: Premium Posts, Premium Categories, Memberships (sign-up, log-in, user account). Don't migrate them.
+### Step 4.1 — SEO fields
+- Add minimal SEO fields (meta title, description, OG image) to Kirby blueprints
+- Render them in Eleventy's `base.njk` layout
+- Plugin option: `benjaminhaeberli/kirby-seo` (MIT, simple)
 
-- [ ] Export all Webflow CMS data via Webflow API or CSV export
-- [ ] Write migration script to transform Webflow data into target CMS format
-- [ ] Download all images from Webflow CDN (cdn.prod.website-files.com)
-- [ ] Upload media to new storage (S3 / Cloudinary / Payload media)
-- [ ] Import content with correct field mapping
-- [ ] Set up redirect map for any URL changes
-- [ ] Migrate 7 public blog posts + all categories
-- [ ] Migrate work/portfolio items (5-8 entries)
-- [ ] Migrate Instagram feed images (fetch via Instagram API or manual)
-- [ ] Migrate privacy policy page content
+### Step 4.2 — Contact form
+Options to decide:
+- **Netlify Forms**: free, no backend needed, triggers email notification
+- **Formspree**: free tier (50 submissions/mo), simple embed
+- **Resend**: custom API route, more control
 
-### Phase 4: Commerce — if keeping the Premium product (Week 4-5)
+### Step 4.3 — Newsletter (Kit / ConvertKit)
+- Kit account already exists
+- Embed signup form in Eleventy template
+- Style to match CUBE CSS system
 
-**Commerce replacement (Webflow Commerce → Stripe) — if needed:**
-- [ ] Create Stripe account and configure products
-- [ ] Set up Premium subscription product at $6.99 USD/month
-- [ ] Build product page with Stripe checkout integration
-- [ ] Implement webhook handling for subscription events
-- [ ] Build cart UI (if keeping — current site uses single product, may not need full cart)
+### Step 4.4 — Instagram feed
+- Instagram Basic Display API
+- Fetch at Eleventy build time, or maintain as Kirby content collection
+- Display grid on home page
 
-### Phase 5: Features & Integrations (Week 5)
+### Step 4.5 — Google Analytics
+- Keep existing ID: G-R7738E5V4S
+- Add GA snippet to `base.njk`
 
-- [ ] Rebuild contact form with server-side submission + email notification (Resend / SendGrid)
-- [ ] Rebuild newsletter signup (convertKit / Mailchimp / direct API)
-- [ ] Set up Google Analytics (same ID G-R7738E5V4S for continuity)
-- [ ] Add Open Graph meta tags per page (same existing OG data)
-- [ ] Add canonical URLs (preserve existing)
-- [ ] Add 301 redirects for changed URLs
-- [ ] Generate new sitemap.xml
-- [ ] Add Google Search Console verification
+---
 
-### Phase 6: Testing & SEO (Week 5-6)
+## Phase 5: Deployment
 
-- [ ] Test all pages on staging
-- [ ] Verify all content renders correctly
-- [ ] Test Stripe subscription flow (if keeping commerce)
+### Step 5.1 — Netlify configuration
+`netlify.toml`:
+```toml
+[build]
+  publish = "_site"
+  command = "eleventy"
+
+[build.processing]
+  skip_processing = false
+```
+
+Environment variables in Netlify:
+- `KIRBY_API_URL` = `https://cms.emintoyland.com/api/query`
+- `KIRBY_USER` = (API user)
+- `KIRBY_PASS` = (API password)
+
+`_data/kirby.js` uses these env vars to authenticate.
+
+### Step 5.2 — Content update workflow
+- Emma edits content in the Kirby Panel
+- Panel has a "Deploy" button (via `johannschopplich/kirby-deploy-trigger`)
+- Button hits Netlify build hook → site rebuilds with fresh content
+- Full rebuild takes ~30-60 seconds
+
+### Step 5.3 — DNS
+- `emintoyland.com` → Netlify (public site)
+- `cms.emintoyland.com` → MyHost NZ (Kirby Panel, password-protected)
+
+---
+
+## Phase 6: Testing & Launch
+
+- [ ] Test all pages render correctly from Kirby content
+- [ ] Test Swup transitions between all page types
+- [ ] Test Locomotive Scroll on desktop + mobile
 - [ ] Test contact form submission
-- [ ] SEO audit:
-  - Meta titles and descriptions match current
-  - OG images preserved
-  - Canonical URLs correct
-  - Sitemap valid
-  - No broken links
-- [ ] Mobile responsiveness testing
-- [ ] Lighthouse performance audit
-- [ ] Set up preview/staging branch for client review
-
-### Phase 7: Launch (Week 6)
-
-- [ ] Final content sync (any changes since extraction)
-- [ ] Point DNS to new hosting
-- [ ] Monitor analytics for traffic drop or 404s
+- [ ] Test newsletter signup
+- [ ] Test Instagram feed
+- [ ] Mobile responsiveness
+- [ ] Lighthouse audit
+- [ ] Verify all current URLs preserved or 301 redirected
+- [ ] Check Open Graph tags render correctly
+- [ ] Generate sitemap.xml
+- [ ] Point DNS, monitor for 404s
 - [ ] Keep Webflow site live for 30 days as fallback
-- [ ] Post-launch SEO monitoring
-- [ ] Client training on new CMS
 
 ---
 
-## 6. SEO Preservation Checklist
+## Cost Summary
 
-| Item | Status |
-|---|---|
-| Preserve all current URL slugs | Critical |
-| 301 redirect map for any URL changes | Required |
-| Meta descriptions per page | Migrate from Webflow |
-| OG title/description/image per page | Migrate from Webflow |
-| Canonical tags | Rebuild in new setup |
-| Sitemap.xml | Generate new version |
-| Google Analytics same ID | G-R7738E5V4S |
-| Google Search Console verification | Re-verify new domain property |
+| Item | Cost | Frequency |
+|---|---|---|
+| Kirby Basic license | €99 (~NZ$178) | Once (3 years updates) |
+| MyHost NZ Web Hosting Small | $8.95/mo + GST (~$10.30) | Monthly |
+| Netlify | Free | — |
+| Domain (emintoyland.com) | ~$30/yr | Yearly |
+| **First year total** | **~NZ$330** | |
+| **Per year after** | **~NZ$150** | (hosting + domain) |
 
 ---
 
-## 7. Cost Estimate
+## Comparison: Old Plan vs New Plan
 
-| Item | TinaCMS (self-hosted) | Payload CMS | Sanity |
-|---|---|---|---|
-| **CMS License** | Free (Apache 2.0) | Free (MIT) | Free tier → $15/mo+ |
-| **Hosting** | Vercel Hobby $20/mo | Vercel Hobby $20/mo | Vercel Hobby $20/mo |
-| **Database** | Redis/Vercel KV $0-20/mo | Neon Postgres free tier | N/A (Sanity hosted) |
-| **Media Storage** | Cloudinary free tier | S3/Cloudinary $0-5/mo | Built-in (free tier) |
-| **Email (forms)** | Resend free tier | Resend free tier | Resend free tier |
-| **Auth** | Auth.js free | Built-in (free) | Auth.js free |
-| **Stripe** | 2.9% + $0.30/trans | 2.9% + $0.30/trans | 2.9% + $0.30/trans |
-| **Total/mo (est.)** | **$20-45/mo** | **$20-25/mo** | **$35-55/mo** |
+| | Old (Next.js + TinaCMS) | New (Kirby + Eleventy) |
+|---|---|---|
+| CMS cost | Free (self-host) / $0-20/mo (TinaCloud) | €99 one-time |
+| Hosting | Vercel $20/mo | Netlify free + MyHost $9/mo |
+| Database | Redis/Mongo/Postgres | None (flat-file) |
+| Page transitions | Broken (Next.js App Router) | Swup works natively |
+| Visual editing | In-context click-to-edit | Kirby Panel |
+| Content backup | Git-based MDX | Git-based flat files |
+| Editor experience | Next.js dev server needed | Pure Panel UI |
+| Build speed | Incremental (ISR) | Full rebuild (30-60s) |
 
 ---
 
-## 8. Final Recommendation
+## Links & Resources
 
-**TinaCMS + Next.js with TinaCloud free tier** is the right choice for this project.
-
-Since you don't need memberships or premium gated content, the scope simplifies to:
-- Static pages (Home, About, Contact, Privacy)
-- Blog with categories (7 posts, 4 categories)
-- Work/portfolio portfolio grid
-- Optional: single product page ($6.99 subscription)
-
-The TinaCloud free tier handles 1 editor (Emma) perfectly — no need to self-host the backend. She edits content visually on the live site. Content is stored as MDX in your GitHub repo. The only infrastructure is Next.js on Vercel ($20/mo) plus Stripe if you keep the commerce piece.
-
-### What to drop from migration scope
-- Premium posts & premium categories (remove from CMS schema)
-- User sign-up, login, password reset, account pages (remove from build)
-- Gated content logic (no longer needed)
+- [Kirby CMS](https://getkirby.com)
+- [Eleventykit starter](https://github.com/getkirby/eleventykit)
+- [KQL plugin](https://github.com/getkirby/kql)
+- [Kirby Headless plugin](https://github.com/johannschopplich/kirby-headless)
+- [Eleventy](https://11ty.dev)
+- [Swup](https://swup.js.org)
+- [Locomotive Scroll v5](https://scroll.locomotive.ca)
+- [MyHost NZ](https://myhost.nz/hosting/web-hosting)
+- [Netlify](https://netlify.com)
