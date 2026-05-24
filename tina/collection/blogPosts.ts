@@ -22,7 +22,7 @@ const BlogPosts: Collection = {
       type: 'reference',
       label: 'Category',
       name: 'category',
-      collections: ['blogCategories'],
+      collections: ['categories'],
     },
     {
       type: 'string',

@@ -5,11 +5,6 @@ const WorkItems: Collection = {
   name: 'workItems',
   path: 'content/work-items',
   format: 'mdx',
-  ui: {
-    router: ({ document }) => {
-      return `/work/${document._sys.filename}`;
-    },
-  },
   fields: [
     {
       type: 'string',

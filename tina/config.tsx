@@ -3,7 +3,7 @@ import nextConfig from '../next.config'
 
 import Pages from "./collection/pages";
 import BlogPosts from "./collection/blogPosts";
-import BlogCategories from "./collection/blogCategories";
+import Categories from "./collection/categories";
 import WorkItems from "./collection/workItems";
 import Settings from "./collection/settings";
 import InstagramFeed from "./collection/instagramFeed";
@@ -29,7 +29,7 @@ const config = defineConfig({
     basePath: nextConfig.basePath?.replace(/^\//, '') || '',
   },
   schema: {
-    collections: [Pages, BlogPosts, BlogCategories, WorkItems, Settings, InstagramFeed],
+    collections: [Pages, BlogPosts, Categories, WorkItems, Settings, InstagramFeed],
   },
 });
 
