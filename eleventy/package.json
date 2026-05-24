@@ -10,5 +10,11 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "ofetch": "^1.4.1"
+  },
+  "dependencies": {
+    "@11ty/eleventy-img": "^6.0.4",
+    "esbuild": "^0.28.0",
+    "markdown-it": "^14.2.0",
+    "swup": "^4.9.0"
   }
 }

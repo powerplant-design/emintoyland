@@ -1,0 +1,58 @@
+title: Home
+tabs:
+  hero:
+    label: Hero
+    columns:
+      - width: 1/1
+        fields:
+          metaDescription:
+            label: Meta Description
+            type: textarea
+          heroTagline:
+            label: Tagline
+            type: text
+            help: Hero heading text
+          heroImage:
+            label: Hero Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+            help: Upload images in the Media tab, then select one here
+          heroText:
+            label: Hero Text
+            type: textarea
+            size: large
+  showcase:
+    label: Showcase
+    columns:
+      - width: 1/1
+        fields:
+          showcaseHeading:
+            label: Heading
+            type: text
+          showcaseText:
+            label: Content
+            type: textarea
+            size: large
+  about:
+    label: About
+    columns:
+      - width: 1/1
+        fields:
+          aboutHeading:
+            label: Heading
+            type: text
+          aboutText:
+            label: Content
+            type: textarea
+            size: large
+  media:
+    label: Media
+    sections:
+      uploads:
+        type: files
+        label: Images
+        template: image
+        layout: cards
+        upload: true

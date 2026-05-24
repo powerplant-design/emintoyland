@@ -1,0 +1,9 @@
+<div class="hero hero--home">
+  {% if page.heroImage %}
+    {% image page.heroImage, page.title %}
+  {% endif %}
+  <div class="hero__overlay wrapper flow">
+    <span class="separator">{{ page.heroTagline }}</span>
+    {{ page.heroText | markdown | safe }}
+  </div>
+</div>

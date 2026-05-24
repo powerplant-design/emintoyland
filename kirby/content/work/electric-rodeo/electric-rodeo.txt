@@ -1,0 +1,31 @@
+Title: The Electric Rodeo Podcast
+
+----
+
+Worktype: Podcast
+
+----
+
+Worklink: https://open.spotify.com/show/1dHSKMjIsFfOJz9fZQ2OuU?si=3d97ee28bd48496c
+
+----
+
+Workimage: /images/electric-rodeo-cover.png
+
+----
+
+Publisheddate: 2025-01-05
+
+----
+
+Text:
+
+I write, produce & co-host The Electric Rodeo Podcast along with my pal and colleague Tash Bull.
+
+Welcome to the Electric Rodeo, an award-winning Aotearoa New Zealand podcast about sex, pleasure, relationships and everything in between.
+
+**We're a winner, baby!** We won Silver in the NZ Podcast Awards for the best sex & relationships podcast in 2024! We also won Bronze in the NZ Podcast Awards for the best sex & relationships podcast in 2022.
+
+----
+
+Uuid: 1uf9oputvyzkncuq

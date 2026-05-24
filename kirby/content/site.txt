@@ -1,1 +1,17 @@
-Title: Site Title
+Title: Em in Toyland
+
+----
+
+SiteDescription: Emma Hewitt-Johnson — Sexologist, Certified Holistic Sex Educator, writer, podcaster, video host & sex toy expert.
+
+----
+
+Logo: /images/eit-logo-shadow.png
+
+----
+
+FooterText: © 2026 Em in Toyland. All rights reserved.
+
+----
+
+GoogleAnalyticsId: G-R7738E5V4S

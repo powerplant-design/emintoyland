@@ -1,0 +1,167 @@
+/* Heading exceptions */
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-bold);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--step-5);
+}
+
+h2 {
+  font-size: var(--step-4);
+}
+
+h3 {
+  font-size: var(--step-3);
+}
+
+h4 {
+  font-size: var(--step-2);
+}
+
+h5 {
+  font-size: var(--step-1);
+}
+
+/* Body base */
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Links */
+a {
+  color: var(--color-pink);
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #d02d6a;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lists */
+ul, ol {
+  padding-inline-start: var(--space-m);
+}
+
+/* Rich text / prose */
+.prose {
+  max-width: var(--measure-medium);
+  line-height: var(--leading-relaxed);
+}
+
+.prose p {
+  margin-block: var(--space-s-m);
+}
+
+.prose h2 {
+  margin-block-start: var(--space-xl);
+  margin-block-end: var(--space-s);
+}
+
+.prose h3 {
+  margin-block-start: var(--space-l);
+  margin-block-end: var(--space-xs);
+}
+
+.prose ul,
+.prose ol {
+  margin-block: var(--space-s);
+}
+
+.prose blockquote {
+  border-inline-start: 4px solid var(--color-pink);
+  margin: var(--space-m-l) 0;
+  padding: var(--space-s) var(--space-m);
+  font-style: italic;
+  color: var(--color-text-light);
+}
+
+.prose img {
+  border-radius: var(--radius-md);
+  margin-block: var(--space-m-l);
+}
+
+/* Decorative text span */
+.text-span {
+  color: var(--color-pink);
+}
+
+.text-span.is-purple {
+  color: var(--color-purple);
+}
+
+/* Decorative separator */
+.separator {
+  font-weight: var(--weight-semibold);
+  color: var(--color-pink);
+  margin-block-end: var(--space-xs);
+}
+
+/* Newsletter section background */
+.newsletter-bg {
+  background-color: var(--color-bg-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Page transitions / main content offset for fixed nav */
+.main-content {
+  padding-block-start: 80px;
+}
+
+/* Instagram feed on index */
+.instagram-section {
+  padding-block: var(--space-2xl);
+}
+
+/* Kitty corner credit */
+.credit-text {
+  font-size: var(--step--1);
+}
+
+/* Footer decoratives positioning */
+.footer-toys-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin-inline: auto;
+  margin-block-end: var(--space-m);
+}
+
+/* CTA background image section */
+.cta-section {
+  position: relative;
+  color: var(--color-light);
+  overflow: hidden;
+}
+
+.cta-section__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.cta-section__content {
+  position: relative;
+  z-index: 1;
+}

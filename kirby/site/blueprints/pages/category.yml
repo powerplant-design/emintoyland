@@ -1,0 +1,6 @@
+title: Category
+preset: page
+fields:
+  categoryDescription:
+    label: Description
+    type: textarea

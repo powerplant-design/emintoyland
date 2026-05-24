@@ -1,0 +1,10 @@
+title: Work
+preset: page
+fields:
+  metaDescription:
+    label: Meta Description
+    type: textarea
+  text:
+    label: Body
+    type: textarea
+    size: large

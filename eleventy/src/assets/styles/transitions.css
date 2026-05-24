@@ -1,0 +1,41 @@
+/* Swup page transitions */
+.transition-fade {
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+html.is-animating .transition-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+html.is-leaving .transition-fade {
+  transition-duration: 0.2s;
+}
+
+html.is-entering .transition-fade {
+  transition-duration: 0.3s;
+}
+
+/* Card enter animation */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-enter {
+  animation: card-enter 0.3s ease forwards;
+}
+
+.card-leave {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}

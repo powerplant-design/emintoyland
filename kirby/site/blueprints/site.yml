@@ -1,5 +1,16 @@
 title: Site
-
-sections:
-  pages:
-    type: pages
+preset: page
+fields:
+  siteDescription:
+    label: Site Description
+    type: textarea
+  logo:
+    label: Logo Path
+    type: text
+    help: Relative path from site root (e.g. /images/eit-logo-shadow.png)
+  footerText:
+    label: Footer Text
+    type: text
+  googleAnalyticsId:
+    label: Google Analytics ID
+    type: text

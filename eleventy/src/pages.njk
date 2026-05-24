@@ -3,11 +3,63 @@ pagination:
   data: kirby
   size: 1
   alias: page
-permalink: "/{{ page.slug }}/index.html"
+permalink: "/{% if page.uri != 'home' %}{{ page.uri }}/{% endif %}index.html"
 layout: base.njk
 ---
 
-<h1>{{ page.title }}</h1>
+{% if page.parentSlug == "work" %}
+  {% if page.workImage %}
+    <div class="hero hero--work">
+      {% image page.workImage, page.title %}
+    </div>
+  {% endif %}
 
-<p>Slug: {{ page.slug }}</p>
-<p>UUID: {{ page.uuid }}</p>
+  <div class="wrapper flow prose">
+    <h1>{{ page.title }}</h1>
+    <span class="separator">{{ page.workType }}</span>
+    {% if page.publishedDate %}
+      <p class="text-step--1" style="color: var(--color-text-light);">{{ page.publishedDate }}</p>
+    {% endif %}
+    {{ page.text | markdown | safe }}
+    {% if page.workLink %}
+      <a href="{{ page.workLink }}" class="button" target="_blank" rel="noopener">View original →</a>
+    {% endif %}
+  </div>
+
+{% elif page.uri == "home" %}
+  {% include "components/hero-home.njk" %}
+  {% if page.showcaseHeading or page.showcaseText %}
+    {% set heading = page.showcaseHeading %}
+    {% set body = page.showcaseText %}
+    {% include "components/section.njk" %}
+  {% endif %}
+  {% if page.aboutHeading or page.aboutText %}
+    {% set heading = page.aboutHeading %}
+    {% set body = page.aboutText %}
+    {% include "components/section.njk" %}
+  {% endif %}
+
+{% elif page.uri == "work" %}
+  <div class="wrapper flow">
+    <h1>{{ page.title }}</h1>
+    <div data-filter="container">
+      {% for item in kirby %}{% if item.parentSlug == "work" %}
+        <article class="card" data-filter="{{ item.workType | lower | replace(' ', '-') }}">
+          <a href="/{{ item.uri }}/">
+            {% if item.workImage %}
+              {% image item.workImage, item.title %}
+            {% endif %}
+            <h2>{{ item.title }}</h2>
+            <span class="separator">{{ item.workType }}</span>
+            {{ item.text | markdown | safe }}
+          </a>
+        </article>{% endif %}{% endfor %}
+    </div>
+  </div>
+
+{% else %}
+  <div class="wrapper flow prose">
+    <h1>{{ page.title }}</h1>
+    {{ page.text | markdown | safe }}
+  </div>
+{% endif %}

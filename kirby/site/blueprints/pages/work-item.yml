@@ -1,0 +1,41 @@
+title: Work Item
+tabs:
+  content:
+    label: Content
+    columns:
+      - width: 1/1
+        fields:
+          workType:
+            label: Work Type
+            type: select
+            options:
+              Podcast: Podcast
+              Video: Video
+              Writing: Writing
+              Featured In: Featured In
+          workLink:
+            label: External Link
+            type: url
+          workImage:
+            label: Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+            help: Upload images in the Media tab, then select one here
+          publishedDate:
+            label: Published Date
+            type: date
+          text:
+            label: Description
+            type: textarea
+            size: large
+  media:
+    label: Media
+    sections:
+      uploads:
+        type: files
+        label: Images
+        template: image
+        layout: cards
+        upload: true

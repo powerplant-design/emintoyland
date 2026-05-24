@@ -1,0 +1,4 @@
+<div class="wrapper flow prose">
+  {% if heading %}<h2>{{ heading }}</h2>{% endif %}
+  {{ body | markdown | safe }}
+</div>
