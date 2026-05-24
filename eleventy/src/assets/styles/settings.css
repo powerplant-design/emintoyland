@@ -51,6 +51,10 @@
   --color-border: #e5e7eb;
   --color-success: #10b981;
   --color-error: #ef4444;
+  --barbie: #FC47B3;
+  --honeydew: #E3FD88;
+  --black: #000000;
+  --white: #ffffff;
 
   /* Fonts */
   --font-body: 'Poppins', sans-serif;

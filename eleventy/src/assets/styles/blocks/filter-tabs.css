@@ -10,17 +10,27 @@
   font-family: var(--font-body);
   font-size: var(--step--1);
   font-weight: var(--weight-medium);
-  padding: var(--space-2xs) var(--space-s);
-  border: 2px solid var(--color-pink);
-  border-radius: var(--radius-full);
-  background: transparent;
-  color: var(--color-pink);
+  padding: 1rem 2.125rem;
+  border: 1px solid var(--barbie);
+  border-radius: 50px;
+  background: var(--barbie);
+  color: var(--white);
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: color 0.3s, border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
-.filter-tabs__btn:hover,
+.filter-tabs__btn:hover {
+  border-color: var(--honeydew);
+  background-color: var(--honeydew);
+  box-shadow: 1px 1px 20px 4px var(--honeydew);
+  color: var(--black);
+}
+
 .filter-tabs__btn.is-active {
-  background: var(--color-pink);
-  color: var(--color-light);
+  border-color: var(--honeydew);
+  background-color: var(--honeydew);
+  box-shadow: 0 2px 5px 0 var(--honeydew);
+  color: var(--black);
+  cursor: default;
 }

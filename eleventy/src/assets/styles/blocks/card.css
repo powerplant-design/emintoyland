@@ -15,18 +15,27 @@
 
 .card__image-wrap {
   overflow: hidden;
+  position: relative;
 }
 
-.card__image {
-  aspect-ratio: 16 / 10;
+.card__image-wrap picture,
+.card__image-wrap img {
+  aspect-ratio: 1 / 1;
   width: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease-out;
 }
 
-.card:hover .card__image {
-  transform: scale(1.1);
+.card:hover .card__image-wrap picture,
+.card:hover .card__image-wrap img {
+  transform: scale(1.03);
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .card__body {
@@ -34,16 +43,18 @@
 }
 
 .card__category {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
   display: inline-block;
   font-size: var(--step--1);
   font-weight: var(--weight-semibold);
-  color: var(--color-light);
-  background: var(--color-pink);
-  padding: 2px var(--space-xs);
-  border-radius: var(--radius-sm);
+  color: var(--color-dark);
+  background: var(--color-light);
+  padding: 2px var(--space-s);
+  border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-block-end: var(--space-xs);
 }
 
 .card__title {

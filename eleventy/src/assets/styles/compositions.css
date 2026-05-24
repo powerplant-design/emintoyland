@@ -29,7 +29,7 @@
 
 .grid {
   display: grid;
-  gap: var(--grid-gap, var(--space-m-l));
+  gap: var(--grid-gap, var(--space-s-m));
 }
 
 .grid[data-layout='auto'] {
