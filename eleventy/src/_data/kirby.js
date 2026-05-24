@@ -25,7 +25,8 @@ async function resolveWorkImages(workItems) {
   const withFiles = await Promise.all(
     workItems.map(async (item) => {
       const workImage = await resolveFile(`work/${item.slug}`, item.workImage);
-      return { ...item, workImage };
+      const workHeroImage = await resolveFile(`work/${item.slug}`, item.workHeroImage);
+      return { ...item, workImage, workHeroImage };
     })
   );
   return withFiles;
@@ -48,8 +49,9 @@ export default async function () {
       select: {
         title: true, slug: true, uri: true,
         workType: true, workLink: true,
-        workImage: true, publishedDate: true,
-        text: true,
+        workImage: true, workHeroImage: true,
+        publishedDate: true, text: true,
+        body: true,
       },
     }),
   ]);

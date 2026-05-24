@@ -17,6 +17,19 @@ html.is-entering .transition-fade {
   transition-duration: 0.5s;
 }
 
+/* Card leave animation */
+@keyframes card-leave {
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.card-leave {
+  animation: card-leave 0.2s ease forwards;
+  pointer-events: none;
+}
+
 /* Card enter animation */
 @keyframes card-enter {
   from {
@@ -30,13 +43,6 @@ html.is-entering .transition-fade {
 }
 
 .card-enter {
-  animation: card-enter 0.3s ease both;
+  animation: card-enter 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation-delay: var(--stagger, 0ms);
-}
-
-.card-leave {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
 }

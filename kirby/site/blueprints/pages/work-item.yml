@@ -17,19 +17,31 @@ tabs:
             label: External Link
             type: url
           workImage:
-            label: Image
+            label: Thumbnail Image
             type: files
             multiple: false
             layout: cards
             parent: page
-            help: Upload images in the Media tab, then select one here
+            help: Shown on the work listing grid
+          workHeroImage:
+            label: Hero Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+            help: Large image at top of the work detail page
           publishedDate:
             label: Published Date
             type: date
           text:
-            label: Description
+            label: Card Description
+            type: textarea
+            help: Short summary shown on the work listing grid
+          body:
+            label: Body Content
             type: textarea
             size: large
+            help: Main content shown on the work detail page
   media:
     label: Media
     sections:

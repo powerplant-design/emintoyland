@@ -35,21 +35,49 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    var animTimeout = null;
+
+    function closeMenu(callback) {
+      if (navbar.getAttribute('data-state') !== 'active') {
+        if (callback) callback();
+        return;
+      }
+      navbar.setAttribute('data-state', 'closing');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-active');
+      clearTimeout(animTimeout);
+      animTimeout = setTimeout(function() {
+        navbar.setAttribute('data-state', 'idle');
+        if (callback) callback();
+      }, 350);
+    }
+
     // Toggle mobile menu
     toggle.addEventListener('click', function() {
-      var isActive = navbar.getAttribute('data-state') === 'active';
-      navbar.setAttribute('data-state', isActive ? 'idle' : 'active');
-      toggle.setAttribute('aria-expanded', !isActive);
-      toggle.classList.toggle('is-active', !isActive);
+      if (navbar.getAttribute('data-state') === 'active') {
+        closeMenu();
+      } else {
+        clearTimeout(animTimeout);
+        navbar.setAttribute('data-state', 'active');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.classList.add('is-active');
+      }
     });
 
-    // Close menu on link click
+    // Close menu on link click — navigate immediately, drawer closes in parallel
     if (menu) {
       menu.addEventListener('click', function(e) {
-        if (e.target.closest('.navbar__link')) {
-          navbar.setAttribute('data-state', 'idle');
-          toggle.setAttribute('aria-expanded', 'false');
-          toggle.classList.remove('is-active');
+        var link = e.target.closest('.navbar__link');
+        if (link && navbar.getAttribute('data-state') === 'active') {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+          var swup = window.__swup;
+          if (swup) {
+            swup.navigate(link.getAttribute('href'));
+          } else {
+            window.location.href = link.getAttribute('href');
+          }
         }
       });
     }
@@ -57,9 +85,7 @@
     // Close menu on Escape
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && navbar.getAttribute('data-state') === 'active') {
-        navbar.setAttribute('data-state', 'idle');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.classList.remove('is-active');
+        closeMenu();
       }
     });
   })();

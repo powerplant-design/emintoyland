@@ -8,21 +8,30 @@ layout: base.njk
 ---
 
 {% if page.parentSlug == "work" %}
-  {% if page.workImage %}
-    <div class="hero hero--work">
-      {% image page.workImage, page.title %}
+  <article class="work-detail wrapper stack" style="--stack-vertical: center; text-align: center; --stack-horizontal: center;">
+    <a href="/work/?type={{ page.workType | lower | replace(' ', '-') }}" class="work-detail__category">{{ page.workType }}</a>
+    <h1 class="work-detail__title">{{ page.title }}</h1>
+    <img src="/images/eit-sparklez.gif" alt="" class="work-detail__sparkle" aria-hidden="true">
+    {% if page.publishedDate %}
+      <p class="work-detail__date">Published: {{ page.publishedDate }}</p>
+    {% endif %}
+  </article>
+
+  {% set heroImage = page.workHeroImage if page.workHeroImage else page.workImage %}
+  {% if heroImage %}
+    <div class="wrapper" style="padding-block: var(--space-l-xl);">
+      <div class="work-detail__image-wrap">
+        {% image heroImage, page.title, "(min-width: 62rem) 60vw, 100vw" %}
+      </div>
     </div>
   {% endif %}
 
-  <div class="wrapper flow prose">
-    <h1>{{ page.title }}</h1>
-    <span class="separator">{{ page.workType }}</span>
-    {% if page.publishedDate %}
-      <p class="text-step--1" style="color: var(--color-text-light);">{{ page.publishedDate }}</p>
-    {% endif %}
-    {{ page.text | markdown | safe }}
+  <div class="wrapper flow prose" style="padding-block-end: var(--space-xl-2xl);">
+    {{ (page.body if page.body else page.text) | markdown | safe }}
     {% if page.workLink %}
-      <a href="{{ page.workLink }}" class="button" target="_blank" rel="noopener">View original →</a>
+      <div class="work-detail__actions">
+        <a href="{{ page.workLink }}" class="button button-primary button-large" target="_blank" rel="noopener">View original →</a>
+      </div>
     {% endif %}
   </div>
 
