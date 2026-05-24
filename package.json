@@ -1,0 +1,29 @@
+{
+  "name": "emintoyland",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev --turbopack\"",
+    "build": "tinacms build --skip-cloud-checks --no-client-build-cache & TINA_PID=$!; sleep 10 && next build; kill $TINA_PID 2>/dev/null; wait $TINA_PID 2>/dev/null",
+    "build-local": "tinacms build --local --skip-cloud-checks & TINA_PID=$!; sleep 10 && next build; kill $TINA_PID 2>/dev/null; wait $TINA_PID 2>/dev/null",
+    "lint": "biome lint",
+    "dev:build": "next build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tinacms/cli": "^2.2.0",
+    "@types/node": "^22.18.12",
+    "@types/react": "^18.3.26",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
+    "postcss-nesting": "^13.0.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "next": "15.3.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tinacms": "^3.7.0"
+  }
+}

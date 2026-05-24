@@ -1,0 +1,113 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: var(--space-s);
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo img {
+  width: 130px;
+  height: auto;
+}
+
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2xs);
+  z-index: 110;
+}
+
+.navbar__toggle-bar {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-dark);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.navbar__toggle[aria-expanded='true'] .navbar__toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__toggle[aria-expanded='true'] .navbar__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__toggle[aria-expanded='true'] .navbar__toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.navbar__overlay {
+  display: none;
+}
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+}
+
+.navbar__link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--step-0);
+  font-weight: var(--weight-medium);
+  transition: color 0.2s;
+}
+
+.navbar__link:hover,
+.navbar__link[aria-current='page'] {
+  color: var(--color-pink);
+}
+
+@media (width <= 62rem) {
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-l);
+    background-color: var(--color-light);
+    z-index: 105;
+    display: none;
+  }
+
+  .navbar__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 104;
+    display: none;
+  }
+
+  .navbar[data-menu-open='true'] .navbar__menu {
+    display: flex;
+  }
+
+  .navbar[data-menu-open='true'] .navbar__overlay {
+    display: block;
+  }
+
+  .navbar__logo img {
+    width: 100px;
+  }
+}
