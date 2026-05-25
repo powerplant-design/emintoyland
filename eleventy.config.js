@@ -48,6 +48,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets/fonts");
   eleventyConfig.addPassthroughCopy({ "public/favicon.ico": "/favicon.ico" });
 
+  eleventyConfig.addWatchTarget("kirby/content");
+
   eleventyConfig.on("afterBuild", async () => {
     await esbuild.build({
       entryPoints: [path.join(__dirname, "src", "assets", "scripts", "app.js")],
@@ -58,7 +60,7 @@ export default function (eleventyConfig) {
     });
   });
 
-  eleventyConfig.addShortcode("image", async function (src, alt, sizes) {
+  eleventyConfig.addShortcode("image", async function (src, alt, sizes, loading) {
     if (!src) return "";
 
     const inputPath = await resolveImageInput(src);
@@ -85,7 +87,7 @@ export default function (eleventyConfig) {
       <img
         src="${lowsrc?.url || src}"
         alt="${alt}"
-        loading="lazy"
+        loading="${loading || "lazy"}"
         decoding="async"
         width="${lowsrc?.width}"
         height="${lowsrc?.height}"

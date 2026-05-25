@@ -64,10 +64,11 @@ html {
   --space-2xl-3xl: clamp(4rem, 3.5556rem + 2.2222vw, 6.25rem);
 
   /* Colors */
-  --color-pink: #e6407e;
+  --color-pink: #FC47B3;
   --color-pink-light: #fce4ec;
   --color-pink-bg: #fdf2f8;
   --color-purple: #8b5cf6;
+  --color-honeydew: #E3FD88;
   --color-dark: #1a1a2e;
   --color-light: #ffffff;
   --color-text: #2D051A;
@@ -76,12 +77,10 @@ html {
   --color-bg: #ffffff;
   --color-bg-alt: #fdf2f8;
   --color-bg-purple: #faf5ff;
-  --color-border: #e5e7eb;
+  --color-border: #FC47B3;
   --color-black: #2D051A;
   --color-success: #10b981;
   --color-error: #ef4444;
-  --barbie: #FC47B3;
-  --honeydew: #E3FD88;
   --black: #000000;
   --white: #ffffff;
   --shadow: rgba(0, 0, 0, 0.15);
@@ -115,7 +114,7 @@ html {
   --radius-full: 9999px;
 
   /* Max widths */
-  --measure-small: 40rem;
+  --measure-small: 42rem;
   --measure-medium: 60rem;
   --measure-large: 75rem;
 }

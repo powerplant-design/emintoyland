@@ -6,11 +6,11 @@ Metadescription: Emma Hewitt-Johnson, Sexologist, New Zealand
 
 ----
 
-Herotagline: Certified Sexologist
+Heroheading: Certified Sexologist Emma Hewitt-Johnson
 
 ----
 
-Heroimage: /images/eit-hero.png
+Heroimage: - file://kgeqcfqw6bnc7yko
 
 ----
 
@@ -18,11 +18,17 @@ Herotext:
 
 Kia ora queens!
 
-I'm Emma Hewitt-Johnson (she/her). A Sexologist, Certified Sex Educator, writer, podcaster, video host and sex toy expert. I create fun, kink-aware and queer-friendly sex education content.
+I'm a Sexologist, Certified Sex Educator, writer, podcaster, video host and sex toy expert. I create fun, kink-aware and queer-friendly sex education content.
 
 Based in Aotearoa, New Zealand.
 
-[More on me →](/about)
+----
+
+Heroctatext: More on me
+
+----
+
+Heroctalink: /about
 
 ----
 
@@ -35,6 +41,14 @@ Showcaseitems:
 - page://4yf0b5seer5j88zd
 - page://h01ry4j1coge4png
 - page://n0qztxccnvhpxwk5
+
+----
+
+Showcasectatext: 
+
+----
+
+Showcasectalink: 
 
 ----
 

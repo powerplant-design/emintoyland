@@ -9,8 +9,8 @@
 }
 
 .card:hover {
-  background-color: var(--honeydew);
-  box-shadow: 0 7px 20px 20px var(--honeydew);
+  background-color: var(--color-honeydew);
+  box-shadow: 0 7px 20px 20px var(--color-honeydew);
 }
 
 .card__image-wrap {

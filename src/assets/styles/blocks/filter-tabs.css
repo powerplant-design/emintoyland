@@ -11,9 +11,9 @@
   font-size: var(--step--1);
   font-weight: var(--weight-medium);
   padding: 1rem 2.125rem;
-  border: 1px solid var(--barbie);
+  border: 1px solid var(--color-pink);
   border-radius: 50px;
-  background: var(--barbie);
+  background: var(--color-pink);
   color: var(--white);
   text-transform: uppercase;
   cursor: pointer;
@@ -21,16 +21,16 @@
 }
 
 .filter-tabs__btn:hover {
-  border-color: var(--honeydew);
-  background-color: var(--honeydew);
-  box-shadow: 1px 1px 20px 4px var(--honeydew);
+  border-color: var(--color-honeydew);
+  background-color: var(--color-honeydew);
+  box-shadow: 1px 1px 20px 4px var(--color-honeydew);
   color: var(--black);
 }
 
 .filter-tabs__btn.is-active {
-  border-color: var(--honeydew);
-  background-color: var(--honeydew);
-  box-shadow: 0 2px 5px 0 var(--honeydew);
+  border-color: var(--color-honeydew);
+  background-color: var(--color-honeydew);
+  box-shadow: 0 2px 5px 0 var(--color-honeydew);
   color: var(--black);
   cursor: default;
 }

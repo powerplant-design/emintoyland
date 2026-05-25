@@ -8,10 +8,10 @@ tabs:
           metaDescription:
             label: Meta Description
             type: textarea
-          heroTagline:
-            label: Tagline
+          heroHeading:
+            label: Hero Heading
             type: text
-            help: Hero heading text
+            help: H1 heading in the hero section
           heroImage:
             label: Hero Image
             type: files
@@ -23,6 +23,18 @@ tabs:
             label: Hero Text
             type: textarea
             size: large
+          heroCtaText:
+            label: CTA Button Text
+            type: text
+            width: 1/2
+            placeholder: More on me
+            default: More on me
+          heroCtaLink:
+            label: CTA Button Link
+            type: text
+            width: 1/2
+            placeholder: /about
+            default: /about
   showcase:
     label: Showcase
     columns:
@@ -49,7 +61,7 @@ tabs:
             default: View all my work
           showcaseCtaLink:
             label: CTA Button Link
-            type: url
+            type: text
             width: 1/2
             placeholder: /work/
             default: /work/

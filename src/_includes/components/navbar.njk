@@ -1,5 +1,5 @@
-{% set logoUrl = kirby.settings.logo %}
-{% set logoAlt = kirby.settings.logoAlt %}
+{% set logoUrl = kirby.settings.siteImages.logoPink.url %}
+{% set logoAlt = kirby.settings.siteImages.logoPink.alt %}
 <nav class="navbar" data-state="idle" role="navigation">
   <div class="navbar__inner  wrapper">
     <a href="/" class="navbar__logo" aria-label="Home">
@@ -17,7 +17,7 @@
     <div class="navbar__menu">
       <ul class="navbar__list">
         {% set currentUri = page.uri %}
-        <li><a href="/" class="navbar__link"{% if currentUri == 'home' %} aria-current="page"{% endif %}>Home</a></li>
+        {# <li><a href="/" class="navbar__link"{% if currentUri == 'home' %} aria-current="page"{% endif %}>Home</a></li> #}
         <li><a href="/about/" class="navbar__link"{% if currentUri == 'about' %} aria-current="page"{% endif %}>About</a></li>
         <li><a href="/work/" class="navbar__link"{% if currentUri == 'work' or 'work/' in currentUri %} aria-current="page"{% endif %}>Work</a></li>
         <li><a href="/contact/" class="navbar__link"{% if currentUri == 'contact' %} aria-current="page"{% endif %}>Contact</a></li>

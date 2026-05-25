@@ -1,9 +1,18 @@
-<div class="hero hero--home">
-  {% if page.heroImage %}
-    {% image page.heroImage, page.heroImageAlt, "" %}
-  {% endif %}
-  <div class="hero__overlay wrapper flow">
-    <span class="separator">{{ page.heroTagline }}</span>
-    {{ page.heroText | markdown | safe }}
+<section class="hero-hero" data-layout="split" data-image="left">
+  <div class="hero-hero__image">
+    {% if page.heroImage %}
+      {% image page.heroImage, page.heroImageAlt, "", "eager" %}
+    {% endif %}
   </div>
-</div>
+  <div class="hero-hero__content stack" style="--stack-vertical: center;">
+    <h1 class="hero-hero__heading">{{ page.heroHeading }}</h1>
+    <div class="hero-hero__text stack">
+      {{ page.heroText | markdown | safe }}
+    </div>
+    {% set ctaText = page.heroCtaText if page.heroCtaText else "More on me" %}
+    {% set ctaLink = page.heroCtaLink if page.heroCtaLink else "/about/" %}
+    <div class="hero-hero__cta">
+      <a href="{{ ctaLink }}" class="button button-primary button-large">{{ ctaText }} →</a>
+    </div>
+  </div>
+</section>

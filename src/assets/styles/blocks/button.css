@@ -9,9 +9,9 @@
   font-family: var(--font-body);
   text-decoration: none;
   border: 2px solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
   line-height: var(--leading-flat);
 }
 
@@ -21,7 +21,10 @@
 }
 
 .button-primary:hover {
-  background-color: #d02d6a;
+  background-color: var(--color-honeydew);
+  border-color: var(--color-honeydew);
+  color: var(--black);
+  box-shadow: 1px 1px 20px 4px var(--color-honeydew);
 }
 
 .button-secondary {
@@ -46,7 +49,6 @@
 }
 
 .button-nav {
-  border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
