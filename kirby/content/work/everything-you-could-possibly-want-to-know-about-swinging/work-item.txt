@@ -22,14 +22,8 @@ Text: Whether you know about it through the 1996 film Swingers or the recent Mor
 
 ----
 
-Body:
-
-Whether you know about it through the 1996 film Swingers or the recent Mormon #MomTok scandal on social media, chances are you have heard of swinging. But how much do you actually know about it?
+Body: Whether you know about it through the 1996 film Swingers or the recent Mormon #MomTok scandal on social media, chances are you have heard of swinging. But how much do you actually know about it?
 
 ----
 
-IntendedTemplate: work-item
-
-----
-
-Uuid: phesloynmh9qllci
+Uuid: btedmsz0elhg1ot5

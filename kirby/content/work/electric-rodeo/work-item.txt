@@ -18,9 +18,7 @@ Publisheddate: 2025-01-05
 
 ----
 
-Text:
-
-I write, produce & co-host The Electric Rodeo Podcast along with my pal and colleague Tash Bull.
+Text: I write, produce & co-host The Electric Rodeo Podcast along with my pal and colleague Tash Bull.
 
 ----
 
@@ -34,8 +32,4 @@ Welcome to the Electric Rodeo, an award-winning Aotearoa New Zealand podcast abo
 
 ----
 
-IntendedTemplate: work-item
-
-----
-
-Uuid: 1uf9oputvyzkncuq
+Uuid: 4yf0b5seer5j88zd

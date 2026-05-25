@@ -1,0 +1,16 @@
+title: Image
+accept:
+  mime: image/*
+fields:
+  alt:
+    label: Alt Text
+    type: text
+    help: A short description of the image for screen readers and SEO
+  caption:
+    label: Caption
+    type: textarea
+    size: small
+  credit:
+    label: Credit
+    type: text
+    width: 1/2

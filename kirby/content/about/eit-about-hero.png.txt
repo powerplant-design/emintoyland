@@ -1,1 +1,8 @@
-Uuid: 6cgmhdqlkatfcsok
+Template:
+
+image
+Uuid: 03b7e00a06a34c78
+
+----
+
+Uuid: 2r8s4sx48g1vab0s

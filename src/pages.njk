@@ -12,8 +12,8 @@ layout: base.njk
     <a href="/work/?type={{ page.workType | lower | replace(' ', '-') }}" class="work-detail__category">{{ page.workType }}</a>
     <h1 class="work-detail__title">{{ page.title }}</h1>
     {% set sparkle = kirby.settings.siteImages.logoPink %}
-    {% if sparkle %}
-      {% image sparkle, "", "(min-width: 40rem) 10vw, 20vw" %}
+    {% if sparkle.url %}
+      {% image sparkle.url, sparkle.alt, "(min-width: 40rem) 10vw, 20vw" %}
     {% endif %}
     {% if page.publishedDate %}
       <p class="work-detail__date">Published: {{ page.publishedDate }}</p>
@@ -40,11 +40,7 @@ layout: base.njk
 
 {% elif page.uri == "home" %}
   {% include "components/hero-home.njk" %}
-  {% if page.showcaseHeading or page.showcaseText %}
-    {% set heading = page.showcaseHeading %}
-    {% set body = page.showcaseText %}
-    {% include "components/section.njk" %}
-  {% endif %}
+  {% include "components/showcase-cards.njk" %}
   {% if page.aboutHeading or page.aboutText %}
     {% set heading = page.aboutHeading %}
     {% set body = page.aboutText %}
@@ -69,7 +65,7 @@ layout: base.njk
           <a href="/{{ item.uri }}/">
             <div class="card__image-wrap">
               {% if item.workImage %}
-                {% image item.workImage, item.title, "(min-width: 62rem) 33vw, 100vw" %}
+                {% image item.workImage, item.workImageAlt, "(min-width: 62rem) 33vw, 100vw" %}
               {% endif %}
               <span class="card__category">{{ item.workType }}</span>
             </div>

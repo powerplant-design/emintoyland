@@ -1,0 +1,8 @@
+Template:
+
+image
+Uuid: a19e8d730f4a447a
+
+----
+
+Uuid: qw17dcdeabgszkqz

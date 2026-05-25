@@ -1,0 +1,8 @@
+Template:
+
+image
+Uuid: db26bb251469495d
+
+----
+
+Uuid: owcs3gge1qghmrws

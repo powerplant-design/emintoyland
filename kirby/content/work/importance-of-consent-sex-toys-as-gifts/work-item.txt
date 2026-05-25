@@ -22,14 +22,8 @@ Text: Gifting a sex toy, whether a butt plug or any other toy, without consent, 
 
 ----
 
-Body:
-
-Gifting a sex toy, whether a butt plug or any other toy, without consent, is crossing a line and can make people feel embarrassed, triggered, uncomfortable, or disrespected.
+Body: Gifting a sex toy, whether a butt plug or any other toy, without consent, is crossing a line and can make people feel embarrassed, triggered, uncomfortable, or disrespected.
 
 ----
 
-IntendedTemplate: work-item
-
-----
-
-Uuid: q8ki9h5t3ejvtsyn
+Uuid: rgmkesnklolqmn8d

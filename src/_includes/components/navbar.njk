@@ -1,9 +1,10 @@
 {% set logoUrl = kirby.settings.logo %}
+{% set logoAlt = kirby.settings.logoAlt %}
 <nav class="navbar" data-state="idle" role="navigation">
   <div class="navbar__inner  wrapper">
     <a href="/" class="navbar__logo" aria-label="Home">
       {% if logoUrl %}
-        {% image logoUrl, "Em in Toyland", "130px" %}
+        {% image logoUrl, logoAlt, "130px" %}
       {% else %}
         <span>Em in Toyland</span>
       {% endif %}

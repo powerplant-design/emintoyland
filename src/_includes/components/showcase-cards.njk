@@ -1,0 +1,34 @@
+{% if page.showcaseCards | length or page.showcaseHeading %}
+<div class="wrapper flow" style="padding-block: var(--space-xl-2xl);">
+  {% if page.showcaseHeading %}
+    <h2 class="text-align-center">{{ page.showcaseHeading }}</h2>
+  {% endif %}
+
+  <div class="grid" data-layout="3col">
+    {% for item in page.showcaseCards %}
+      <article class="card">
+        <a href="{{ item.link }}">
+          <div class="card__image-wrap">
+            {% if item.workImage %}
+              {% image item.workImage, item.workImageAlt, "(min-width: 62rem) 33vw, 100vw" %}
+            {% endif %}
+            <span class="card__category">{{ item.workType }}</span>
+          </div>
+          <div class="card__body">
+            <h2 class="card__title">{{ item.title }}</h2>
+            <p class="card__excerpt">{{ item.text | striptags | truncate(120) }}</p>
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+
+    {% set ctaText = page.showcaseCtaText if page.showcaseCtaText else "View all my work" %}
+    {% set ctaLink = page.showcaseCtaLink if page.showcaseCtaLink else "/work/" %}
+    <div class="text-align-center">
+      <a href="{{ ctaLink }}" class="button button-primary button-large button-nav">
+        {{ ctaText }} →
+      </a>
+    </div>
+</div>
+{% endif %}

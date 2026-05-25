@@ -33,8 +33,12 @@ async function resolveImageInput(src) {
     return resolveImageInput(fetchUrl);
   }
 
-  const srcPath = src.startsWith("/") ? src.slice(1) : src;
-  return path.join(__dirname, "src", srcPath);
+  if (src.startsWith("/images/") || src.startsWith("images/")) {
+    const srcPath = src.startsWith("/") ? src.slice(1) : src;
+    const localPath = path.join(__dirname, "src", srcPath);
+    if (fs.existsSync(localPath)) return localPath;
+    return null;
+  }
 }
 
 export default function (eleventyConfig) {

@@ -1,1 +1,8 @@
-Uuid: tzfu0wufvfgdt5e8
+Template:
+
+image
+Uuid: 18386fda1df94ded
+
+----
+
+Uuid: ea4bodkb1kjoov1t

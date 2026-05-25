@@ -18,9 +18,7 @@ Publisheddate: 2025-01-05
 
 ----
 
-Text:
-
-I write, produce & host ATMS TV — the Adulttoymegastore video channel with over 3.5 million views across YouTube & Vimeo.
+Text: I write, produce & host ATMS TV — the Adulttoymegastore video channel with over 3.5 million views across YouTube & Vimeo.
 
 ----
 
@@ -32,8 +30,4 @@ ATMS TV is the video hub for all things sex and sex toys! Every week I introduce
 
 ----
 
-IntendedTemplate: work-item
-
-----
-
-Uuid: fjsxbbtfmrrlh799
+Uuid: h01ry4j1coge4png

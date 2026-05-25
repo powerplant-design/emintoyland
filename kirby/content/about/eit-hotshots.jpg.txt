@@ -1,1 +1,8 @@
-Uuid: kakednwp8jurclwa
+Template:
+
+image
+Uuid: 18f9237814334524
+
+----
+
+Uuid: txwhjlcftzkbsot2

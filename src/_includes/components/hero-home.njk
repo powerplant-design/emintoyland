@@ -1,6 +1,6 @@
 <div class="hero hero--home">
   {% if page.heroImage %}
-    {% image page.heroImage, page.title %}
+    {% image page.heroImage, page.heroImageAlt, "" %}
   {% endif %}
   <div class="hero__overlay wrapper flow">
     <span class="separator">{{ page.heroTagline }}</span>

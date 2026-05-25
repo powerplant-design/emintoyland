@@ -31,10 +31,28 @@ tabs:
           showcaseHeading:
             label: Heading
             type: text
-          showcaseText:
-            label: Content
-            type: textarea
-            size: large
+          showcaseItems:
+            label: Featured Work
+            type: pages
+            query: page("work").children
+            multiple: true
+            layout: cards
+            size: medium
+            image: workImage
+            info: "{{ page.workType }}"
+            text: "{{ page.text }}"
+          showcaseCtaText:
+            label: CTA Button Text
+            type: text
+            width: 1/2
+            placeholder: View all my work
+            default: View all my work
+          showcaseCtaLink:
+            label: CTA Button Link
+            type: url
+            width: 1/2
+            placeholder: /work/
+            default: /work/
   about:
     label: About
     columns:

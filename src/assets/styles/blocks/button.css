@@ -44,3 +44,16 @@
   padding: var(--space-s) var(--space-l);
   font-size: var(--step-1);
 }
+
+.button-nav {
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.button-nav:hover {
+  background-color: var(--honeydew);
+  border-color: var(--honeydew);
+  color: var(--black);
+  box-shadow: 1px 1px 20px 4px var(--honeydew);
+}

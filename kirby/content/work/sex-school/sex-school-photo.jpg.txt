@@ -1,1 +1,8 @@
-Uuid: icgblvj7ythkpues
+Template:
+
+image
+Uuid: 236de5d8e71c4b8a
+
+----
+
+Uuid: ccpiaqhu7xyincnr

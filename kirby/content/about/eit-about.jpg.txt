@@ -1,1 +1,8 @@
-Uuid: no0soulilzqb0ywg
+Template:
+
+image
+Uuid: 4f2fe3fe76314d1f
+
+----
+
+Uuid: oelgfv1jvvcvviqf

@@ -10,6 +10,10 @@ sections:
       - work
       - work-item
       - category
+    create:
+      - home
+      - default
+      - category
   media:
     type: files
     label: Images & Files

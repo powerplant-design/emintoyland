@@ -1,1 +1,8 @@
-Uuid: uhlntpeaypwqkkzp
+Template:
+
+image
+Uuid: 83cb0fca985f4eca
+
+----
+
+Uuid: lhgtguirrlqfpzun

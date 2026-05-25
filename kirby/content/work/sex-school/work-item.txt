@@ -18,9 +18,7 @@ Publisheddate: 2024-07-15
 
 ----
 
-Text:
-
-I'm the co-creator & co-host of the podcast Sex School with The Girls Uninterrupted & Adulttoymegastore.
+Text: I'm the co-creator & co-host of the podcast Sex School with The Girls Uninterrupted & Adulttoymegastore.
 
 ----
 
@@ -32,8 +30,4 @@ Sex School is a 6-episode podcast series designed to help you learn amazing thin
 
 ----
 
-IntendedTemplate: work-item
-
-----
-
-Uuid: uixrmh48gzx1ylbv
+Uuid: n0qztxccnvhpxwk5

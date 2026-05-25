@@ -1,0 +1,8 @@
+Template:
+
+image
+Uuid: 71f9efdb259f4253
+
+----
+
+Uuid: fwpwlbtn84guusvz

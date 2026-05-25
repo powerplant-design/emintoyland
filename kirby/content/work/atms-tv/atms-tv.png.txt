@@ -1,1 +1,8 @@
-Uuid: p5dns9rzyybdasmn
+Template:
+
+image
+Uuid: 71885e4801814418
+
+----
+
+Uuid: gualb5y2mcblakdj
