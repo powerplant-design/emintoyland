@@ -1,0 +1,93 @@
+{% set logoUrl = kirby.settings.logo %}
+<nav class="navbar" data-state="idle" role="navigation">
+  <div class="navbar__inner  wrapper">
+    <a href="/" class="navbar__logo" aria-label="Home">
+      {% if logoUrl %}
+        {% image logoUrl, "Em in Toyland", "130px" %}
+      {% else %}
+        <span>Em in Toyland</span>
+      {% endif %}
+    </a>
+    <button class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="navbar__menu">
+      <ul class="navbar__list">
+        {% set currentUri = page.uri %}
+        <li><a href="/" class="navbar__link"{% if currentUri == 'home' %} aria-current="page"{% endif %}>Home</a></li>
+        <li><a href="/about/" class="navbar__link"{% if currentUri == 'about' %} aria-current="page"{% endif %}>About</a></li>
+        <li><a href="/work/" class="navbar__link"{% if currentUri == 'work' or 'work/' in currentUri %} aria-current="page"{% endif %}>Work</a></li>
+        <li><a href="/contact/" class="navbar__link"{% if currentUri == 'contact' %} aria-current="page"{% endif %}>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  (function() {
+    var navbar = document.querySelector('.navbar');
+    var toggle = document.querySelector('.navbar__toggle');
+    var menu = document.querySelector('.navbar__menu');
+
+    if (!toggle || !navbar) return;
+
+    function onScroll() {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var animTimeout = null;
+
+    function closeMenu(callback) {
+      if (navbar.getAttribute('data-state') !== 'active') {
+        if (callback) callback();
+        return;
+      }
+      navbar.setAttribute('data-state', 'closing');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-active');
+      clearTimeout(animTimeout);
+      animTimeout = setTimeout(function() {
+        navbar.setAttribute('data-state', 'idle');
+        if (callback) callback();
+      }, 350);
+    }
+
+    toggle.addEventListener('click', function() {
+      if (navbar.getAttribute('data-state') === 'active') {
+        closeMenu();
+      } else {
+        clearTimeout(animTimeout);
+        navbar.setAttribute('data-state', 'active');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.classList.add('is-active');
+      }
+    });
+
+    if (menu) {
+      menu.addEventListener('click', function(e) {
+        var link = e.target.closest('.navbar__link');
+        if (link && navbar.getAttribute('data-state') === 'active') {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+          var swup = window.__swup;
+          if (swup) {
+            swup.navigate(link.getAttribute('href'));
+          } else {
+            window.location.href = link.getAttribute('href');
+          }
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navbar.getAttribute('data-state') === 'active') {
+        closeMenu();
+      }
+    });
+  })();
+</script>

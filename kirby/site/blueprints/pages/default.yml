@@ -1,11 +1,25 @@
 title: Page
 preset: page
-fields:
-  metaDescription:
-    label: Meta Description
-    type: textarea
-    help: SEO description for search results
-  text:
-    label: Body
-    type: textarea
-    size: large
+tabs:
+  content:
+    label: Content
+    columns:
+      - width: 1/1
+        fields:
+          metaDescription:
+            label: Meta Description
+            type: textarea
+            help: SEO description for search results
+          text:
+            label: Body
+            type: textarea
+            size: large
+  media:
+    label: Media
+    sections:
+      uploads:
+        type: files
+        label: Images
+        template: image
+        layout: cards
+        upload: true

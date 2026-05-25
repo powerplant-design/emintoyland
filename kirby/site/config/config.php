@@ -2,7 +2,8 @@
 
 return [
     'api' => [
-        'basicAuth' => true
+        'basicAuth' => true,
+        'allowInsecure' => true
     ],
     'kql' => [
         'auth' => false

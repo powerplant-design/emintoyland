@@ -1,0 +1,90 @@
+---
+pagination:
+  data: kirby.all
+  size: 1
+  alias: page
+permalink: "/{% if page.uri != 'home' %}{{ page.uri }}/{% endif %}index.html"
+layout: base.njk
+---
+
+{% if page.parentSlug == "work" %}
+  <article class="work-detail wrapper stack" style="--stack-vertical: center; text-align: center; --stack-horizontal: center;">
+    <a href="/work/?type={{ page.workType | lower | replace(' ', '-') }}" class="work-detail__category">{{ page.workType }}</a>
+    <h1 class="work-detail__title">{{ page.title }}</h1>
+    {% set sparkle = kirby.settings.siteImages.logoPink %}
+    {% if sparkle %}
+      {% image sparkle, "", "(min-width: 40rem) 10vw, 20vw" %}
+    {% endif %}
+    {% if page.publishedDate %}
+      <p class="work-detail__date">Published: {{ page.publishedDate }}</p>
+    {% endif %}
+  </article>
+
+  {% set heroImage = page.workHeroImage if page.workHeroImage else page.workImage %}
+  {% if heroImage %}
+    <div class="wrapper" style="padding-block: var(--space-l-xl);">
+      <div class="work-detail__image-wrap">
+        {% image heroImage, page.title, "(min-width: 62rem) 60vw, 100vw" %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="wrapper flow prose" style="padding-block-end: var(--space-xl-2xl);">
+    {{ (page.body if page.body else page.text) | markdown | safe }}
+    {% if page.workLink %}
+      <div class="work-detail__actions">
+        <a href="{{ page.workLink }}" class="button button-primary button-large" target="_blank" rel="noopener">View original →</a>
+      </div>
+    {% endif %}
+  </div>
+
+{% elif page.uri == "home" %}
+  {% include "components/hero-home.njk" %}
+  {% if page.showcaseHeading or page.showcaseText %}
+    {% set heading = page.showcaseHeading %}
+    {% set body = page.showcaseText %}
+    {% include "components/section.njk" %}
+  {% endif %}
+  {% if page.aboutHeading or page.aboutText %}
+    {% set heading = page.aboutHeading %}
+    {% set body = page.aboutText %}
+    {% include "components/section.njk" %}
+  {% endif %}
+
+{% elif page.uri == "work" %}
+  <div class="wrapper stack" style="--stack-vertical: center; text-align: center; padding-block-start: var(--space-l-xl);">
+    <h1>{{ page.title }}</h1>
+
+    <div class="filter-tabs" data-filter="tabs">
+      <button class="filter-tabs__btn is-active" data-filter="all">ALL</button>
+      <button class="filter-tabs__btn" data-filter="podcast">PODCASTS</button>
+      <button class="filter-tabs__btn" data-filter="video">VIDEO</button>
+      <button class="filter-tabs__btn" data-filter="writing">WRITING</button>
+      <button class="filter-tabs__btn" data-filter="featured-in">FEATURED IN</button>
+    </div>
+
+    <div class="grid" data-layout="3col" data-filter="container" style="text-align: start;">
+      {% for item in kirby.all %}{% if item.parentSlug == "work" %}
+        <article class="card" data-filter="{{ item.workType | lower | replace(' ', '-') }}">
+          <a href="/{{ item.uri }}/">
+            <div class="card__image-wrap">
+              {% if item.workImage %}
+                {% image item.workImage, item.title, "(min-width: 62rem) 33vw, 100vw" %}
+              {% endif %}
+              <span class="card__category">{{ item.workType }}</span>
+            </div>
+            <div class="card__body">
+              <h2 class="card__title">{{ item.title }}</h2>
+              <p class="card__excerpt">{{ item.text | striptags | truncate(120) }}</p>
+            </div>
+          </a>
+        </article>{% endif %}{% endfor %}
+    </div>
+  </div>
+
+{% else %}
+  <div class="wrapper flow prose">
+    <h1>{{ page.title }}</h1>
+    {{ page.text | markdown | safe }}
+  </div>
+{% endif %}

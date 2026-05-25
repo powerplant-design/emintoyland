@@ -1,0 +1,58 @@
+title: Admin
+description: Full access to all Panel sections
+sections:
+  pages:
+    type: pages
+    label: Pages
+    status: all
+    templates:
+      - home
+      - default
+      - work
+      - work-item
+      - category
+  site:
+    type: site
+    label: Site Settings
+  users:
+    type: users
+    label: Users
+  system:
+    type: system
+    label: System
+permissions:
+  access:
+    site: true
+    pages: true
+    users: true
+    languages: true
+    system: true
+    account: true
+  pages:
+    create: true
+    changeStatus: true
+    changeSlug: true
+    changeTemplate: true
+    changeTitle: true
+    delete: true
+    hide: true
+    list: true
+    move: true
+    preview: true
+    sort: true
+    update: true
+  site:
+    update: true
+  users:
+    create: true
+    delete: true
+    changeRole: true
+    update: true
+    changeName: true
+    changeEmail: true
+    changePassword: true
+    changeLanguage: true
+  user:
+    changeRole: true
+    delete: true
+    update: true

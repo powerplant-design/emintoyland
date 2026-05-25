@@ -21,17 +21,15 @@
 		"attributePosition": "auto",
 		"bracketSpacing": true,
 		"ignore": [
-            "**/__generated__",
 			"**/.build*",
-			"**/.next/**",
+			"**/_site/**",
+			"**/.cache/**",
 			"**/.vscode/**",
-			"**/.yarn",
 			"**/node_modules",
-            "**/out/**",
-			"**/.yarnrc.yml",
-			"**/yarn.lock",
+			"**/kirby/**",
 			"**/*.gql",
-			"**/*.json"
+			"**/*.json",
+			"**/*.njk"
 		]
 	},
 	"organizeImports": {
@@ -71,13 +69,11 @@
 		},
 		"ignore": [
 			"**/.vscode/**",
-            "**/__generated__/**",
 			"**/node_modules",
-			"**/build",
-			"**/.next/**",
-			"**/*.d.ts",
-            "**/out/**",
-            "**/public/admin/**"
+			"**/_site/**",
+			"**/.cache/**",
+			"**/kirby/**",
+			"**/*.d.ts"
 		]
 	},
 	"javascript": {

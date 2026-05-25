@@ -6,4 +6,8 @@ Categorydescription: Emma's expert commentary featured in publications
 
 ----
 
+IntendedTemplate: category
+
+----
+
 Uuid: pyzxlnwaen6ypwhr

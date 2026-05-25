@@ -6,4 +6,8 @@ Categorydescription: Video content hosted by Emma Hewitt-Johnson
 
 ----
 
+IntendedTemplate: category
+
+----
+
 Uuid: fz62dgimrakgxo9c

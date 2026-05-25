@@ -1,10 +1,32 @@
 title: Work
 preset: page
-fields:
-  metaDescription:
-    label: Meta Description
-    type: textarea
-  text:
-    label: Body
-    type: textarea
-    size: large
+tabs:
+  subpages:
+    label: Work Items
+    sections:
+      items:
+        type: pages
+        status: all
+        create:
+          - work-item
+  content:
+    label: Content
+    columns:
+      - width: 1/1
+        fields:
+          metaDescription:
+            label: Meta Description
+            type: textarea
+          text:
+            label: Body
+            type: textarea
+            size: large
+  media:
+    label: Media
+    sections:
+      uploads:
+        type: files
+        label: Images
+        template: image
+        layout: cards
+        upload: true

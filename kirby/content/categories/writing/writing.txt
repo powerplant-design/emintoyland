@@ -6,4 +6,8 @@ Categorydescription: Articles and columns written by Emma Hewitt-Johnson
 
 ----
 
+IntendedTemplate: category
+
+----
+
 Uuid: jpnqnletaryikx9g

@@ -32,4 +32,8 @@ ATMS TV is the video hub for all things sex and sex toys! Every week I introduce
 
 ----
 
+IntendedTemplate: work-item
+
+----
+
 Uuid: fjsxbbtfmrrlh799

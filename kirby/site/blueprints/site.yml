@@ -1,16 +1,40 @@
 title: Site
-preset: page
-fields:
-  siteDescription:
-    label: Site Description
-    type: textarea
-  logo:
-    label: Logo Path
-    type: text
-    help: Relative path from site root (e.g. /images/eit-logo-shadow.png)
-  footerText:
-    label: Footer Text
-    type: text
-  googleAnalyticsId:
-    label: Google Analytics ID
-    type: text
+sections:
+  pages:
+    type: pages
+    label: Pages
+    status: all
+    templates:
+      - home
+      - default
+      - work
+      - work-item
+      - category
+  media:
+    type: files
+    label: Images & Files
+    template: image
+    layout: cards
+    upload: true
+tabs:
+  content:
+    label: Content
+    columns:
+      - width: 1/1
+        fields:
+          siteDescription:
+            label: Site Description
+            type: textarea
+          logo:
+            label: Logo
+            type: files
+            multiple: false
+            layout: cards
+            help: Upload your site logo in the Media tab, then select it here
+          footerText:
+            label: Footer Text
+            type: text
+          googleAnalyticsId:
+            label: Google Analytics ID
+            type: text
+            width: 1/2
