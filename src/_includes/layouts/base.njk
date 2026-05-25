@@ -4,23 +4,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {# SEO values with fallback chain #}
+  {% set seoTitle = page.seoTitle if page.seoTitle else (page.title + " — " + site.title) %}
   {% if page.uri == "home" %}
-  <title>{{ site.title }}</title>
-  {% else %}
-  <title>{{ page.title }} — {{ site.title }}</title>
+    {% set seoTitle = page.seoTitle if page.seoTitle else site.title %}
   {% endif %}
-  {% if page.metaDescription %}
-  <meta name="description" content="{{ page.metaDescription }}">
-  {% elif page.parentSlug == "work" and page.text %}
-  <meta name="description" content="{{ page.text | striptags | truncate(160) }}">
-  {% elif site.siteDescription %}
-  <meta name="description" content="{{ site.siteDescription }}">
-  {% endif %}
+  {% set seoDescription = page.seoDescription if page.seoDescription else (page.metaDescription if page.metaDescription else (page.text | striptags | truncate(160) if page.text else site.siteDescription)) %}
+  {% set seoOgTitle = page.seoOgTitle if page.seoOgTitle else seoTitle %}
+  {% set seoOgDescription = page.seoOgDescription if page.seoOgDescription else seoDescription %}
+  {% set seoOgImage = page.seoOgImage if page.seoOgImage else (site.seoDefaultImage if site.seoDefaultImage else site.logo) %}
+  {% set seoUrl = "https://emintoyland.com/" + (page.uri if page.uri != "home" else "") %}
+  {% set seoRobots = page.seoRobots if page.seoRobots else "index, follow" %}
+
+  <title>{{ seoTitle }}</title>
+  <meta name="description" content="{{ seoDescription }}">
+
+  {# Open Graph #}
+  <meta property="og:title" content="{{ seoOgTitle }}">
+  <meta property="og:description" content="{{ seoOgDescription }}">
+  <meta property="og:image" content="{{ seoOgImage }}">
+  <meta property="og:url" content="{{ seoUrl }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.seoSiteName if site.seoSiteName else site.title }}">
+
+  {# Twitter Card #}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seoOgTitle }}">
+  <meta name="twitter:description" content="{{ seoOgDescription }}">
+  <meta name="twitter:image" content="{{ seoOgImage }}">
+
+  {# Robots #}
+  <meta name="robots" content="{{ seoRobots }}">
+
+  {# Canonical #}
+  <link rel="canonical" href="{{ seoUrl }}">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles/styles.css">
   <script type="module" src="/assets/scripts/app.js"></script>
+
   {% if site.googleAnalyticsId %}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.googleAnalyticsId }}"></script>
   <script>
@@ -28,6 +53,55 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', '{{ site.googleAnalyticsId }}');
+  </script>
+  {% endif %}
+
+  {# Auto-generated JSON-LD schema #}
+  {% if page.seoSchema %}
+  <script type="application/ld+json">{{ page.seoSchema | safe }}</script>
+  {% elif page.parentSlug == "work" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "headline": {{ page.title | json | safe }},
+    "description": {{ page.text | striptags | truncate(300) | json | safe }},
+    "image": {{ (page.workImage if page.workImage else seoOgImage) | json | safe }},
+    "datePublished": {{ page.publishedDate | json | safe }},
+    "author": {
+      "@type": "Person",
+      "name": "Emma Hewitt-Johnson",
+      "url": "https://emintoyland.com"
+    }
+  }
+  </script>
+  {% elif page.uri == "home" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Emma Hewitt-Johnson",
+    "jobTitle": "Sexologist",
+    "description": {{ (site.siteDescription if site.siteDescription else seoDescription) | json | safe }},
+    "image": {{ seoOgImage | json | safe }},
+    "url": "https://emintoyland.com",
+    "sameAs": [
+      "https://www.instagram.com/emintoyland/",
+      "https://open.spotify.com/show/1dHSKMjIsFfOJz9fZQ2OuU",
+      "https://www.youtube.com/@adulttoymegastore"
+    ]
+  }
+  </script>
+  {% else %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ seoTitle | json | safe }},
+    "description": {{ seoDescription | json | safe }},
+    "image": {{ seoOgImage | json | safe }},
+    "url": {{ seoUrl | json | safe }}
+  }
   </script>
   {% endif %}
 </head>

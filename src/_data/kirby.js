@@ -72,7 +72,9 @@ export default async function () {
       select: {
         title: true,
         siteDescription: true,
+        seoSiteName: true,
         logo: true,
+        seoDefaultImage: true,
         footerText: true,
         googleAnalyticsId: true,
       },
@@ -88,6 +90,9 @@ export default async function () {
         showcaseCtaText: true, showcaseCtaLink: true,
         aboutHeading: true, aboutText: true, aboutImage: true,
         aboutCtaText: true, aboutCtaLink: true,
+        seoTitle: true, seoDescription: true,
+        seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
+        seoRobots: true, seoSchema: true,
       },
     }),
     query({
@@ -98,21 +103,31 @@ export default async function () {
         workImage: true, workHeroImage: true,
         publishedDate: true, text: true,
         body: true,
+        seoTitle: true, seoDescription: true,
+        seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
+        seoRobots: true, seoSchema: true,
       },
     }),
   ]);
 
   // Resolve site logo with alt text
   const logo = await resolveFileWithMeta("site", settings.logo, "Em in Toyland");
+  const seoDefaultImage = await resolveFileWithMeta("site", settings.seoDefaultImage, "Em in Toyland");
 
   // Resolve work item images with alt text
   const workItems = await Promise.all(
     rawWorkItems.map(async (item) => {
-      const [workImage, workHeroImage] = await Promise.all([
+      const [workImage, workHeroImage, seoOgImage] = await Promise.all([
         resolveFileWithMeta(`page("work/${item.slug}")`, item.workImage, item.title),
         resolveFileWithMeta(`page("work/${item.slug}")`, item.workHeroImage, item.title),
+        resolveFileWithMeta(`page("work/${item.slug}")`, item.seoOgImage, item.title),
       ]);
-      return { ...item, workImage: workImage.url, workImageAlt: workImage.alt, workHeroImage: workHeroImage.url };
+      return {
+        ...item,
+        workImage: workImage.url, workImageAlt: workImage.alt,
+        workHeroImage: workHeroImage.url,
+        seoOgImage: seoOgImage.url,
+      };
     })
   );
 
@@ -129,6 +144,10 @@ export default async function () {
         const aboutImage = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutImage, p.aboutHeading || p.title);
         updates.aboutImage = aboutImage.url;
         updates.aboutImageAlt = aboutImage.alt;
+      }
+      if (p.seoOgImage) {
+        const ogImage = await resolveFileWithMeta(`page("${p.uri}")`, p.seoOgImage, p.title);
+        updates.seoOgImage = ogImage.url;
       }
       if (p.showcaseItems) {
         const raw = typeof p.showcaseItems === "string" ? p.showcaseItems : "";
@@ -173,5 +192,5 @@ export default async function () {
     ...workItems.map(w => ({ ...w, parentSlug: "work" })),
   ];
 
-  return { all, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, siteImages } };
+  return { all, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, siteImages } };
 }

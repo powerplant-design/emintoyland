@@ -5,9 +5,6 @@ tabs:
     columns:
       - width: 1/1
         fields:
-          metaDescription:
-            label: Meta Description
-            type: textarea
           heroHeading:
             label: Hero Heading
             type: text
@@ -22,7 +19,7 @@ tabs:
           heroText:
             label: Hero Text
             type: textarea
-            size: large
+            size: small
           heroCtaText:
             label: CTA Button Text
             type: text
@@ -96,6 +93,48 @@ tabs:
             width: 1/2
             placeholder: /about/
             default: /about/
+  seo:
+    label: SEO
+    columns:
+      - width: 1/1
+        fields:
+          seoTitle:
+            label: Browser Title
+            type: text
+            help: Overrides the page title in the browser tab
+          seoDescription:
+            label: Meta Description
+            type: textarea
+            help: Search result and social card description
+          seoOgTitle:
+            label: Social Title
+            type: text
+            help: Title shown on Facebook/Twitter cards
+          seoOgDescription:
+            label: Social Description
+            type: textarea
+            help: Description shown on Facebook/Twitter cards
+          seoOgImage:
+            label: Social Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+            help: 1200x630px recommended for social sharing
+          seoRobots:
+            label: Search Indexing
+            type: select
+            options:
+              - value: index, follow
+                text: Index & Follow
+              - value: noindex, nofollow
+                text: No Index
+          seoSchema:
+            label: Custom JSON-LD
+            type: textarea
+            size: small
+            help: Override auto-generated schema with custom JSON
+
   media:
     label: Media
     sections:

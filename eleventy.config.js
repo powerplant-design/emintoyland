@@ -42,6 +42,7 @@ async function resolveImageInput(src) {
 }
 
 export default function (eleventyConfig) {
+  eleventyConfig.addFilter("json", (value) => JSON.stringify(value));
   eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
 
   eleventyConfig.addPassthroughCopy("src/assets/styles");

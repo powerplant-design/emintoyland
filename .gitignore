@@ -7,6 +7,11 @@
 /_site
 /.cache
 
+# kirby
+kirby/site/cache
+kirby/site/sessions
+kirby/content/**/_changes
+
 # misc
 .DS_Store
 .env

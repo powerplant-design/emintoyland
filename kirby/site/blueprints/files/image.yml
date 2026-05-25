@@ -6,11 +6,12 @@ fields:
     label: Alt Text
     type: text
     help: A short description of the image for screen readers and SEO
-  caption:
-    label: Caption
-    type: textarea
-    size: small
+    width: 1/2
   credit:
     label: Credit
     type: text
     width: 1/2
+  caption:
+    label: Caption
+    type: textarea
+    size: small

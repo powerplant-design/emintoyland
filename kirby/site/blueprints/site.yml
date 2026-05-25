@@ -4,6 +4,8 @@ sections:
     type: pages
     label: Pages
     status: all
+    layout: cards
+    size: small
     templates:
       - home
       - default
@@ -29,12 +31,23 @@ tabs:
           siteDescription:
             label: Site Description
             type: textarea
+          seoSiteName:
+            label: Site Name (Schema)
+            type: text
+            help: Brand name for JSON-LD structured data
+            width: 1/2
           logo:
             label: Logo
             type: files
             multiple: false
             layout: cards
             help: Upload your site logo in the Media tab, then select it here
+          seoDefaultImage:
+            label: Default Social Image
+            type: files
+            multiple: false
+            layout: cards
+            help: Fallback image for pages without their own OG image
           footerText:
             label: Footer Text
             type: text
