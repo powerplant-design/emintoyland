@@ -2,11 +2,18 @@
 h1, h2, h3, h4, h5, h6 {
   line-height: var(--leading-tight);
   font-weight: var(--weight-bold);
-  margin: 0;
 }
 
 h1 {
+  font-family: var(--font-heading);
   font-size: var(--step-5);
+  font-weight: 900;
+  font-style: normal;
+}
+
+h2, h3, h4, h5 {
+  font-family: var(--font-heading-condensed);
+  font-weight: 500;
 }
 
 h2 {
@@ -33,7 +40,6 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text);
   background-color: var(--color-bg);
-  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -46,13 +52,6 @@ a {
 
 a:hover {
   color: #d02d6a;
-}
-
-/* Images */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* Lists */

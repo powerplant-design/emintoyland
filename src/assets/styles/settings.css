@@ -1,5 +1,28 @@
-@custom-media --motion-ok (prefers-reduced-motion: no-preference);
+@font-face {
+  font-family: 'Gooper Black';
+  src: url('/assets/fonts/Gooper-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
+@font-face {
+  font-family: 'Gooper Black';
+  src: url('/assets/fonts/Gooper-BlackItalic.woff2') format('woff2');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gooper Semi Condensed';
+  src: url('/assets/fonts/GooperSemiCondensed-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-media --motion-ok (prefers-reduced-motion: no-preference);
 @custom-media --dark (prefers-color-scheme: dark);
 
 @custom-media --nav-visible (width > 62rem);
@@ -9,15 +32,15 @@ html {
 }
 
 :root {
-  /* Utopia fluid type scale — generated from utopia.fyi with Poppins */
-  --step--2: clamp(0.6944rem, 0.6677rem + 0.1339vw, 0.7813rem);
-  --step--1: clamp(0.8333rem, 0.7942rem + 0.1954vw, 0.9375rem);
+  /* Utopia fluid type scale — generated from utopia.fyi with Poppins, ratio 1.333 (Perfect Fourth) */
+  --step--2: clamp(0.5627rem, 0.5411rem + 0.1085vw, 0.6332rem);
+  --step--1: clamp(0.7502rem, 0.715rem + 0.1759vw, 0.844rem);
   --step-0: clamp(1rem, 0.9444rem + 0.2778vw, 1.125rem);
-  --step-1: clamp(1.2rem, 1.1222rem + 0.3889vw, 1.35rem);
-  --step-2: clamp(1.44rem, 1.3333rem + 0.5333vw, 1.62rem);
-  --step-3: clamp(1.728rem, 1.5833rem + 0.7236vw, 1.944rem);
-  --step-4: clamp(2.074rem, 1.8796rem + 0.9722vw, 2.3325rem);
-  --step-5: clamp(2.488rem, 2.2315rem + 1.282rem, 2.7994rem);
+  --step-1: clamp(1.333rem, 1.2466rem + 0.432vw, 1.4996rem);
+  --step-2: clamp(1.7769rem, 1.6452rem + 0.6581vw, 1.999rem);
+  --step-3: clamp(2.3686rem, 2.1703rem + 0.9918vw, 2.6647rem);
+  --step-4: clamp(3.1579rem, 2.8619rem + 1.4803vw, 3.5515rem);
+  --step-5: clamp(4.2082rem, 3.7743rem + 2.1684vw, 4.7349rem);
 
   /* Utopia fluid space scale */
   --space-3xs: clamp(0.25rem, 0.2361rem + 0.0694vw, 0.3125rem);
@@ -47,12 +70,14 @@ html {
   --color-purple: #8b5cf6;
   --color-dark: #1a1a2e;
   --color-light: #ffffff;
-  --color-text: #333333;
-  --color-text-light: #6b7280;
+  --color-text: #2D051A;
+  --color-text-light: #490629;
+  /* --color-text-light: #6b7280; */
   --color-bg: #ffffff;
   --color-bg-alt: #fdf2f8;
   --color-bg-purple: #faf5ff;
   --color-border: #e5e7eb;
+  --color-black: #2D051A;
   --color-success: #10b981;
   --color-error: #ef4444;
   --barbie: #FC47B3;
@@ -63,6 +88,8 @@ html {
 
   /* Fonts */
   --font-body: 'Poppins', sans-serif;
+  --font-heading: 'Gooper Black', 'Poppins', serif;
+  --font-heading-condensed: 'Gooper Semi Condensed', 'Poppins', sans-serif;
 
   /* Font weights */
   --weight-light: 300;
@@ -83,6 +110,8 @@ html {
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
   --radius-full: 9999px;
 
   /* Max widths */

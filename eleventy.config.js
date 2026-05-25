@@ -45,6 +45,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
 
   eleventyConfig.addPassthroughCopy("src/assets/styles");
+  eleventyConfig.addPassthroughCopy("src/assets/fonts");
   eleventyConfig.addPassthroughCopy({ "public/favicon.ico": "/favicon.ico" });
 
   eleventyConfig.on("afterBuild", async () => {
