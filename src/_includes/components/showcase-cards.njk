@@ -1,5 +1,6 @@
 {% if page.showcaseCards | length or page.showcaseHeading %}
-<div class="wrapper flow" style="padding-block: var(--space-xl-2xl);">
+<section style="padding-block: var(--space-xl-2xl); background-color: var(--color-pink-bg);">
+  <div class="wrapper flow">
   {% if page.showcaseHeading %}
     <h2 class="text-align-center">{{ page.showcaseHeading }}</h2>
   {% endif %}
@@ -26,9 +27,10 @@
     {% set ctaText = page.showcaseCtaText if page.showcaseCtaText else "View all my work" %}
     {% set ctaLink = page.showcaseCtaLink if page.showcaseCtaLink else "/work/" %}
     <div class="text-align-center">
-      <a href="{{ ctaLink }}" class="button button-primary button-large button-nav">
+      <a href="{{ ctaLink }}" class="button button-primary">
         {{ ctaText }} →
       </a>
     </div>
-</div>
+  </div>
+</section>
 {% endif %}

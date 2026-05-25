@@ -86,7 +86,8 @@ export default async function () {
         heroCtaText: true, heroCtaLink: true,
         showcaseHeading: true, showcaseItems: true,
         showcaseCtaText: true, showcaseCtaLink: true,
-        aboutHeading: true, aboutText: true,
+        aboutHeading: true, aboutText: true, aboutImage: true,
+        aboutCtaText: true, aboutCtaLink: true,
       },
     }),
     query({
@@ -123,6 +124,11 @@ export default async function () {
         const heroImage = await resolveFileWithMeta(`page("${p.uri}")`, p.heroImage, p.title);
         updates.heroImage = heroImage.url;
         updates.heroImageAlt = heroImage.alt;
+      }
+      if (p.aboutImage) {
+        const aboutImage = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutImage, p.aboutHeading || p.title);
+        updates.aboutImage = aboutImage.url;
+        updates.aboutImageAlt = aboutImage.alt;
       }
       if (p.showcaseItems) {
         const raw = typeof p.showcaseItems === "string" ? p.showcaseItems : "";

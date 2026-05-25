@@ -41,11 +41,13 @@ layout: base.njk
 {% elif page.uri == "home" %}
   {% include "components/hero-home.njk" %}
   {% include "components/showcase-cards.njk" %}
-  {% if page.aboutHeading or page.aboutText %}
-    {% set heading = page.aboutHeading %}
-    {% set body = page.aboutText %}
-    {% include "components/section.njk" %}
-  {% endif %}
+  {% set heading = page.aboutHeading %}
+  {% set text = page.aboutText %}
+  {% set image = page.aboutImage %}
+  {% set imageSide = "right" %}
+  {% set ctaText = page.aboutCtaText %}
+  {% set ctaLink = page.aboutCtaLink %}
+  {% include "components/split-section.njk" %}
 
 {% elif page.uri == "work" %}
   <div class="wrapper stack" style="--stack-vertical: center; text-align: center; padding-block-start: var(--space-l-xl);">

@@ -6,6 +6,7 @@
   color: inherit;
   display: block;
   border-radius: var(--radius-2xl);
+  padding: var(--space-2xs);
 }
 
 .card:hover {
@@ -16,7 +17,7 @@
 .card__image-wrap {
   overflow: hidden;
   position: relative;
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--color-black);
   box-sizing: content-box;
 }

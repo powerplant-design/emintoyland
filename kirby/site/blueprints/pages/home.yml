@@ -77,6 +77,25 @@ tabs:
             label: Content
             type: textarea
             size: large
+          aboutImage:
+            label: Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+            help: Right column image
+          aboutCtaText:
+            label: CTA Button Text
+            type: text
+            width: 1/2
+            placeholder: Get to know me
+            default: Get to know me
+          aboutCtaLink:
+            label: CTA Button Link
+            type: text
+            width: 1/2
+            placeholder: /about/
+            default: /about/
   media:
     label: Media
     sections:

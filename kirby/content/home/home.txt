@@ -62,7 +62,17 @@ I am a Certified Holistic Sex Educator, writer, podcaster, host and sex toy expe
 
 I am kink-aware, queer-friendly and a total nerd when it comes to sex. If there is a book, film, tv show or podcast about sex or pleasure, I am probably into it. Because I love to study, learn about and talk about sex.
 
-[Get to know me better](/about)
+----
+
+Aboutimage: - file://y97itai7k0a1wlns
+
+----
+
+Aboutctatext: Get to know me
+
+----
+
+Aboutctalink: /about/
 
 ----
 
