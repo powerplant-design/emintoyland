@@ -13,7 +13,7 @@ layout: base.njk
     <h1 class="work-detail__title">{{ page.title }}</h1>
     {% set sparkle = kirby.settings.siteImages.logoPink %}
     {% if sparkle.url %}
-      {% image sparkle.url, sparkle.alt, "(min-width: 40rem) 10vw, 20vw" %}
+      <img src="{{ sparkle.url }}" alt="" sizes="(min-width: 40rem) 10vw, 20vw">
     {% endif %}
     {% if page.publishedDate %}
       <p class="work-detail__date">Published: {{ page.publishedDate }}</p>
@@ -24,7 +24,7 @@ layout: base.njk
   {% if heroImage %}
     <div class="wrapper" style="padding-block: var(--space-l-xl);">
       <div class="work-detail__image-wrap">
-        {% image heroImage, page.title, "(min-width: 62rem) 60vw, 100vw" %}
+        <img src="{{ heroImage }}" alt="{{ page.title }}" sizes="(min-width: 62rem) 60vw, 100vw">
       </div>
     </div>
   {% endif %}
@@ -39,11 +39,20 @@ layout: base.njk
   </div>
 
 {% elif page.uri == "home" %}
+  {% set title = page.heroHeading %}
+  {% set body = page.heroText %}
+  {% set imageSrc = page.heroImage %}
+  {% set imageAlt = page.heroImageAlt %}
+  {% set loading = "eager" %}
+  {% set titleTag = "h1" %}
+  {% set ctaText = page.heroCtaText %}
+  {% set ctaLink = page.heroCtaLink %}
   {% include "components/hero-home.njk" %}
   {% include "components/showcase-cards.njk" %}
   {% set heading = page.aboutHeading %}
   {% set text = page.aboutText %}
-  {% set image = page.aboutImage %}
+  {% set imageSrc = page.aboutImage %}
+  {% set imageAlt = page.aboutImageAlt %}
   {% set imageSide = "right" %}
   {% set ctaText = page.aboutCtaText %}
   {% set ctaLink = page.aboutCtaLink %}
@@ -67,7 +76,7 @@ layout: base.njk
           <a href="/{{ item.uri }}/">
             <div class="card__image-wrap">
               {% if item.workImage %}
-                {% image item.workImage, item.workImageAlt, "(min-width: 62rem) 33vw, 100vw" %}
+                <img src="{{ item.workImage }}" alt="{{ item.workImageAlt if item.workImageAlt else item.title }}" sizes="(min-width: 62rem) 33vw, 100vw">
               {% endif %}
               <span class="card__category">{{ item.workType }}</span>
             </div>
@@ -79,6 +88,65 @@ layout: base.njk
         </article>{% endif %}{% endfor %}
     </div>
   </div>
+
+{% elif page.uri == "about" %}
+  {% if page.aboutIntroHeading or page.aboutIntroText %}
+    {% set title = page.aboutIntroHeading %}
+    {% set body = page.aboutIntroText %}
+    {% set imageSrc = page.aboutIntroImage %}
+    {% set imageAlt = page.aboutIntroHeading %}
+    {% set loading = "eager" %}
+    {% set titleTag = "h2" %}
+    {% set ctaText = "" %}
+    {% set ctaLink = "" %}
+    {% include "components/hero-home.njk" %}
+  {% endif %}
+
+  {% if page.aboutCredentialsHeading or page.aboutCredentialsText %}
+    <section class="section">
+      <div class="wrapper flow prose">
+        {% if page.aboutCredentialsHeading %}
+          <h2>{{ page.aboutCredentialsHeading }}</h2>
+        {% endif %}
+        {{ page.aboutCredentialsText | markdown | safe }}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.aboutSupervisionHeading or page.aboutSupervisionText %}
+    <section class="section">
+      <div class="wrapper flow prose">
+        {% if page.aboutSupervisionHeading %}
+          <h2>{{ page.aboutSupervisionHeading }}</h2>
+        {% endif %}
+        {{ page.aboutSupervisionText | markdown | safe }}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.aboutSpecialiseItems or page.aboutSpecialiseHeading %}
+    <section class="section">
+      <div class="wrapper flow">
+        {% if page.aboutSpecialiseHeading %}
+          <h2>{{ page.aboutSpecialiseHeading }}</h2>
+        {% endif %}
+        {% for item in page.aboutSpecialiseItems %}
+          <p>{{ item }}</p>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.aboutPodcastHeading or page.aboutPodcastText or page.aboutPodcastImage %}
+    {% set heading = page.aboutPodcastHeading %}
+    {% set text = page.aboutPodcastText %}
+    {% set imageSrc = page.aboutPodcastImage %}
+    {% set imageAlt = page.aboutPodcastImageAlt %}
+    {% set imageSide = "right" %}
+    {% set ctaText = page.aboutPodcastCtaText %}
+    {% set ctaLink = page.aboutPodcastCtaLink %}
+    {% include "components/split-section.njk" %}
+  {% endif %}
 
 {% else %}
   <div class="wrapper flow prose">

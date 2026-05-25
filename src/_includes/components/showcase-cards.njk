@@ -11,7 +11,7 @@
         <a href="{{ item.link }}">
           <div class="card__image-wrap">
             {% if item.workImage %}
-              {% image item.workImage, item.workImageAlt, "(min-width: 62rem) 33vw, 100vw" %}
+              <img src="{{ item.workImage }}" alt="{{ item.workImageAlt if item.workImageAlt else item.title }}" sizes="(min-width: 62rem) 33vw, 100vw">
             {% endif %}
             <span class="card__category">{{ item.workType }}</span>
           </div>

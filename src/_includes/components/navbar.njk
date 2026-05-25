@@ -4,7 +4,7 @@
   <div class="navbar__inner  wrapper">
     <a href="/" class="navbar__logo" aria-label="Home">
       {% if logoUrl %}
-        {% image logoUrl, logoAlt, "130px" %}
+        <img src="{{ logoUrl }}" alt="{{ logoAlt }}" sizes="130px">
       {% else %}
         <span>Em in Toyland</span>
       {% endif %}

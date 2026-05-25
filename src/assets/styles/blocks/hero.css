@@ -12,6 +12,7 @@
 .hero-hero__image picture,
 .hero-hero__image img {
   width: 100%;
+  height: auto;
   aspect-ratio: auto;
   object-fit: contain;
   display: block;
@@ -40,8 +41,6 @@
   color: var(--color-text);
 }
 
-
-
 .hero-hero__cta {
   margin-block-start: var(--space-m);
 }
@@ -56,6 +55,8 @@
 
   .hero-hero[data-layout='split'] .hero-hero__image {
     height: 90vh;
+    position: sticky;
+    top: 0;
   }
 
   .hero-hero[data-layout='split'] .hero-hero__image picture,

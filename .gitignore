@@ -6,6 +6,8 @@
 # build output
 /_site
 /.cache
+kirby/_site
+kirby/.cache
 
 # kirby
 kirby/site/cache

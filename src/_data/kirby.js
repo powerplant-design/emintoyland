@@ -65,6 +65,36 @@ async function resolveUrl(pageQuery, fieldValue) {
   }
 }
 
+function parseStructure(str) {
+  if (typeof str !== "string") return str;
+  const cards = [];
+  let current = null;
+  for (const line of str.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    if (trimmed === "-" || trimmed.startsWith("- ")) {
+      if (current && Object.keys(current).length) cards.push(current);
+      current = {};
+      if (trimmed.startsWith("- ")) {
+        const rest = trimmed.slice(2).trim();
+        const colonIdx = rest.indexOf(":");
+        if (colonIdx !== -1) {
+          current[rest.slice(0, colonIdx).trim().toLowerCase()] = rest.slice(colonIdx + 1).trim();
+        }
+      }
+      continue;
+    }
+    if (!current) continue;
+    const colonIdx = trimmed.indexOf(":");
+    if (colonIdx === -1) continue;
+    const key = trimmed.slice(0, colonIdx).trim().toLowerCase();
+    const value = trimmed.slice(colonIdx + 1).trim();
+    current[key] = value;
+  }
+  if (current && Object.keys(current).length) cards.push(current);
+  return cards;
+}
+
 export default async function () {
   const [settings, pages, rawWorkItems] = await Promise.all([
     query({
@@ -89,10 +119,16 @@ export default async function () {
         showcaseHeading: true, showcaseItems: true,
         showcaseCtaText: true, showcaseCtaLink: true,
         aboutHeading: true, aboutText: true, aboutImage: true,
-        aboutCtaText: true, aboutCtaLink: true,
+        aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
         seoTitle: true, seoDescription: true,
         seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
         seoRobots: true, seoSchema: true,
+        aboutIntroHeading: true, aboutIntroText: true, aboutIntroImage: true,
+        aboutCredentialsHeading: true, aboutCredentialsText: true,
+        aboutSupervisionHeading: true, aboutSupervisionText: true,
+        aboutSpecialiseHeading: true, aboutSpecialiseItems: true,
+        aboutPodcastHeading: true, aboutPodcastText: true, aboutPodcastImage: true,
+        aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
       },
     }),
     query({
@@ -144,6 +180,21 @@ export default async function () {
         const aboutImage = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutImage, p.aboutHeading || p.title);
         updates.aboutImage = aboutImage.url;
         updates.aboutImageAlt = aboutImage.alt;
+      }
+      if (p.aboutIntroImage) {
+        const img = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutIntroImage, p.aboutIntroHeading || p.title);
+        updates.aboutIntroImage = img.url;
+      }
+      if (p.aboutPodcastImage) {
+        const img = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutPodcastImage, p.aboutPodcastHeading || p.title);
+        updates.aboutPodcastImage = img.url;
+        updates.aboutPodcastImageAlt = img.alt;
+      }
+      if (p.aboutSpecialiseItems) {
+        const items = typeof p.aboutSpecialiseItems === "string"
+          ? parseStructure(p.aboutSpecialiseItems)
+          : p.aboutSpecialiseItems;
+        updates.aboutSpecialiseItems = Array.isArray(items) ? items.map(i => i.item).filter(Boolean) : [];
       }
       if (p.seoOgImage) {
         const ogImage = await resolveFileWithMeta(`page("${p.uri}")`, p.seoOgImage, p.title);

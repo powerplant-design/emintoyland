@@ -15,8 +15,8 @@
     {% endif %}
   </div>
   <div class="split-section__image">
-    {% if image %}
-      {% image image, heading, "(min-width: 48rem) 50vw, 100vw" %}
+    {% if imageSrc %}
+      <img src="{{ imageSrc }}" alt="{{ imageAlt if imageAlt else heading }}" sizes="(min-width: 48rem) 50vw, 100vw">
     {% endif %}
   </div>
 </section>

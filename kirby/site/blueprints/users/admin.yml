@@ -8,6 +8,7 @@ sections:
     templates:
       - home
       - default
+      - about
       - work
       - work-item
       - category

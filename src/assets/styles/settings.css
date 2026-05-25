@@ -33,14 +33,22 @@ html {
 
 :root {
   /* Utopia fluid type scale — generated from utopia.fyi with Poppins, ratio 1.333 (Perfect Fourth) */
-  --step--2: clamp(0.5627rem, 0.5411rem + 0.1085vw, 0.6332rem);
+  /* --step--2: clamp(0.5627rem, 0.5411rem + 0.1085vw, 0.6332rem);
   --step--1: clamp(0.7502rem, 0.715rem + 0.1759vw, 0.844rem);
   --step-0: clamp(1rem, 0.9444rem + 0.2778vw, 1.125rem);
   --step-1: clamp(1.333rem, 1.2466rem + 0.432vw, 1.4996rem);
   --step-2: clamp(1.7769rem, 1.6452rem + 0.6581vw, 1.999rem);
   --step-3: clamp(2.3686rem, 2.1703rem + 0.9918vw, 2.6647rem);
   --step-4: clamp(3.1579rem, 2.8619rem + 1.4803vw, 3.5515rem);
-  --step-5: clamp(4.2082rem, 3.7743rem + 2.1684vw, 4.7349rem);
+  --step-5: clamp(4.2082rem, 3.7743rem + 2.1684vw, 4.7349rem); */
+  --step--2: clamp(0.6944rem, 0.6907rem + 0.0164vw, 0.7035rem);
+  --step--1: clamp(0.8333rem, 0.7906rem + 0.1898vw, 0.9377rem);
+  --step-0: clamp(1rem, 0.8977rem + 0.4545vw, 1.25rem);
+  --step-1: clamp(1.2rem, 1.0093rem + 0.8477vw, 1.6663rem);
+  --step-2: clamp(1.44rem, 1.1205rem + 1.4202vw, 2.2211rem);
+  --step-3: clamp(1.728rem, 1.2237rem + 2.2413vw, 2.9607rem);
+  --step-4: clamp(2.0736rem, 1.3073rem + 3.4056vw, 3.9467rem);
+  --step-5: clamp(2.4883rem, 1.3541rem + 5.0411vw, 5.2609rem);
 
   /* Utopia fluid space scale */
   --space-3xs: clamp(0.25rem, 0.2361rem + 0.0694vw, 0.3125rem);
