@@ -1,70 +1,83 @@
-.hero-hero {
+.hero {
   display: grid;
-  min-height: 90vh;
-  /* border-bottom: 1px solid var(--color-border); */
+  min-height: 80vh;
+  padding-block: var(--space-xs-s);
+  padding-inline: var(--space-m);
 }
 
-.hero-hero__image {
+.hero__image {
   overflow: hidden;
-  padding-block: var(--space-xl);
 }
 
-.hero-hero__image picture,
-.hero-hero__image img {
+.hero__image picture,
+.hero__image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   aspect-ratio: auto;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
+  clip-path: url(#scallop-mask);
 }
 
-.hero-hero__content {
-  padding: var(--space-l) var(--space-m);
+.hero__frame {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.hero__content {
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-m-l);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.hero-hero__heading {
-  font-family: var(--font-heading);
-  font-size: var(--step-4);
-  font-weight: 900;
-  line-height: var(--leading-tight);
-  color: var(--color-pink);
-  margin: 0;
+.hero__content-inner {
+  max-width: var(--measure-medium);
+
 }
 
-.hero-hero__text {
-  max-width: var(--measure-small);
-  font-size: var(--step-1);
+.hero__heading {
+  font-family: var(--font-heading);
+  font-size: var(--step-4);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+}
+
+.hero__text {
+  font-size: var(--step-0-1);
   line-height: var(--leading-relaxed);
   color: var(--color-text);
 }
 
-.hero-hero__cta {
+.hero__cta {
   margin-block-start: var(--space-m);
 }
 
 @media (width > 66rem) {
-  .hero-hero {
-    padding-inline: 10vw;
-  }
-  .hero-hero[data-layout='split'] {
-    grid-template-columns: 1fr 2fr;
+  .hero {
+    padding-inline: var(--space-xl-2xl);
+    gap: var(--space-xs-s);
   }
 
-  .hero-hero[data-layout='split'] .hero-hero__image {
-    height: 90vh;
+  .hero[data-layout='split'] {
+    grid-template-columns: 1fr 1.5fr;
+  }
+
+  .hero[data-layout='split'] .hero__image {
+    height: 85vh;
     position: sticky;
-    top: 0;
+    top: calc(var(--navbar-height) + var(--space-xs-s));
   }
 
-  .hero-hero[data-layout='split'] .hero-hero__image picture,
-  .hero-hero[data-layout='split'] .hero-hero__image img {
+  /* .hero[data-layout='split'] .hero__image picture,
+  .hero[data-layout='split'] .hero__image img {
     height: 100%;
-  }
+  } */
 
-  .hero-hero__content {
-    padding: var(--space-2xl) var(--space-l);
+  .hero__content {
+    padding: var(--space-2xl) var(--space-xl);
   }
 }

@@ -119,6 +119,7 @@ export default async function () {
         showcaseHeading: true, showcaseItems: true,
         showcaseCtaText: true, showcaseCtaLink: true,
         aboutHeading: true, aboutText: true, aboutImage: true,
+        aboutCtaText: true, aboutCtaLink: true,
         aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
         seoTitle: true, seoDescription: true,
         seoOgTitle: true, seoOgDescription: true, seoOgImage: true,

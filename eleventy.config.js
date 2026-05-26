@@ -10,7 +10,7 @@ const md = markdownit({ html: true });
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     formats: ["avif", "webp", "png"],
-    widths: [320, 640, 960, 1280, 1600],
+    widths: [320, 640, 960, 1280, 1600, "auto"],
     htmlOptions: {
       imgAttributes: {
         loading: "lazy",

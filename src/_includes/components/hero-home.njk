@@ -1,22 +1,31 @@
-<section class="hero-hero" data-layout="split" data-image="left">
-  <div class="hero-hero__image">
+<section class="hero" data-layout="split" data-image="left">
+  <div class="hero__image">
     {% if imageSrc %}
-      <img src="{{ imageSrc }}" alt="{{ imageAlt }}" sizes="(min-width: 66rem) 33vw, 100vw" {% if loading == "eager" %}loading="eager"{% endif %}>
+      <img src="{{ imageSrc }}" alt="{{ imageAlt }}" sizes="100vw" {% if loading == "eager" %}loading="eager"{% endif %}>
     {% endif %}
+    <svg class="hero__frame" viewBox="0 0 908 1114" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <clipPath id="scallop-mask" clipPathUnits="objectBoundingBox">
+          <rect x="0" y="0" width="1" height=".2183" rx=".1575"/>
+          <rect x="0" y=".1954" width="1" height=".2183" rx=".1575"/>
+          <rect x="0" y=".3908" width="1" height=".2183" rx=".1575"/>
+          <rect x="0" y=".5863" width="1" height=".2183" rx=".1575"/>
+          <rect x="0" y=".7817" width="1" height=".2183" rx=".1575"/>
+        </clipPath>
+      </defs>
+    </svg>
   </div>
-  <div class="hero-hero__content stack" style="--stack-vertical: center;">
-    {% if titleTag == "h2" %}
-      <h2 class="hero-hero__heading">{{ title }}</h2>
-    {% else %}
-      <h1 class="hero-hero__heading">{{ title }}</h1>
-    {% endif %}
-    <div class="hero-hero__text stack">
+  <div class="hero__content">
+    <div class="hero__content-inner | stack">
+    <h1 class="hero__heading">{{ title }}</h1>
+    <div class="hero__text stack">
       {{ body | markdown | safe }}
     </div>
     {% if ctaText and ctaLink %}
-      <div class="hero-hero__cta">
+      <div class="hero__cta">
         <a href="{{ ctaLink }}" class="button button-primary">{{ ctaText }} →</a>
       </div>
     {% endif %}
+    </div>
   </div>
 </section>

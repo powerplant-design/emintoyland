@@ -2,15 +2,11 @@ Title: Home
 
 ----
 
-Metadescription: Emma Hewitt-Johnson, Sexologist, New Zealand
-
-----
-
 Heroheading: Certified Sexologist Emma Hewitt-Johnson
 
 ----
 
-Heroimage: - file://kgeqcfqw6bnc7yko
+Heroimage: - file://ds6fcircyfxatcai
 
 ----
 
@@ -73,6 +69,38 @@ Aboutctatext: Get to know me
 ----
 
 Aboutctalink: /about/
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
+
+----
+
+Metadescription: Emma Hewitt-Johnson, Sexologist, New Zealand
 
 ----
 
