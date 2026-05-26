@@ -1,17 +1,16 @@
-title: Work
+title: Blog
 tabs:
   subpages:
-    label: Work Items
+    label: Blog Posts
     sections:
       items:
         type: pages
         status: all
         layout: cards
         size: small
-        image: page.workImage.toFile
-        info: "{{ page.workType }}"
+        image: page.featuredImage.toFile
         create:
-          - work-item
+          - blog-post
   content:
     label: Content
     columns:
@@ -32,26 +31,21 @@ tabs:
           seoTitle:
             label: Browser Title
             type: text
-            help: Overrides the page title in the browser tab
           seoDescription:
             label: Meta Description
             type: textarea
-            help: Search result and social card description
           seoOgTitle:
             label: Social Title
             type: text
-            help: Title shown on Facebook/Twitter cards
           seoOgDescription:
             label: Social Description
             type: textarea
-            help: Description shown on Facebook/Twitter cards
           seoOgImage:
             label: Social Image
             type: files
             multiple: false
             layout: cards
             parent: page
-            help: 1200x630px recommended for social sharing
           seoRobots:
             label: Search Indexing
             type: select
@@ -60,11 +54,6 @@ tabs:
                 text: Index & Follow
               - value: noindex, nofollow
                 text: No Index
-          seoSchema:
-            label: Custom JSON-LD
-            type: textarea
-            size: small
-            help: Override auto-generated schema with custom JSON
   media:
     label: Media
     sections:

@@ -96,7 +96,7 @@ function parseStructure(str) {
 }
 
 export default async function () {
-  const [settings, pages, rawWorkItems] = await Promise.all([
+  const [settings, pages, rawWorkItems, rawBlogPosts] = await Promise.all([
     query({
       query: "site",
       select: {
@@ -113,7 +113,7 @@ export default async function () {
       query: "site.children",
       select: {
         title: true, slug: true, uri: true,
-        metaDescription: true, text: true,
+        metaDescription: true, text: true, heading: true,
         heroHeading: true, heroText: true, heroImage: true,
         heroCtaText: true, heroCtaLink: true,
         showcaseHeading: true, showcaseItems: true,
@@ -145,11 +145,40 @@ export default async function () {
         seoRobots: true, seoSchema: true,
       },
     }),
+    query({
+      query: "page(\"blog\").children",
+      select: {
+        title: true, slug: true, uri: true, uuid: true,
+        excerpt: true, featuredImage: true,
+        publishedDate: true, tags: true,
+        seoTitle: true, seoDescription: true,
+        seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
+        seoRobots: true, seoSchema: true,
+      },
+    }),
   ]);
 
   // Resolve site logo with alt text
   const logo = await resolveFileWithMeta("site", settings.logo, "Em in Toyland");
   const seoDefaultImage = await resolveFileWithMeta("site", settings.seoDefaultImage, "Em in Toyland");
+
+  // Resolve blog post images and pre-process tags
+  const blogPosts = await Promise.all(
+    rawBlogPosts.map(async (item) => {
+      const [featuredImage, seoOgImage] = await Promise.all([
+        resolveFileWithMeta(`page("blog/${item.slug}")`, item.featuredImage, item.title),
+        resolveFileWithMeta(`page("blog/${item.slug}")`, item.seoOgImage, item.title),
+      ]);
+      const tagList = (item.tags || "").split(",").map(t => t.trim()).filter(Boolean);
+      const tagSlugs = tagList.map(t => t.toLowerCase().replace(/\s+/g, "-"));
+      return {
+        ...item,
+        featuredImage: featuredImage.url, featuredImageAlt: featuredImage.alt,
+        seoOgImage: seoOgImage.url,
+        tagsSlug: tagSlugs.join(" "),
+      };
+    })
+  );
 
   // Resolve work item images with alt text
   const workItems = await Promise.all(
@@ -242,7 +271,12 @@ export default async function () {
   const all = [
     ...resolvedPages.map(p => ({ ...p, parentSlug: null })),
     ...workItems.map(w => ({ ...w, parentSlug: "work" })),
+    ...blogPosts.map(b => ({ ...b, parentSlug: "blog" })),
   ];
 
-  return { all, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, siteImages } };
+  const blogTags = [...new Set(
+    blogPosts.flatMap(p => (p.tags || "").split(",").map(t => t.trim().toLowerCase()).filter(Boolean))
+  )];
+
+  return { all, blogTags, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, siteImages } };
 }

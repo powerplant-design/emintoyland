@@ -1,29 +1,38 @@
-title: Work
+title: Blog Post
 tabs:
-  subpages:
-    label: Work Items
-    sections:
-      items:
-        type: pages
-        status: all
-        layout: cards
-        size: small
-        image: page.workImage.toFile
-        info: "{{ page.workType }}"
-        create:
-          - work-item
   content:
     label: Content
     columns:
       - width: 1/1
         fields:
-          heading:
-            label: Heading
+          title:
+            label: Title
             type: text
-          text:
+            width: 3/4
+          publishedDate:
+            label: Published Date
+            type: date
+            width: 1/4
+          featuredImage:
+            label: Featured Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+          excerpt:
+            label: Excerpt
+            type: textarea
+            help: Short summary shown on the blog listing grid
+          tags:
+            label: Tags
+            type: tags
+            options: query
+            query: page("blog").children.pluck("tags", ",", true)
+            help: Filter categories for blog posts
+          _body:
             label: Body
             type: textarea
-            size: small
+            size: large
   seo:
     label: SEO
     columns:

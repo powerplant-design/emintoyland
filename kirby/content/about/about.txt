@@ -99,15 +99,11 @@ Aboutpodcastctalink: /work/
 
 ----
 
-Metadescription: About Me: Emma Hewitt-Johnson, Sexologist
-
-----
-
 Seotitle: 
 
 ----
 
-Seodescription: 
+Seodescription: About Me: Emma Hewitt-Johnson, Sexologist
 
 ----
 
@@ -128,6 +124,10 @@ Seorobots:
 ----
 
 Seoschema: 
+
+----
+
+Metadescription: 
 
 ----
 

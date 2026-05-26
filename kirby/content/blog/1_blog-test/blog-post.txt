@@ -1,0 +1,53 @@
+Title: Blog Test
+
+----
+
+Publisheddate: 2026-05-27
+
+----
+
+Featuredimage: - file://8deeelwek7jwoqs4
+
+----
+
+Excerpt: Blog post excerpt test text
+
+----
+
+Tags: Test
+
+----
+
+Body: 
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
+
+----
+
+Uuid: ihmtmbhf9maoxqaq

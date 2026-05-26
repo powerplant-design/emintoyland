@@ -20,6 +20,8 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("json", (value) => JSON.stringify(value));
+  eleventyConfig.addFilter("split", (value, separator) => (value || "").split(separator));
+  eleventyConfig.addFilter("trim", (value) => (value || "").trim());
   eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
 
   eleventyConfig.addPassthroughCopy("src/assets/styles");

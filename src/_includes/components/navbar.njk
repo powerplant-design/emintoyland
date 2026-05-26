@@ -20,6 +20,7 @@
         {# <li><a href="/" class="navbar__link"{% if currentUri == 'home' %} aria-current="page"{% endif %}>Home</a></li> #}
         <li><a href="/about/" class="navbar__link"{% if currentUri == 'about' %} aria-current="page"{% endif %}>About</a></li>
         <li><a href="/work/" class="navbar__link"{% if currentUri == 'work' or 'work/' in currentUri %} aria-current="page"{% endif %}>Work</a></li>
+        <li><a href="/blog/" class="navbar__link"{% if currentUri == 'blog' or 'blog/' in currentUri %} aria-current="page"{% endif %}>Blog</a></li>
         <li><a href="/contact/" class="navbar__link"{% if currentUri == 'contact' %} aria-current="page"{% endif %}>Contact</a></li>
       </ul>
     </div>

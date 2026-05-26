@@ -2,15 +2,43 @@ Title: My Work
 
 ----
 
-Metadescription: Emma Hewitt-Johnson's work — podcast, writing, video, and featured press
+Heading: My Work
 
 ----
 
-Text:
+Text: Sex-positive content across podcasts, video, writing and press.
 
-## My Work
+----
 
-Sex-positive content across podcasts, video, writing and press.
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
+
+----
+
+Metadescription: Emma Hewitt-Johnson's work — podcast, writing, video, and featured press
 
 ----
 
