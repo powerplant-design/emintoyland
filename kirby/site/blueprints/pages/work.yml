@@ -6,6 +6,10 @@ tabs:
       items:
         type: pages
         status: all
+        layout: cards
+        size: small
+        image: page.workImage.toFile
+        info: "{{ page.workType }}"
         create:
           - work-item
   content:

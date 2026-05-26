@@ -1,7 +1,7 @@
 {% set logoUrl = kirby.settings.siteImages.logoPink.url %}
 {% set logoAlt = kirby.settings.siteImages.logoPink.alt %}
 <nav class="navbar" data-state="idle" role="navigation">
-  <div class="navbar__inner  wrapper">
+  <div class="navbar__inner">
     <a href="/" class="navbar__logo" aria-label="Home">
       {% if logoUrl %}
         <img src="{{ logoUrl }}" alt="{{ logoAlt }}" sizes="130px">
@@ -25,70 +25,3 @@
     </div>
   </div>
 </nav>
-
-<script>
-  (function() {
-    var navbar = document.querySelector('.navbar');
-    var toggle = document.querySelector('.navbar__toggle');
-    var menu = document.querySelector('.navbar__menu');
-
-    if (!toggle || !navbar) return;
-
-    function onScroll() {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    var animTimeout = null;
-
-    function closeMenu(callback) {
-      if (navbar.getAttribute('data-state') !== 'active') {
-        if (callback) callback();
-        return;
-      }
-      navbar.setAttribute('data-state', 'closing');
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.classList.remove('is-active');
-      clearTimeout(animTimeout);
-      animTimeout = setTimeout(function() {
-        navbar.setAttribute('data-state', 'idle');
-        if (callback) callback();
-      }, 350);
-    }
-
-    toggle.addEventListener('click', function() {
-      if (navbar.getAttribute('data-state') === 'active') {
-        closeMenu();
-      } else {
-        clearTimeout(animTimeout);
-        navbar.setAttribute('data-state', 'active');
-        toggle.setAttribute('aria-expanded', 'true');
-        toggle.classList.add('is-active');
-      }
-    });
-
-    if (menu) {
-      menu.addEventListener('click', function(e) {
-        var link = e.target.closest('.navbar__link');
-        if (link && navbar.getAttribute('data-state') === 'active') {
-          e.preventDefault();
-          e.stopPropagation();
-          closeMenu();
-          var swup = window.__swup;
-          if (swup) {
-            swup.navigate(link.getAttribute('href'));
-          } else {
-            window.location.href = link.getAttribute('href');
-          }
-        }
-      });
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && navbar.getAttribute('data-state') === 'active') {
-        closeMenu();
-      }
-    });
-  })();
-</script>

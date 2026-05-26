@@ -1,4 +1,5 @@
 import Swup from "swup";
+import { initNavbar } from "./navbar.js";
 
 function applyFilter(filter) {
   var container = document.querySelector('[data-filter="container"]');
@@ -77,6 +78,7 @@ const swup = new Swup({
 
 window.__swup = swup;
 
+initNavbar();
 initFilters();
 updateNavActive();
 

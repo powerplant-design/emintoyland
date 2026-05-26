@@ -10,7 +10,11 @@ Worklink: https://www.youtube.com/@adulttoymegastore
 
 ----
 
-Workimage: /images/atms-tv.png
+Workimage: - file://gualb5y2mcblakdj
+
+----
+
+Workheroimage: - file://gualb5y2mcblakdj
 
 ----
 
@@ -27,6 +31,34 @@ Body:
 I write, produce & host ATMS TV — the Adulttoymegastore video channel with over 3.5 million views across YouTube & Vimeo.
 
 ATMS TV is the video hub for all things sex and sex toys! Every week I introduce you to some of the best-selling sex toys in Quickies, then teach you how to choose and use your toys in Doing It.
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
 
 ----
 

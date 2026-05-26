@@ -10,8 +10,8 @@
 }
 
 .card:hover {
-  background-color: var(--color-honeydew);
-  box-shadow: 0 7px 20px 20px var(--color-honeydew);
+  background-color: var(--color-bg-light);
+  box-shadow: 0 0 20px 20px var(--color-bg-light);
 }
 
 .card__image-wrap {
@@ -44,7 +44,7 @@
 }
 
 .card__body {
-  padding-inline: var(--space-2xs);
+  /* padding-inline: var(--space-2xs); */
   padding-block-start: var(--space-s);
 }
 
@@ -64,11 +64,10 @@
 }
 
 .card__title {
-  font-size: var(--step-2);
-  /* font-weight: var(--weight-semibold); */
+  font-size: var(--step-3);
   line-height: var(--leading-tight);
   margin: 0;
-  color: var(--color-dark);
+  color: var(--color-text);
 }
 
 .card__excerpt {
