@@ -70,12 +70,11 @@
   align-items: var(--cluster-vertical, center);
 }
 
-.stack > * + * {
-  margin-block-start: var(--stack-gap, var(--space-s-m));
-  /* display: flex;
+.stack {
+  display: flex;
   flex-direction: column;
   justify-content: var(--stack-vertical, flex-start);
-  align-items: var(--stack-horizontal, stretch); */
+  align-items: var(--stack-horizontal, stretch);
 }
 
 .stack[data-align='center'] {

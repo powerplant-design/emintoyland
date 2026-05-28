@@ -1,8 +1,8 @@
 .hero {
   display: grid;
   min-height: 80vh;
-  padding-block: var(--space-xs-s);
-  padding-inline: var(--space-m);
+  /* padding-block: var(--space-xs-s); */
+  padding-inline: var(--space-xs-s);
 }
 
 .hero__image {

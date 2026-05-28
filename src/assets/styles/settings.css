@@ -123,3 +123,7 @@ html {
   --measure-medium: 56rem;
   --measure-large: 75rem;
 }
+
+main{
+  padding-inline: var(--space-xs-s);
+}
