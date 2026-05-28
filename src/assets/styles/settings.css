@@ -116,14 +116,10 @@ html {
   --radius-full: 9999px;
 
   /* Layout offsets */
-  --navbar-height: 80px;
+  --navbar-height: 79px;
 
   /* Max widths */
   --measure-small: 42rem;
   --measure-medium: 56rem;
   --measure-large: 75rem;
-}
-
-main{
-  padding-inline: var(--space-xs-s);
 }

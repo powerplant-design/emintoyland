@@ -1,0 +1,5 @@
+Template: image
+
+----
+
+Uuid: o2mosfpmrseb7dfy

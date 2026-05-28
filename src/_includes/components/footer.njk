@@ -1,0 +1,32 @@
+<footer class="footer">
+  <div class="footer__toys">
+    <div class="footer__toy footer__toy--left" data-lenis-toy="left">
+      <div class="footer__toy-inner">
+        <img src="{{ kirby.settings.siteImages.toysLeft.url }}" alt="">
+      </div>
+    </div>
+    <div class="footer__toy footer__toy--right" data-lenis-toy="right">
+      <div class="footer__toy-inner">
+        <img src="{{ kirby.settings.siteImages.toysRight.url }}" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__inner wrapper flow">
+    <div class="footer__logo">
+      <img src="{{ kirby.settings.siteImages.logoFooter.url }}" alt="{{ kirby.settings.siteImages.logoFooter.alt }}">
+    </div>
+
+    {% if kirby.settings.nav %}
+      <nav class="footer__nav" aria-label="Secondary navigation">
+        {% for link in kirby.settings.nav %}
+          <a href="{{ link.href }}" class="navbar__link">{{ link.label }}</a>
+        {% endfor %}
+      </nav>
+    {% endif %}
+
+    <div class="footer__credit">
+      <p>{{ kirby.settings.footerText if kirby.settings.footerText else "© 2026 Em in Toyland. All rights reserved." }}</p>
+    </div>
+  </div>
+</footer>

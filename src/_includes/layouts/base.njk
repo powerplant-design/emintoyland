@@ -107,8 +107,11 @@
 </head>
 <body>
   {% include "components/navbar.njk" %}
-  <main id="swup" class="transition-fade main-content">
-    {{ content | safe }}
+  <main id="swup" class="transition-fade">
+    <div class="main-content">
+      {{ content | safe }}
+    </div>
+    {% include "components/footer.njk" %}
   </main>
 </body>
 </html>

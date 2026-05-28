@@ -104,6 +104,7 @@ export default async function () {
         siteDescription: true,
         seoSiteName: true,
         logo: true,
+        nav: true,
         seoDefaultImage: true,
         footerText: true,
         googleAnalyticsId: true,
@@ -266,6 +267,9 @@ export default async function () {
     logoAlt: logo.alt,
     logoMobile: siteFile("eit-logo-mbl.png", "Em in Toyland"),
     logoPink: siteFile("eit-logo-pink.png", ""),
+    logoFooter: siteFile("eit-logo-shadow.png", "Em in Toyland"),
+    toysLeft: siteFile("eit-toys-left.png", ""),
+    toysRight: siteFile("eit-toys-right.png", ""),
   };
 
   const all = [
@@ -278,5 +282,5 @@ export default async function () {
     blogPosts.flatMap(p => (p.tags || "").split(",").map(t => t.trim().toLowerCase()).filter(Boolean))
   )];
 
-  return { all, blogTags, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, siteImages } };
+  return { all, blogTags, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, siteImages, nav: parseStructure(settings.nav) } };
 }

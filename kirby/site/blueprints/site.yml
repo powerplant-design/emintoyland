@@ -51,6 +51,21 @@ tabs:
             multiple: false
             layout: cards
             help: Fallback image for pages without their own OG image
+          nav:
+            label: Navigation Links
+            type: structure
+            columns:
+              label: true
+            fields:
+              label:
+                label: Label
+                type: text
+                width: 1/2
+              href:
+                label: Link
+                type: text
+                width: 1/2
+                placeholder: /about/
           footerText:
             label: Footer Text
             type: text

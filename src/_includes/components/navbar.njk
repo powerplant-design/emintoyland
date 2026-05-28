@@ -17,11 +17,17 @@
     <div class="navbar__menu">
       <ul class="navbar__list">
         {% set currentUri = page.uri %}
-        {# <li><a href="/" class="navbar__link"{% if currentUri == 'home' %} aria-current="page"{% endif %}>Home</a></li> #}
-        <li><a href="/about/" class="navbar__link"{% if currentUri == 'about' %} aria-current="page"{% endif %}>About</a></li>
-        <li><a href="/work/" class="navbar__link"{% if currentUri == 'work' or 'work/' in currentUri %} aria-current="page"{% endif %}>Work</a></li>
-        <li><a href="/blog/" class="navbar__link"{% if currentUri == 'blog' or 'blog/' in currentUri %} aria-current="page"{% endif %}>Blog</a></li>
-        <li><a href="/contact/" class="navbar__link"{% if currentUri == 'contact' %} aria-current="page"{% endif %}>Contact</a></li>
+        {% for link in kirby.settings.nav %}
+          <li>
+            <a href="{{ link.href }}" class="navbar__link"
+              {% set linkPath = link.href | replace('/', '') %}
+              {% if currentUri == linkPath or (link.href != '/' and linkPath and currentUri and linkPath in currentUri) %}
+                aria-current="page"
+              {% endif %}>
+              {{ link.label }}
+            </a>
+          </li>
+        {% endfor %}
       </ul>
     </div>
   </div>

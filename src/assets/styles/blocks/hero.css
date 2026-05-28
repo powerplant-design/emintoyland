@@ -69,7 +69,7 @@
   .hero[data-layout='split'] .hero__image {
     height: 85vh;
     position: sticky;
-    top: calc(var(--navbar-height) + var(--space-xs-s));
+    top: calc(var(--navbar-height) + var(--space-m));
   }
 
   /* .hero[data-layout='split'] .hero__image picture,

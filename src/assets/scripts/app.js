@@ -2,6 +2,7 @@ import Swup from "swup";
 import { initNavbar } from "./navbar.js";
 import { initWorkFilters } from "./work-filters.js";
 import { initBlogFilters } from "./blog-filters.js";
+import { initLenis, destroyLenis } from "./lenis.js";
 
 function updateNavActive() {
   var path = window.location.pathname;
@@ -20,12 +21,19 @@ const swup = new Swup({
 window.__swup = swup;
 
 initNavbar();
+initLenis();
 initWorkFilters();
 initBlogFilters();
 updateNavActive();
 
+swup.hooks.on("content:replace", () => {
+  destroyLenis();
+});
+
 swup.hooks.on("page:view", () => {
   window.scrollTo({ top: 0, behavior: "instant" });
+  initNavbar();
+  initLenis();
   initWorkFilters();
   initBlogFilters();
   updateNavActive();
