@@ -10,7 +10,7 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
@@ -30,7 +30,8 @@
 }
 
 .button-secondary {
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: var(--color-bg-light);
   color: var(--color-pink);
   border-color: var(--color-pink);
 }

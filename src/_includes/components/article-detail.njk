@@ -31,12 +31,12 @@
         </p>
       {% endif %}
       {% if externalLink %}
-        <a href="{{ externalLink }}" class="button button-primary button-small" target="_blank" rel="noopener">{{ externalLinkLabel if externalLinkLabel else "View original" }} →</a>
+        <a href="{{ externalLink }}" class="button button-primary button-small" target="_blank" rel="noopener">{{ externalLinkLabel if externalLinkLabel else "View original" }} ></a>
       {% endif %}
       <a href="{{ backLink }}" class="button button-secondary button-small">{{ backLabel }}</a>
     </aside>
     <div class="article-detail__content flow">
-      {{ body | markdown | safe }}
+      {{ body | safe if rawHtml else (body | markdown | safe) }}
     </div>
   </div>
 </article>

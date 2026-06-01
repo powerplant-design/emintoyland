@@ -29,7 +29,7 @@ tabs:
             options: query
             query: page("blog").children.pluck("tags", ",", true)
             help: Filter categories for blog posts
-          _body:
+          body:
             label: Body
             type: textarea
             size: large

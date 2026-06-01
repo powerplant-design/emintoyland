@@ -152,7 +152,7 @@ export default async function () {
         title: true, slug: true, uri: true, uuid: true,
         excerpt: true, featuredImage: true,
         publishedDate: true, tags: true, modified: true,
-        _body: true,
+        body: "page.body.kirbytext",
         seoTitle: true, seoDescription: true,
         seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
         seoRobots: true, seoSchema: true,
@@ -278,7 +278,10 @@ export default async function () {
   const dateFormat = (ts) => {
     if (!ts) return null;
     const d = new Date(ts * 1000);
-    return d.toISOString().split("T")[0];
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
   };
   for (const item of workItems) {
     if (item.modified) item.modifiedDate = dateFormat(item.modified);

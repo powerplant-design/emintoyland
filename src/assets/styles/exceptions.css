@@ -2,7 +2,7 @@
 h1, h2, h3, h4, h5, h6 {
   line-height: var(--leading-tight);
   font-weight: var(--weight-bold);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   margin: 0;
 }
 

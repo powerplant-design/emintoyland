@@ -14,7 +14,7 @@ layout: base.njk
   {% set date = page.publishedDate %}
   {% set updated = page.modifiedDate %}
   {% set backLink = "/work/" %}
-  {% set backLabel = "← Back to Work" %}
+  {% set backLabel = "< Back to Work" %}
   {% set body = (page.body if page.body else page.text) %}
   {% set externalLink = page.workLink %}
   {% set externalLinkLabel = page.workLinkLabel %}
@@ -41,7 +41,7 @@ layout: base.njk
   {% include "components/split-section.njk" %}
 
 {% elif page.uri == "work" %}
-  <div class="wrapper stack" style="--stack-horizontal: center; text-align: center; padding-block-start: var(--space-l-xl);">
+  <div class="wrapper stack" style="--stack-horizontal: center; text-align: center; padding-block-end: var(--space-l-xl);">
     <h1>{{ page.heading if page.heading else page.title }}</h1>
     {% if page.text %}
       <p style="font-size: var(--step-0-1); max-width: var(--measure-medium);">{{ page.text }}</p>
@@ -81,13 +81,14 @@ layout: base.njk
   {% set date = page.publishedDate %}
   {% set updated = page.modifiedDate %}
   {% set backLink = "/blog/" %}
-  {% set backLabel = "← Back to Blog" %}
-  {% set body = page._body %}
+  {% set backLabel = "‹ Back to Blog" %}
+  {% set body = page.body %}
+  {% set rawHtml = true %}
   {% set badges = page.tagArray %}
   {% include "components/article-detail.njk" %}
 
 {% elif page.uri == "blog" %}
-  <div class="wrapper stack" style="--stack-horizontal: center; text-align: center; padding-block-start: var(--space-l-xl);">
+  <div class="wrapper stack" style="--stack-horizontal: center; text-align: center; padding-block-end: var(--space-l-xl);">
     <h1>{{ page.heading if page.heading else page.title }}</h1>
     {% if page.text %}
       <p style="font-size: var(--step-0-1); max-width: var(--measure-medium);">{{ page.text }}</p>

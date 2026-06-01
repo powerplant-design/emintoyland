@@ -2,7 +2,7 @@ Title: Blog Test
 
 ----
 
-Publisheddate: 2026-05-27
+Publisheddate: 2026-06-02
 
 ----
 
@@ -18,7 +18,13 @@ Tags: Test
 
 ----
 
-Body: 
+Body:
+
+## Test heading
+Test blog content goes here
+(image: file://8deeelwek7jwoqs4)
+
+Test adding image here
 
 ----
 

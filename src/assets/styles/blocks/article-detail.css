@@ -8,7 +8,7 @@
 .article-detail__header-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-m-l);
 }
 
 .article-detail__badges {
