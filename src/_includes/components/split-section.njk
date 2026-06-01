@@ -1,10 +1,10 @@
 <section class="split-section" data-layout="split" data-image="{{ imageSide if imageSide else "right" }}">
-  <div class="split-section__content stack">
+  <div class="split-section__content flow">
     {% if heading %}
       <h2 class="split-section__heading">{{ heading }}</h2>
     {% endif %}
     {% if text %}
-      <div class="split-section__text flow">
+      <div class="split-section__text flow" data-space='xs'>
         {{ text | markdown | safe }}
       </div>
     {% endif %}

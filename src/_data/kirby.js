@@ -137,10 +137,10 @@ export default async function () {
       query: "page(\"work\").children",
       select: {
         title: true, slug: true, uri: true, uuid: true,
-        workType: true, workLink: true,
+        workType: true, workLink: true, workLinkLabel: true,
         workImage: true, workHeroImage: true,
         publishedDate: true, text: true,
-        body: true,
+        body: true, modified: true,
         seoTitle: true, seoDescription: true,
         seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
         seoRobots: true, seoSchema: true,
@@ -151,7 +151,8 @@ export default async function () {
       select: {
         title: true, slug: true, uri: true, uuid: true,
         excerpt: true, featuredImage: true,
-        publishedDate: true, tags: true,
+        publishedDate: true, tags: true, modified: true,
+        _body: true,
         seoTitle: true, seoDescription: true,
         seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
         seoRobots: true, seoSchema: true,
@@ -177,6 +178,7 @@ export default async function () {
         featuredImage: featuredImage.url, featuredImageAlt: featuredImage.alt,
         seoOgImage: seoOgImage.url,
         tagsSlug: tagSlugs.join(" "),
+        tagArray: tagList,
       };
     })
   );
@@ -271,6 +273,19 @@ export default async function () {
     toysLeft: siteFile("eit-toys-left.png", ""),
     toysRight: siteFile("eit-toys-right.png", ""),
   };
+
+  // Normalize modified timestamps to date strings for comparison
+  const dateFormat = (ts) => {
+    if (!ts) return null;
+    const d = new Date(ts * 1000);
+    return d.toISOString().split("T")[0];
+  };
+  for (const item of workItems) {
+    if (item.modified) item.modifiedDate = dateFormat(item.modified);
+  }
+  for (const item of blogPosts) {
+    if (item.modified) item.modifiedDate = dateFormat(item.modified);
+  }
 
   const all = [
     ...resolvedPages.map(p => ({ ...p, parentSlug: null })),

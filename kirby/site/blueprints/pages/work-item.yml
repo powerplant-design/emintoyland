@@ -16,6 +16,12 @@ tabs:
           workLink:
             label: External Link
             type: url
+          workLinkLabel:
+            label: Link Button Text
+            type: text
+            width: 1/2
+            default: View original
+            placeholder: View original
           workImage:
             label: Thumbnail Image
             type: files

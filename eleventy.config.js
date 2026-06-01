@@ -22,6 +22,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("json", (value) => JSON.stringify(value));
   eleventyConfig.addFilter("split", (value, separator) => (value || "").split(separator));
   eleventyConfig.addFilter("trim", (value) => (value || "").trim());
+  eleventyConfig.addFilter("formatDate", (value) => {
+    if (!value) return "";
+    const d = typeof value === "number" ? new Date(value * 1000) : new Date(value);
+    if (isNaN(d.getTime())) return value;
+    return d.toLocaleDateString("en-NZ", { year: "numeric", month: "long", day: "numeric" });
+  });
   eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
 
   eleventyConfig.addPassthroughCopy("src/assets/styles");

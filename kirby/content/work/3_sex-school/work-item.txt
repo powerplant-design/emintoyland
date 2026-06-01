@@ -10,7 +10,15 @@ Worklink: https://open.spotify.com/episode/49Y9bv2FZl1ZPvlSaIIC8C?si=a5dafd500ba
 
 ----
 
-Workimage: /images/sex-school-thumb.png
+Worklinklabel: Listen now
+
+----
+
+Workimage: - file://ea4bodkb1kjoov1t
+
+----
+
+Workheroimage: - file://ccpiaqhu7xyincnr
 
 ----
 
@@ -27,6 +35,34 @@ Body:
 I'm the co-creator & co-host of the podcast Sex School with The Girls Uninterrupted & Adulttoymegastore.
 
 Sex School is a 6-episode podcast series designed to help you learn amazing things about your bodies and answer all your sex related questions. We've teamed up to help normalise pleasure and empower kiwis on their sexual wellness journey, one orgasm at time. Strap yourselves in and put all the theory into practice with Sex School!
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
 
 ----
 

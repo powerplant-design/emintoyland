@@ -8,35 +8,18 @@ layout: base.njk
 ---
 
 {% if page.parentSlug == "work" %}
-  <article class="work-detail wrapper stack" style="--stack-vertical: center; text-align: center; --stack-horizontal: center;">
-    <a href="/work/?type={{ page.workType | lower | replace(' ', '-') }}" class="work-detail__category">{{ page.workType }}</a>
-    <h1 class="work-detail__title">{{ page.title }}</h1>
-    {% set sparkle = kirby.settings.siteImages.logoPink %}
-    {% if sparkle.url %}
-      <img src="{{ sparkle.url }}" alt="" sizes="(min-width: 40rem) 10vw, 20vw">
-    {% endif %}
-    {% if page.publishedDate %}
-      <p class="work-detail__date">Published: {{ page.publishedDate }}</p>
-    {% endif %}
-  </article>
-
-  {% set heroImage = page.workHeroImage if page.workHeroImage else page.workImage %}
-  {% if heroImage %}
-    <div class="wrapper" style="padding-block: var(--space-l-xl);">
-      <div class="work-detail__image-wrap">
-        <img src="{{ heroImage }}" alt="{{ page.title }}" sizes="(min-width: 62rem) 60vw, 100vw">
-      </div>
-    </div>
-  {% endif %}
-
-  <div class="wrapper flow prose" style="padding-block-end: var(--space-xl-2xl);">
-    {{ (page.body if page.body else page.text) | markdown | safe }}
-    {% if page.workLink %}
-      <div class="work-detail__actions">
-        <a href="{{ page.workLink }}" class="button button-primary button-large" target="_blank" rel="noopener">View original →</a>
-      </div>
-    {% endif %}
-  </div>
+  {% set title = page.title %}
+  {% set image = page.workHeroImage if page.workHeroImage else page.workImage %}
+  {% set imageAlt = page.title %}
+  {% set date = page.publishedDate %}
+  {% set updated = page.modifiedDate %}
+  {% set backLink = "/work/" %}
+  {% set backLabel = "← Back to Work" %}
+  {% set body = (page.body if page.body else page.text) %}
+  {% set externalLink = page.workLink %}
+  {% set externalLinkLabel = page.workLinkLabel %}
+  {% set badges = [page.workType] %}
+  {% include "components/article-detail.njk" %}
 
 {% elif page.uri == "home" %}
   {% set title = page.heroHeading %}
@@ -92,16 +75,16 @@ layout: base.njk
   </div>
 
 {% elif page.parentSlug == "blog" %}
-  <article class="wrapper flow prose" style="padding-block: var(--space-xl-2xl);">
-    <h1>{{ page.title }}</h1>
-    {% if page.featuredImage %}
-      <img src="{{ page.featuredImage }}" alt="{{ page.title }}" sizes="(min-width: 62rem) 60vw, 100vw">
-    {% endif %}
-    {% if page.publishedDate %}
-      <p class="text-step--1" style="color: var(--color-text-light);">{{ page.publishedDate }}</p>
-    {% endif %}
-    {{ page._body | markdown | safe }}
-  </article>
+  {% set title = page.title %}
+  {% set image = page.featuredImage %}
+  {% set imageAlt = page.featuredImageAlt if page.featuredImageAlt else page.title %}
+  {% set date = page.publishedDate %}
+  {% set updated = page.modifiedDate %}
+  {% set backLink = "/blog/" %}
+  {% set backLabel = "← Back to Blog" %}
+  {% set body = page._body %}
+  {% set badges = page.tagArray %}
+  {% include "components/article-detail.njk" %}
 
 {% elif page.uri == "blog" %}
   <div class="wrapper stack" style="--stack-horizontal: center; text-align: center; padding-block-start: var(--space-l-xl);">

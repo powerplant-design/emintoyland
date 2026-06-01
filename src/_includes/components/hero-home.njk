@@ -18,7 +18,7 @@
   <div class="hero__content">
     <div class="hero__content-inner | flow">
     <h1 class="hero__heading">{{ title }}</h1>
-    <div class="hero__text stack">
+    <div class="hero__text flow" data-space='xs'>
       {{ body | markdown | safe }}
     </div>
     {% if ctaText and ctaLink %}

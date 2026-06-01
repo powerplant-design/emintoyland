@@ -1,0 +1,42 @@
+<article class="article-detail">
+  <header class="article-detail__header wrapper">
+    <div class="article-detail__header-content">
+      {% if badges | length %}
+        <div class="article-detail__badges">
+          {% for badge in badges %}
+            <span class="card__tag">{{ badge }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <h1 class="article-detail__title">{{ title }}</h1>
+    </div>
+    <div class="article-detail__image">
+      {% if image %}
+        <img src="{{ image }}" alt="{{ imageAlt if imageAlt else title }}" sizes="(min-width: 48rem) 50vw, 100vw">
+      {% endif %}
+    </div>
+  </header>
+  <div class="article-detail__body wrapper">
+    <aside class="article-detail__sidebar">
+      {% if date %}
+        <p class="article-detail__date">
+          <span class="article-detail__date-label">Published</span>
+          {{ date | formatDate }}
+        </p>
+      {% endif %}
+      {% if updated and updated != date %}
+        <p class="article-detail__date">
+          <span class="article-detail__date-label">Updated</span>
+          {{ page.modified | formatDate }}
+        </p>
+      {% endif %}
+      {% if externalLink %}
+        <a href="{{ externalLink }}" class="button button-primary button-small" target="_blank" rel="noopener">{{ externalLinkLabel if externalLinkLabel else "View original" }} →</a>
+      {% endif %}
+      <a href="{{ backLink }}" class="button button-secondary button-small">{{ backLabel }}</a>
+    </aside>
+    <div class="article-detail__content flow">
+      {{ body | markdown | safe }}
+    </div>
+  </div>
+</article>

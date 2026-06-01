@@ -10,7 +10,15 @@ Worklink: https://www.stuff.co.nz/
 
 ----
 
-Workimage: /images/consent-sex-toys.png
+Worklinklabel: Read article
+
+----
+
+Workimage: - file://owcs3gge1qghmrws
+
+----
+
+Workheroimage: 
 
 ----
 
@@ -23,6 +31,34 @@ Text: Gifting a sex toy, whether a butt plug or any other toy, without consent, 
 ----
 
 Body: Gifting a sex toy, whether a butt plug or any other toy, without consent, is crossing a line and can make people feel embarrassed, triggered, uncomfortable, or disrespected.
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
 
 ----
 

@@ -10,7 +10,15 @@ Worklink: https://www.cosmopolitan.com/
 
 ----
 
-Workimage: /images/cosmo-swinging.png
+Worklinklabel: Read article
+
+----
+
+Workimage: - file://wjcdkuykiu3id7jm
+
+----
+
+Workheroimage: 
 
 ----
 
@@ -23,6 +31,34 @@ Text: Whether you know about it through the 1996 film Swingers or the recent Mor
 ----
 
 Body: Whether you know about it through the 1996 film Swingers or the recent Mormon #MomTok scandal on social media, chances are you have heard of swinging. But how much do you actually know about it?
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
 
 ----
 
