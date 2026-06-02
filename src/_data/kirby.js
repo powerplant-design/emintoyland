@@ -108,6 +108,9 @@ export default async function () {
         seoDefaultImage: true,
         footerText: true,
         googleAnalyticsId: true,
+        newsletterHeading: true,
+        newsletterText: true,
+        newsletterImage: true,
       },
     }),
     query({
@@ -163,6 +166,7 @@ export default async function () {
   // Resolve site logo with alt text
   const logo = await resolveFileWithMeta("site", settings.logo, "Em in Toyland");
   const seoDefaultImage = await resolveFileWithMeta("site", settings.seoDefaultImage, "Em in Toyland");
+  const newsletterImage = await resolveFileWithMeta("site", settings.newsletterImage, settings.newsletterHeading || "Newsletter");
 
   // Resolve blog post images and pre-process tags
   const blogPosts = await Promise.all(
@@ -300,5 +304,5 @@ export default async function () {
     blogPosts.flatMap(p => (p.tags || "").split(",").map(t => t.trim().toLowerCase()).filter(Boolean))
   )];
 
-  return { all, blogTags, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, siteImages, nav: parseStructure(settings.nav) } };
+  return { all, blogTags, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, newsletterImage: newsletterImage.url, newsletterImageAlt: newsletterImage.alt, siteImages, nav: parseStructure(settings.nav) } };
 }

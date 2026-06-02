@@ -33,12 +33,6 @@
   max-inline-size: var(--measure-small);
 }
 
-.work-detail__sparkle {
-  width: 120px;
-  height: auto;
-  display: block;
-}
-
 .work-detail__date {
   font-size: var(--step--1);
   color: var(--color-text-light);

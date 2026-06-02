@@ -1,3 +1,5 @@
+var _navbarInitialized = false;
+
 function initNavbar() {
   var navbar = document.querySelector('.navbar');
   var toggle = document.querySelector('.navbar__toggle');
@@ -8,59 +10,65 @@ function initNavbar() {
   function onScroll() {
     navbar.classList.toggle('scrolled', window.scrollY > 0);
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
-  var animTimeout = null;
+  if (!_navbarInitialized) {
+    _navbarInitialized = true;
 
-  function closeMenu(callback) {
-    if (navbar.getAttribute('data-state') !== 'active') {
-      if (callback) callback();
-      return;
-    }
-    navbar.setAttribute('data-state', 'closing');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.classList.remove('is-active');
-    clearTimeout(animTimeout);
-    animTimeout = setTimeout(function() {
-      navbar.setAttribute('data-state', 'idle');
-      if (callback) callback();
-    }, 350);
-  }
+    window.addEventListener('scroll', onScroll, { passive: true });
 
-  toggle.addEventListener('click', function() {
-    if (navbar.getAttribute('data-state') === 'active') {
-      closeMenu();
-    } else {
+    var animTimeout = null;
+
+    function closeMenu(callback) {
+      if (navbar.getAttribute('data-state') !== 'active') {
+        if (callback) callback();
+        return;
+      }
+      navbar.setAttribute('data-state', 'closing');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('is-active');
       clearTimeout(animTimeout);
-      navbar.setAttribute('data-state', 'active');
-      toggle.setAttribute('aria-expanded', 'true');
-      toggle.classList.add('is-active');
+      animTimeout = setTimeout(function() {
+        navbar.setAttribute('data-state', 'idle');
+        if (callback) callback();
+      }, 350);
     }
-  });
 
-  if (menu) {
-    menu.addEventListener('click', function(e) {
-      var link = e.target.closest('.navbar__link');
-      if (link && navbar.getAttribute('data-state') === 'active') {
-        e.preventDefault();
-        e.stopPropagation();
+    toggle.addEventListener('click', function() {
+      if (navbar.getAttribute('data-state') === 'active') {
         closeMenu();
-        var swup = window.__swup;
-        if (swup) {
-          swup.navigate(link.getAttribute('href'));
-        } else {
-          window.location.href = link.getAttribute('href');
+      } else {
+        clearTimeout(animTimeout);
+        navbar.setAttribute('data-state', 'active');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.classList.add('is-active');
+      }
+    });
+
+    if (menu) {
+      menu.addEventListener('click', function(e) {
+        var link = e.target.closest('.navbar__link');
+        if (link && navbar.getAttribute('data-state') === 'active') {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+          var swup = window.__swup;
+          if (swup) {
+            swup.navigate(link.getAttribute('href'));
+          } else {
+            window.location.href = link.getAttribute('href');
+          }
         }
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navbar.getAttribute('data-state') === 'active') {
+        closeMenu();
       }
     });
   }
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && navbar.getAttribute('data-state') === 'active') {
-      closeMenu();
-    }
-  });
+  onScroll();
 }
 
 export { initNavbar };

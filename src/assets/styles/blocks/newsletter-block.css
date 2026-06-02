@@ -1,0 +1,52 @@
+.newsletter-block {
+  padding-block-start: var(--space-l-xl);
+  padding-block-end: var(--space-xl-2xl);
+  border-top: 1px solid var(--color-sploosh);
+}
+
+.newsletter-block__heading {
+  font-family: var(--font-heading-condensed);
+  font-size: var(--step-4);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  /* color: var(--color-dark); */
+  margin: 0;
+}
+
+.newsletter-block__text {
+  font-size: var(--step-0);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+  max-width: var(--measure-small);
+  margin-inline: auto;
+}
+
+/* Kit embed: fields inline on desktop, stacked on mobile */
+.newsletter-block__form .formkit-form[data-uid="a95fa68963"] {
+  max-width: none !important;
+}
+
+@media (width > 48rem) {
+  .newsletter-block__form .formkit-fields[data-stacked="false"] {
+    flex-wrap: nowrap !important;
+    gap: 0.5rem;
+  }
+  .newsletter-block__form .formkit-fields[data-stacked="false"] .formkit-field {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+  .newsletter-block__form .formkit-fields[data-stacked="false"] .formkit-submit {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+}
+
+@media (width > 48rem) {
+  .newsletter-block__heading {
+    font-size: var(--step-5);
+  }
+}
+.formkit-powered-by-convertkit-container {
+  margin-top: var(--space-s) !important;
+}

@@ -30,6 +30,17 @@ swup.hooks.on("content:replace", () => {
   destroyLenis();
 });
 
+function initKitEmbed() {
+  var old = document.querySelector('script[data-uid="a95fa68963"]');
+  if (old) {
+    var fresh = document.createElement('script');
+    fresh.async = true;
+    fresh.src = old.src;
+    fresh.setAttribute('data-uid', 'a95fa68963');
+    old.parentNode.replaceChild(fresh, old);
+  }
+}
+
 swup.hooks.on("page:view", () => {
   window.scrollTo({ top: 0, behavior: "instant" });
   initNavbar();
@@ -37,4 +48,5 @@ swup.hooks.on("page:view", () => {
   initWorkFilters();
   initBlogFilters();
   updateNavActive();
+  initKitEmbed();
 });

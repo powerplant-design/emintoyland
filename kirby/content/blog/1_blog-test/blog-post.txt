@@ -26,6 +26,10 @@ Test blog content goes here
 
 Test adding image here
 
+- Tesdt list
+- item 2 
+- and three
+
 ----
 
 Seotitle: 

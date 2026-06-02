@@ -1,0 +1,19 @@
+{% set nl = kirby.settings %}
+{% if nl.newsletterHeading or nl.newsletterText %}
+<section class="newsletter-block bg-sploosh">
+  <div class="wrapper stack flow" style="--stack-vertical: center; text-align: center; --stack-horizontal: center;" data-space="xs">
+    {% if nl.newsletterHeading %}
+      <span class="text-step-5 leading-flat">📧</span>
+      <h2 class="newsletter-block__heading | color-sploosh">{{ nl.newsletterHeading }}</h2>
+    {% endif %}
+    {% if nl.newsletterText %}
+      <div class="newsletter-block__text" style="max-width: var(--measure-small);">
+        {{ nl.newsletterText | markdown | safe }}
+      </div>
+    {% endif %}
+    <div class="newsletter-block__form">
+      <script async data-uid="a95fa68963" src="https://em-in-toyland.kit.com/a95fa68963/index.js"></script>
+    </div>
+  </div>
+</section>
+{% endif %}

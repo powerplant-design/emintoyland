@@ -6,23 +6,20 @@ Sitedescription: Emma Hewitt-Johnson — Sexologist, Certified Holistic Sex Educ
 
 ----
 
-Logo: /images/eit-logo-shadow.png
+Seositename: 
 
 ----
 
-Footertext: © 2026 Em in Toyland. All rights reserved.
+Logo: 
 
 ----
 
-Googleanalyticsid: G-R7738E5V4S
+Seodefaultimage: 
 
 ----
 
 Nav:
 
-- 
-  label: Home
-  href: /
 - 
   label: About
   href: /about/
@@ -35,3 +32,23 @@ Nav:
 - 
   label: Contact
   href: /contact/
+
+----
+
+Footertext: © 2026 Em in Toyland. All rights reserved.
+
+----
+
+Googleanalyticsid: G-R7738E5V4S
+
+----
+
+Newsletterheading: Em in Toy Mail
+
+----
+
+Newslettertext: My newsletter includes my latest blog posts, exclusive content, sex research, sex trends and other fun sex & sex toy news! And probably photos of my dog Pixie.
+
+----
+
+Newsletterimage: - file://xdidabizrx44g56a

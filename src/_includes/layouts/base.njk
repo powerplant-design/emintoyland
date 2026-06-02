@@ -110,6 +110,9 @@
   <main id="swup" class="transition-fade">
     <div class="main-content">
       {{ content | safe }}
+      {% if page.uri != "contact" and page.uri != "work" and page.uri != "blog" %}
+        {% include "components/newsletter-block.njk" %}
+      {% endif %}
     </div>
     {% include "components/footer.njk" %}
   </main>

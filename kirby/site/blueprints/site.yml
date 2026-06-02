@@ -1,31 +1,40 @@
 title: Site
-sections:
-  pages:
-    type: pages
-    label: Pages
-    status: all
-    layout: cards
-    size: small
-    templates:
-      - home
-      - default
-      - about
-      - blog
-      - blog-post
-      - work
-      - work-item
-      - category
-    create:
-      - home
-      - default
-      - category
-  media:
-    type: files
-    label: Images & Files
-    template: image
-    layout: cards
-    upload: true
 tabs:
+  pages:
+    label: Pages
+    columns:
+      - width: 1/1
+        sections:
+          pages:
+            type: pages
+            label: Pages
+            status: all
+            layout: cards
+            size: small
+            templates:
+              - home
+              - default
+              - about
+              - blog
+              - blog-post
+              - work
+              - work-item
+              - category
+            create:
+              - home
+              - default
+              - category
+  media:
+    label: Media
+    columns:
+      - width: 1/1
+        sections:
+          media:
+            type: files
+            label: Images & Files
+            template: image
+            layout: cards
+            upload: true
   content:
     label: Content
     columns:
@@ -73,3 +82,21 @@ tabs:
             label: Google Analytics ID
             type: text
             width: 1/2
+  newsletter:
+    label: Newsletter
+    icon: email
+    columns:
+      - width: 1/1
+        fields:
+          newsletterHeading:
+            label: Heading
+            type: text
+          newsletterText:
+            label: Text
+            type: textarea
+          newsletterImage:
+            label: Image
+            type: files
+            multiple: false
+            layout: cards
+            help: Upload an image in the Media tab, then select it here

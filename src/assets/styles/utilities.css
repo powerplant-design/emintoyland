@@ -181,6 +181,18 @@
   color: var(--color-text-light);
 }
 
+.color-sploosh {
+  color: var(--color-sploosh);
+}
+
+.color-seafoam {
+  color: var(--color-seafoam);
+}
+
+.color-honeydew {
+  color: var(--color-honeydew);
+}
+
 .bg-light {
   background-color: var(--color-bg);
 }
@@ -191,6 +203,18 @@
 
 .bg-dark {
   background-color: var(--color-dark);
+}
+
+.bg-honeydew {
+  background: linear-gradient(169deg, var(--color-honeydew-light), var(--color-honeydew-light), var(--color-honeydew));
+}
+
+.bg-sploosh {
+  background: linear-gradient(169deg, var(--color-sploosh-light), var(--color-sploosh-light), var(--color-sploosh));
+}
+
+.bg-seafoam {
+  background: linear-gradient(169deg, var(--color-seafoam-light), var(--color-seafoam-light), var(--color-seafoam));
 }
 
 /* Visual utilities */

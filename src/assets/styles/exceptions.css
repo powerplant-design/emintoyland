@@ -131,7 +131,7 @@ ul, ol {
   margin-bottom: calc(100vh - var(--navbar-height) -  1px);
   border-bottom: 1px solid var(--color-border);
   padding-block-start: calc(var(--navbar-height) + var(--space-m));
-  padding-block-end: var(--space-xl-2xl);
+  /* padding-block-end: var(--space-xl-2xl); */
 }
 
 /* Instagram feed on index */
