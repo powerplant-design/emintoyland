@@ -34,13 +34,44 @@ Aboutcredentialsheading: My credentials
 
 ----
 
-Aboutcredentialstext:
+Aboutcredentialsitems:
 
-- **Semrush** — Content-led Search Engine Optimisation with Brian Dean. 2024.
-- **ISEE** — Certified Holistic Sex Educator via the Institute for Sexuality Education and Enlightenment. 2023.
-- **ISEE** — 3-day SAR (Sexual Attitude Reassessment). 2022.
-- **Massey University** — Bachelor of Communications Honours Degree majoring in Media Studies. 2013.
-- **Massey University** — Bachelor of Communications majoring in Media Studies and Journalism. 2011.
+- 
+  logo:
+    - file://t338xmyhejflfbfk
+  heading: ISEE
+  text: >
+    Certified Holistic Sex Educator via the
+    Institute for Sexuality Education and
+    Enlightenment. 2023.
+- 
+  logo:
+    - file://t338xmyhejflfbfk
+  heading: ISEE
+  text: >
+    3-day SAR (Sexual Attitude
+    Reassessment). 2022.
+- 
+  logo:
+    - file://buq1kv60kzqelvdg
+  heading: Massey University
+  text: >
+    Bachelor of Communications Honours
+    Degree majoring in Media Studies. 2013.
+- 
+  logo:
+    - file://buq1kv60kzqelvdg
+  heading: Massey University
+  text: >
+    Bachelor of Communications majoring in
+    Media Studies and Journalism. 2011.
+- 
+  logo:
+    - file://kfylurr2xvyxbweq
+  heading: Semrush
+  text: >
+    Content-led Search Engine Optimisation
+    with Brian Dean. 2024.
 
 ----
 
@@ -48,7 +79,14 @@ Aboutsupervisionheading: Supervision
 
 ----
 
-Aboutsupervisiontext: I received 8 hours of group supervision with Dr. Rosalyn Dischiavo, the founder and director of ISEE and President of AASECT. I received 8 hours of group supervision with Dr. Melanie Davis, an AASECT Certified Sexuality Educator and CSE Supervisor.
+Aboutsupervisionitems:
+
+- 
+  heading: Dr. Rosalyn Dischiavo
+  text: I received 8 hours of group supervision with Dr. Rosalyn Dischiavo, the founder and director of ISEE and President of AASECT.
+- 
+  heading: Dr. Melanie Davis
+  text: I received 8 hours of group supervision with Dr. Melanie Davis, an AASECT Certified Sexuality Educator and CSE Supervisor.
 
 ----
 

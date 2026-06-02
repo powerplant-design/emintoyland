@@ -145,36 +145,67 @@ layout: base.njk
     {% include "components/hero-home.njk" %}
   {% endif %}
 
-  {% if page.aboutCredentialsHeading or page.aboutCredentialsText %}
+  {% if page.aboutCredentialsItems or page.aboutCredentialsHeading %}
     <section class="section">
       <div class="wrapper flow">
         {% if page.aboutCredentialsHeading %}
           <h2>{{ page.aboutCredentialsHeading }}</h2>
         {% endif %}
-        {{ page.aboutCredentialsText | markdown | safe }}
+        <div class="grid" data-layout="2col">
+          {% for item in page.aboutCredentialsItems %}
+            <article class="credential">
+              <div class="credential__logo">
+                {% if item.logo %}
+                  <img src="{{ item.logo.url }}" alt="{{ item.logo.alt }}" loading="lazy">
+                {% endif %}
+              </div>
+              <div class="credential__body">
+                {% if item.heading %}
+                  <h3 class="credential__title">{{ item.heading }}</h3>
+                {% endif %}
+                {% if item.text %}
+                  <p class="credential__text">{{ item.text }}</p>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
       </div>
     </section>
   {% endif %}
 
-  {% if page.aboutSupervisionHeading or page.aboutSupervisionText %}
+  {% if page.aboutSupervisionItems or page.aboutSupervisionHeading %}
     <section class="section">
       <div class="wrapper flow">
         {% if page.aboutSupervisionHeading %}
           <h2>{{ page.aboutSupervisionHeading }}</h2>
         {% endif %}
-        {{ page.aboutSupervisionText | markdown | safe }}
+        <div class="grid" data-layout="2col">
+          {% for item in page.aboutSupervisionItems %}
+            <article class="credential">
+              <div class="credential__body" style="margin-inline-start: 0;">
+                {% if item.heading %}
+                  <h3 class="credential__title">{{ item.heading }}</h3>
+                {% endif %}
+                {% if item.text %}
+                  <p class="credential__text">{{ item.text }}</p>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
       </div>
     </section>
   {% endif %}
 
   {% if page.aboutSpecialiseItems or page.aboutSpecialiseHeading %}
-    <section class="section">
+    <section class="section specialise">
       <div class="wrapper flow">
         {% if page.aboutSpecialiseHeading %}
           <h2>{{ page.aboutSpecialiseHeading }}</h2>
         {% endif %}
         {% for item in page.aboutSpecialiseItems %}
-          <p>{{ item }}</p>
+          <p class="specialise__item" data-reveal>{{ item }}</p>
         {% endfor %}
       </div>
     </section>

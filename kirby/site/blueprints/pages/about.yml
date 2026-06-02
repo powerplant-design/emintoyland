@@ -28,10 +28,25 @@ tabs:
             label: Heading
             type: text
             default: My credentials
-          aboutCredentialsText:
-            label: Text
-            type: textarea
-            size: medium
+          aboutCredentialsItems:
+            label: Credentials
+            type: structure
+            columns:
+              heading: true
+              text: true
+            fields:
+              logo:
+                label: Logo
+                type: files
+                multiple: false
+                layout: cards
+                parent: page
+              heading:
+                label: Institution
+                type: text
+              text:
+                label: Description
+                type: textarea
   supervision:
     label: Supervision
     columns:
@@ -41,10 +56,19 @@ tabs:
             label: Heading
             type: text
             default: Supervision
-          aboutSupervisionText:
-            label: Text
-            type: textarea
-            size: small
+          aboutSupervisionItems:
+            label: Supervisors
+            type: structure
+            columns:
+              heading: true
+              text: true
+            fields:
+              heading:
+                label: Name
+                type: text
+              text:
+                label: Description
+                type: textarea
   specialise:
     label: I Specialise In
     columns:

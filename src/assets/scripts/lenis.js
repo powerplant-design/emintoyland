@@ -3,6 +3,7 @@ import Lenis from "lenis";
 let lenis;
 let toyLeft, toyRight;
 let heroToyLeft, heroToyRight;
+let revealObserver;
 
 function updateToys({ scroll, limit }) {
   if (!toyLeft || !toyRight) return;
@@ -89,6 +90,22 @@ function updateHeroToys({ scroll }) {
   }
 }
 
+function initScrollReveal() {
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!els.length) return;
+
+  revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      entry.target.classList.toggle('is-visible', entry.isIntersecting);
+    });
+  }, {
+    rootMargin: '0px 0px -20% 0px',
+    threshold: 0
+  });
+
+  els.forEach(function(el) { revealObserver.observe(el); });
+}
+
 function initLenis() {
   lenis = new Lenis({
     duration: 1.2,
@@ -102,6 +119,7 @@ function initLenis() {
 
   lenis.on("scroll", updateToys);
   lenis.on("scroll", updateHeroToys);
+  initScrollReveal();
 
   function raf(time) {
     lenis.raf(time);
@@ -111,6 +129,8 @@ function initLenis() {
 }
 
 function destroyLenis() {
+  revealObserver?.disconnect();
+  revealObserver = null;
   lenis?.destroy();
   lenis = null;
   toyLeft = null;

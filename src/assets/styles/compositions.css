@@ -134,8 +134,8 @@
 }
 
 .section {
-  padding-block-end: var(--section-padding, var(--space-xl-2xl));
-  margin-block-end: var(--space-xl-2xl);
+  padding-block: var(--section-padding, var(--space-2xl-3xl));
+  margin-block-end: var(--space-2xl-3xl);
 }
 
 .section[data-padding='small'] {

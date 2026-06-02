@@ -1,6 +1,3 @@
-.section {
-  margin-block: var(--space-l-xl);
-}
 /* Heading exceptions */
 h1, h2, h3, h4, h5, h6 {
   line-height: var(--leading-tight);
@@ -137,7 +134,7 @@ ul, ol {
   /* padding-block-end: var(--space-xl-2xl); */
 }
 
-.navbar--home ~ .transition-fade .main-content {
+.navbar--home ~ #swup .main-content {
   padding-block-start: 0;
 }
 

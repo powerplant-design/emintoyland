@@ -67,32 +67,81 @@ async function resolveUrl(pageQuery, fieldValue) {
 
 function parseStructure(str) {
   if (typeof str !== "string") return str;
-  const cards = [];
+  const items = [];
   let current = null;
+  let pendingKey = null;
+  let pendingLines = [];
+  let pendingListKey = null;
+
   for (const line of str.split("\n")) {
     const trimmed = line.trim();
     if (!trimmed) continue;
-    if (trimmed === "-" || trimmed.startsWith("- ")) {
-      if (current && Object.keys(current).length) cards.push(current);
+    const indent = line.length - line.trimStart().length;
+
+    if ((trimmed === "-" || trimmed.startsWith("- ")) && indent === 0) {
+      if (pendingKey && current) {
+        current[pendingKey] = pendingLines.join(" ").replace(/\s+/g, " ").trim();
+        pendingKey = null; pendingLines = [];
+      }
+      if (pendingListKey && current) {
+        current[pendingListKey] = "";
+        pendingListKey = null;
+      }
+      if (current && Object.keys(current).length) items.push(current);
       current = {};
+      continue;
+    }
+
+    if (!current) continue;
+
+    // Handle pending list value (e.g. "- file://xxx" under a key with empty value)
+    if (pendingListKey) {
       if (trimmed.startsWith("- ")) {
-        const rest = trimmed.slice(2).trim();
-        const colonIdx = rest.indexOf(":");
-        if (colonIdx !== -1) {
-          current[rest.slice(0, colonIdx).trim().toLowerCase()] = rest.slice(colonIdx + 1).trim();
-        }
+        current[pendingListKey] = trimmed.slice(2).trim();
+        pendingListKey = null;
+        continue;
+      }
+      // Next line doesn't start with "- " — clear pending and fall through
+      current[pendingListKey] = "";
+      pendingListKey = null;
+    }
+
+    const colonIdx = trimmed.indexOf(":");
+
+    if (colonIdx === -1) {
+      if (pendingKey) {
+        pendingLines.push(trimmed);
       }
       continue;
     }
-    if (!current) continue;
-    const colonIdx = trimmed.indexOf(":");
-    if (colonIdx === -1) continue;
+
+    if (pendingKey) {
+      current[pendingKey] = pendingLines.join(" ").replace(/\s+/g, " ").trim();
+      pendingKey = null; pendingLines = [];
+    }
+
     const key = trimmed.slice(0, colonIdx).trim().toLowerCase();
     const value = trimmed.slice(colonIdx + 1).trim();
-    current[key] = value;
+
+    if (value === ">" || value === "|") {
+      pendingKey = key;
+      pendingLines = [];
+    } else if (value === "") {
+      pendingListKey = key;
+    } else {
+      current[key] = value;
+    }
   }
-  if (current && Object.keys(current).length) cards.push(current);
-  return cards;
+
+  if (pendingKey && current) {
+    current[pendingKey] = pendingLines.join(" ").replace(/\s+/g, " ").trim();
+  }
+  if (pendingListKey && current) {
+    current[pendingListKey] = "";
+  }
+  if (current && Object.keys(current).length) items.push(current);
+
+  return items;
 }
 
 export default async function () {
@@ -129,8 +178,8 @@ export default async function () {
         seoOgTitle: true, seoOgDescription: true, seoOgImage: true,
         seoRobots: true, seoSchema: true,
         aboutIntroHeading: true, aboutIntroText: true, aboutIntroImage: true,
-        aboutCredentialsHeading: true, aboutCredentialsText: true,
-        aboutSupervisionHeading: true, aboutSupervisionText: true,
+        aboutCredentialsHeading: true, aboutCredentialsItems: true,
+        aboutSupervisionHeading: true, aboutSupervisionItems: true,
         aboutSpecialiseHeading: true, aboutSpecialiseItems: true,
         aboutPodcastHeading: true, aboutPodcastText: true, aboutPodcastImage: true,
         aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
@@ -227,6 +276,25 @@ export default async function () {
         const img = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutPodcastImage, p.aboutPodcastHeading || p.title);
         updates.aboutPodcastImage = img.url;
         updates.aboutPodcastImageAlt = img.alt;
+      }
+      if (p.aboutCredentialsItems) {
+        const items = typeof p.aboutCredentialsItems === "string"
+          ? parseStructure(p.aboutCredentialsItems)
+          : p.aboutCredentialsItems;
+        if (Array.isArray(items)) {
+          updates.aboutCredentialsItems = await Promise.all(items.map(async (item) => ({
+            ...item,
+            logo: item.logo ? await resolveFileWithMeta('page("about")', item.logo, item.heading || "Credential logo") : null,
+          })));
+        }
+      }
+      if (p.aboutSupervisionItems) {
+        const items = typeof p.aboutSupervisionItems === "string"
+          ? parseStructure(p.aboutSupervisionItems)
+          : p.aboutSupervisionItems;
+        if (Array.isArray(items)) {
+          updates.aboutSupervisionItems = items;
+        }
       }
       if (p.aboutSpecialiseItems) {
         const items = typeof p.aboutSpecialiseItems === "string"
