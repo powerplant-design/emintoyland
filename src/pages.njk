@@ -22,7 +22,9 @@ layout: base.njk
   {% include "components/article-detail.njk" %}
 
 {% elif page.uri == "home" %}
-  {% set title = page.heroHeading %}
+  {% include "components/hero-splash.njk" %}
+  {% set title = "" %}
+  {% set heroTagline = page.heroHeading %}
   {% set body = page.heroText %}
   {% set imageSrc = page.heroImage %}
   {% set imageAlt = page.heroImageAlt %}

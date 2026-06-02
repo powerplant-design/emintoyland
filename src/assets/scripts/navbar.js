@@ -7,14 +7,25 @@ function initNavbar() {
 
   if (!toggle || !navbar) return;
 
-  function onScroll() {
-    navbar.classList.toggle('scrolled', window.scrollY > 0);
+  var heroSplash = document.querySelector('.hero-splash');
+
+  if (heroSplash) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        navbar.classList.toggle('scrolled', !entry.isIntersecting);
+      });
+    });
+    observer.observe(heroSplash);
+  } else {
+    function onScroll() {
+      navbar.classList.toggle('scrolled', window.scrollY > 0);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
   if (!_navbarInitialized) {
     _navbarInitialized = true;
-
-    window.addEventListener('scroll', onScroll, { passive: true });
 
     var animTimeout = null;
 
@@ -67,8 +78,6 @@ function initNavbar() {
       }
     });
   }
-
-  onScroll();
 }
 
 export { initNavbar };

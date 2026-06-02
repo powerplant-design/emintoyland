@@ -19,7 +19,7 @@
 .navbar__link--contact { --link-hover: var(--color-seafoam); }
 
 .navbar.scrolled {
-  background-color: var(--navbar-bg, var(--color-pink-light));
+  background-color: var(--navbar-bg, var(--color-bg-light));
   border-bottom: 1px solid var(--color-border);
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.08);
 }

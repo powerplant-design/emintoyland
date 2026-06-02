@@ -118,7 +118,7 @@ export default async function () {
       select: {
         title: true, slug: true, uri: true,
         metaDescription: true, text: true, heading: true,
-        heroHeading: true, heroText: true, heroImage: true,
+        splashHeading: true, heroHeading: true, heroText: true, heroImage: true,
         heroCtaText: true, heroCtaLink: true,
         showcaseHeading: true, showcaseItems: true,
         showcaseCtaText: true, showcaseCtaLink: true,

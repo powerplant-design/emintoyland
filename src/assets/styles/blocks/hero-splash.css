@@ -1,0 +1,121 @@
+.hero-splash {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: var(--color-bg);
+  margin-block-end: var(--space-l-xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-splash__toys {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.hero-splash__toy {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  opacity: 0;
+  animation: hero-toy-fade-in 0.5s ease 0.15s forwards;
+}
+
+.hero-splash__toy-inner {
+  height: 100%;
+  width: auto;
+}
+
+.hero-splash__toy-inner picture,
+.hero-splash__toy-inner img {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+.hero-splash__toy--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transform-origin: top left;
+}
+
+.hero-splash__toy--right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transform-origin: top right;
+}
+
+.hero-splash__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-l);
+}
+
+.hero-splash__logo img {
+  width: 65vw;
+  max-width: none;
+  height: auto;
+  margin-inline: auto;
+}
+
+.hero-splash__heading {
+  font-size: var(--step-5);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+  max-width: var(--measure-large);
+  margin-inline: auto;
+}
+
+@keyframes hero-toy-fade-in {
+  to { opacity: 1; }
+}
+
+@keyframes toy-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@media (width > 48rem) {
+  .hero-splash__toy-inner {
+    animation: toy-pulse 4s ease-in-out infinite;
+  }
+
+  .hero-splash__toy--left .hero-splash__toy-inner {
+    transform-origin: left center;
+  }
+  .hero-splash__toy--right .hero-splash__toy-inner {
+    transform-origin: right center;
+  }
+}
+
+@media (width <= 48rem) {
+  .hero-splash {
+    aspect-ratio: 1 / 1.2;
+    min-height: 0;
+    border-bottom: none;
+    margin-block-end: 0;
+  }
+
+  .hero-splash__toy {
+    display: none;
+  }
+
+  .hero-splash__content {
+    padding-inline: var(--space-m);
+  }
+
+  .hero-splash__logo img {
+    width: 80vw;
+    max-width: 400px;
+  }
+}

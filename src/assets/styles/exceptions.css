@@ -137,6 +137,10 @@ ul, ol {
   /* padding-block-end: var(--space-xl-2xl); */
 }
 
+.navbar--home ~ .transition-fade .main-content {
+  padding-block-start: 0;
+}
+
 /* Instagram feed on index */
 .instagram-section {
   padding-block: var(--space-2xl);

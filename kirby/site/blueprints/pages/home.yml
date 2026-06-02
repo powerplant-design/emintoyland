@@ -5,10 +5,14 @@ tabs:
     columns:
       - width: 1/1
         fields:
+          splashHeading:
+            label: Splash Heading
+            type: text
+            help: H1 heading in the hero splash section
           heroHeading:
             label: Hero Heading
             type: text
-            help: H1 heading in the hero section
+            help: 'H2 tagline above the body text (e.g. "Kia ora queens!")'
           heroImage:
             label: Hero Image
             type: files

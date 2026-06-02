@@ -17,7 +17,11 @@
   </div>
   <div class="hero__content">
     <div class="hero__content-inner | flow">
-    <h1 class="hero__heading">{{ title }}</h1>
+    {% if title %}
+      <h1 class="hero__heading">{{ title }}</h1>
+    {% elif heroTagline %}
+      <h2 class="hero__heading">{{ heroTagline }}</h2>
+    {% endif %}
     <div class="hero__text flow" data-space='xs'>
       {{ body | markdown | safe }}
     </div>

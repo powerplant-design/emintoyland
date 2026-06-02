@@ -2,6 +2,7 @@ import Lenis from "lenis";
 
 let lenis;
 let toyLeft, toyRight;
+let heroToyLeft, heroToyRight;
 
 function updateToys({ scroll, limit }) {
   if (!toyLeft || !toyRight) return;
@@ -46,6 +47,48 @@ function updateToys({ scroll, limit }) {
   }
 }
 
+function updateHeroToys({ scroll }) {
+  if (!heroToyLeft || !heroToyRight) return;
+
+  const vh = window.innerHeight;
+  const progress = Math.max(0, Math.min(1, scroll / vh));
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    heroToyLeft.style.transform = `rotate(90deg) translateY(${50 * progress}%)`;
+    heroToyLeft.style.top = "0";
+    heroToyLeft.style.left = "0";
+    heroToyLeft.style.right = "";
+    heroToyLeft.style.bottom = "";
+    heroToyLeft.style.transformOrigin = "top left";
+    heroToyLeft.style.transition = "none";
+
+    heroToyRight.style.transform = `rotate(90deg) translateY(${-50 * progress}%)`;
+    heroToyRight.style.top = "0";
+    heroToyRight.style.right = "0";
+    heroToyRight.style.left = "";
+    heroToyRight.style.bottom = "";
+    heroToyRight.style.transformOrigin = "top right";
+    heroToyRight.style.transition = "none";
+  } else {
+    heroToyLeft.style.transform = `translateX(${-50 * progress}%)`;
+    heroToyLeft.style.top = "0";
+    heroToyLeft.style.left = "0";
+    heroToyLeft.style.right = "";
+    heroToyLeft.style.bottom = "";
+    heroToyLeft.style.transformOrigin = "top left";
+    heroToyLeft.style.transition = "none";
+
+    heroToyRight.style.transform = `translateX(${50 * progress}%)`;
+    heroToyRight.style.top = "0";
+    heroToyRight.style.right = "0";
+    heroToyRight.style.left = "";
+    heroToyRight.style.bottom = "";
+    heroToyRight.style.transformOrigin = "top right";
+    heroToyRight.style.transition = "none";
+  }
+}
+
 function initLenis() {
   lenis = new Lenis({
     duration: 1.2,
@@ -54,8 +97,11 @@ function initLenis() {
 
   toyLeft = document.querySelector('[data-lenis-toy="left"]');
   toyRight = document.querySelector('[data-lenis-toy="right"]');
+  heroToyLeft = document.querySelector('[data-lenis-hero-toy="left"]');
+  heroToyRight = document.querySelector('[data-lenis-hero-toy="right"]');
 
   lenis.on("scroll", updateToys);
+  lenis.on("scroll", updateHeroToys);
 
   function raf(time) {
     lenis.raf(time);
@@ -69,6 +115,8 @@ function destroyLenis() {
   lenis = null;
   toyLeft = null;
   toyRight = null;
+  heroToyLeft = null;
+  heroToyRight = null;
 }
 
 export { initLenis, destroyLenis };

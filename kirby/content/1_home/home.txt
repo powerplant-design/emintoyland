@@ -2,7 +2,7 @@ Title: Home
 
 ----
 
-Heroheading: Certified Sexologist Emma Hewitt-Johnson
+Splashheading: Certified Sexologist Emma Hewitt-Johnson
 
 ----
 
@@ -11,8 +11,6 @@ Heroimage: - file://ds6fcircyfxatcai
 ----
 
 Herotext:
-
-Kia ora queens!
 
 I'm a Sexologist, Certified Sex Educator, writer, podcaster, video host and sex toy expert. I create fun, kink-aware and queer-friendly sex education content.
 
@@ -76,7 +74,7 @@ Seotitle:
 
 ----
 
-Seodescription: 
+Seodescription: Certified Sexologist Emma Hewitt-Johnson
 
 ----
 
@@ -97,6 +95,10 @@ Seorobots:
 ----
 
 Seoschema: 
+
+----
+
+Heroheading: Kia ora queens!
 
 ----
 
