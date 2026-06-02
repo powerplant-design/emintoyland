@@ -1,4 +1,5 @@
 var _navbarInitialized = false;
+var _navbarObserver = null;
 
 function initNavbar() {
   var navbar = document.querySelector('.navbar');
@@ -7,25 +8,36 @@ function initNavbar() {
 
   if (!toggle || !navbar) return;
 
+  // Reconnect observer for current page's hero-splash
+  if (_navbarObserver) {
+    _navbarObserver.disconnect();
+    _navbarObserver = null;
+  }
+
   var heroSplash = document.querySelector('.hero-splash');
 
   if (heroSplash) {
-    var observer = new IntersectionObserver(function(entries) {
+    _navbarObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         navbar.classList.toggle('scrolled', !entry.isIntersecting);
       });
     });
-    observer.observe(heroSplash);
-  } else {
-    function onScroll() {
-      navbar.classList.toggle('scrolled', window.scrollY > 0);
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    _navbarObserver.observe(heroSplash);
   }
 
   if (!_navbarInitialized) {
     _navbarInitialized = true;
+
+    // Single always-attached scroll handler — bails when observer takes over
+    window.addEventListener('scroll', function() {
+      if (document.querySelector('.hero-splash')) return;
+      navbar.classList.toggle('scrolled', window.scrollY > 0);
+    }, { passive: true });
+
+    // Call once to set initial state on non-homepage pages
+    if (!heroSplash) {
+      navbar.classList.toggle('scrolled', window.scrollY > 0);
+    }
 
     var animTimeout = null;
 

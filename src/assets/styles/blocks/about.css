@@ -53,7 +53,7 @@
 .credential {
   display: flex;
   align-items: center;
-  background: var(--color-honeydew);
+  /* background: var(--color-honeydew); */
   border-radius: var(--radius-2xl);
   padding: var(--space-2xs);
 }
