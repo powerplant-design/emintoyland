@@ -44,8 +44,7 @@
 }
 
 .card__body {
-  /* padding-inline: var(--space-2xs); */
-  padding-block-start: var(--space-s);
+  padding: var(--space-xs-s);
 }
 
 .card__category {
@@ -75,6 +74,17 @@
   color: var(--color-text-light);
   margin-block-start: var(--space-xs);
   line-height: var(--leading-normal);
+}
+
+.card__date {
+  display: inline-block;
+  font-size: var(--step--2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-dark);
+  background: var(--color-sploosh-light);
+  padding: 2px var(--space-s);
+  border-radius: var(--radius-full);
+  margin-block-end: var(--space-2xs);
 }
 
 .card__tags {

@@ -2,7 +2,9 @@
   <div class="split-section__inner wrapper">
     <div class="split-section__content flow">
       {% if heading %}
-        <h2 class="split-section__heading">{{ heading }}</h2>
+        <h2 class="split-section__heading
+         {% if page.uri == 'about' %} color-text {% endif %}">
+         {{ heading }}</h2>
       {% endif %}
       {% if text %}
         <div class="split-section__text flow" data-space='xs'>

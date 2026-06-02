@@ -28,6 +28,15 @@ export default function (eleventyConfig) {
     if (isNaN(d.getTime())) return value;
     return d.toLocaleDateString("en-NZ", { year: "numeric", month: "long", day: "numeric" });
   });
+  eleventyConfig.addFilter("formatDateShort", (value) => {
+    if (!value) return "";
+    const d = typeof value === "number" ? new Date(value * 1000) : new Date(value);
+    if (isNaN(d.getTime())) return value;
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = d.toLocaleDateString("en-NZ", { month: "long" });
+    const year = String(d.getFullYear()).slice(-2);
+    return `${day} ${month} ${year}`;
+  });
   eleventyConfig.addFilter("markdown", (content) => md.render(content || ""));
 
   eleventyConfig.addPassthroughCopy("src/assets/styles");

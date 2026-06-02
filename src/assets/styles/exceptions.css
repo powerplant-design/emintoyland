@@ -1,3 +1,6 @@
+.section {
+  margin-block: var(--space-l-xl);
+}
 /* Heading exceptions */
 h1, h2, h3, h4, h5, h6 {
   line-height: var(--leading-tight);
@@ -105,7 +108,7 @@ ul, ol {
 }
 
 .text-span.is-purple {
-  color: var(--color-purple);
+  color: var(--color-pizzaz);
 }
 
 /* Decorative separator */

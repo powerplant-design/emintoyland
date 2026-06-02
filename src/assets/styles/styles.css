@@ -1,7 +1,6 @@
 @import url("reset.css");
 @import url("settings.css");
 @import url("compositions.css");
-@import url("utilities.css");
 @import url("blocks/navbar.css");
 @import url("blocks/hero.css");
 @import url("blocks/split-section.css");
@@ -18,3 +17,4 @@
 @import url("blocks/work-detail.css");
 @import url("exceptions.css");
 @import url("transitions.css");
+@import url("utilities.css");

@@ -118,6 +118,9 @@ layout: base.njk
               {% endif %}
             </div>
             <div class="card__body">
+              {% if item.publishedDate %}
+                <span class="card__date">{{ item.publishedDate | formatDateShort }}</span>
+              {% endif %}
               <h2 class="card__title">{{ item.title }}</h2>
               {% if item.excerpt %}
                 <p class="card__excerpt">{{ item.excerpt | striptags | truncate(120) }}</p>
