@@ -2,7 +2,7 @@ Title: About
 
 ----
 
-Aboutintroheading: I'm Emma Hewitt-Johnson (CHSE)
+Aboutintroheading: I’m Emma Hewitt-Johnson (CHSE)
 
 ----
 
@@ -83,10 +83,18 @@ Aboutsupervisionitems:
 
 - 
   heading: Dr. Rosalyn Dischiavo
-  text: I received 8 hours of group supervision with Dr. Rosalyn Dischiavo, the founder and director of ISEE and President of AASECT.
+  text: >
+    I received 8 hours of group supervision
+    with Dr. Rosalyn Dischiavo, the founder
+    and director of ISEE and President of
+    AASECT.
 - 
   heading: Dr. Melanie Davis
-  text: I received 8 hours of group supervision with Dr. Melanie Davis, an AASECT Certified Sexuality Educator and CSE Supervisor.
+  text: >
+    I received 8 hours of group supervision
+    with Dr. Melanie Davis, an AASECT
+    Certified Sexuality Educator and CSE
+    Supervisor.
 
 ----
 

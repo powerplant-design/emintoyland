@@ -40,9 +40,8 @@
 }
 
 .hero__heading {
-  font-family: var(--font-heading);
-  font-size: var(--step-4);
-  line-height: var(--leading-tight);
+  /* font-family: var(--font-heading); */
+  font-size: var(--step-5);
   color: var(--color-text);
 }
 
@@ -69,7 +68,7 @@
   .hero[data-layout='split'] .hero__image {
     height: 85vh;
     position: sticky;
-    top: calc(var(--navbar-height) + var(--space-m));
+    top: calc(var(--navbar-height) + var(--space-l));
   }
 
   /* .hero[data-layout='split'] .hero__image picture,

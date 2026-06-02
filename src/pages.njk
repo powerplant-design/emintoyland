@@ -43,13 +43,13 @@ layout: base.njk
   {% include "components/split-section.njk" %}
 
 {% elif page.uri == "work" %}
-  <div class="section wrapper stack | text-align-center" style="--stack-horizontal: center;">
+  <div class="section wrapper stack flow | text-align-center" style="--stack-horizontal: center;" data-space="xs">
     <h1>{{ page.heading if page.heading else page.title }}</h1>
     {% if page.text %}
       <p style="font-size: var(--step-0-1); max-width: var(--measure-medium);">{{ page.text }}</p>
     {% endif %}
 
-    <div class="filter-tabs" data-filter="tabs">
+    <div class="filter-tabs | cluster" style="--cluster-gap: var(--space-xs);" data-filter="tabs">
       <button class="filter-tabs__btn is-active" data-filter="all">ALL</button>
       <button class="filter-tabs__btn" data-filter="podcast">PODCASTS</button>
       <button class="filter-tabs__btn" data-filter="video">VIDEO</button>
@@ -90,13 +90,13 @@ layout: base.njk
   {% include "components/article-detail.njk" %}
 
 {% elif page.uri == "blog" %}
-  <div class="section wrapper stack | text-align-center" style="--stack-horizontal: center;">
+  <div class="section wrapper stack flow | text-align-center" data-space="xs" style="--stack-horizontal: center;">
     <h1>{{ page.heading if page.heading else page.title }}</h1>
     {% if page.text %}
       <p style="font-size: var(--step-0-1); max-width: var(--measure-medium);">{{ page.text }}</p>
     {% endif %}
     {% if kirby.blogTags | length %}
-      <div class="filter-tabs" data-filter="tabs" data-filter-type="blog">
+      <div class="filter-tabs | cluster" style="--cluster-gap: var(--space-xs);" data-filter="tabs" data-filter-type="blog">
         <button class="filter-tabs__btn is-active" data-filter="all">ALL</button>
         {% for tag in kirby.blogTags %}
           <button class="filter-tabs__btn" data-filter="{{ tag | replace(' ', '-') }}">{{ tag }}</button>
@@ -260,6 +260,80 @@ layout: base.njk
       <button class="button button-primary" type="submit">Send</button>
     </form>
   </div>
+
+{% elif page.uri == "services" %}
+  {% if page.servicesIntroHeading or page.servicesIntroText or page.servicesIntroImage %}
+    {% set title = page.servicesIntroHeading %}
+    {% set body = page.servicesIntroText %}
+    {% set imageSrc = page.servicesIntroImage %}
+    {% set imageAlt = page.servicesIntroHeading %}
+    {% set loading = "eager" %}
+    {% set ctaText = "" %}
+    {% set ctaLink = "" %}
+    {% include "components/hero-home.njk" %}
+  {% endif %}
+
+  {% if page.servicesWritingHeading or page.servicesWritingText or page.servicesWritingRates %}
+    <section class="section wrapper flow">
+      {% if page.servicesWritingHeading %}
+        <h2>{{ page.servicesWritingHeading }}</h2>
+      {% endif %}
+      {% if page.servicesWritingText %}
+        <div class="prose">{{ page.servicesWritingText | markdown | safe }}</div>
+      {% endif %}
+      {% if page.servicesWritingRates %}
+        <div class="services__rates" style="margin-block-start: var(--space-l);">
+          {% for item in page.servicesWritingRates %}
+            <p class="services__rate" data-reveal>
+              {{ item.rateprice or item.ratePrice }}
+              <span class="services__rate__desc">{{ item.ratedescription or item.rateDescription }}</span>
+            </p>
+          {% endfor %}
+        </div>
+        {% if page.servicesWritingRatesNote %}
+          <p class="services__rates-note">{{ page.servicesWritingRatesNote }}</p>
+        {% endif %}
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% if page.servicesWritingCta or page.servicesWritingCtaImage %}
+    {% set heading = "" %}
+    {% set text = page.servicesWritingCta %}
+    {% set imageSrc = page.servicesWritingCtaImage %}
+    {% set imageAlt = "Writing services" %}
+    {% set imageSide = "right" %}
+    {% set ctaText = "" %}
+    {% set ctaLink = "" %}
+    {% include "components/split-section.njk" %}
+  {% endif %}
+
+  {% if page.servicesExpertHeading or page.servicesExpertText %}
+    <section class="section wrapper flow">
+      {% if page.servicesExpertHeading %}
+        <h2>{{ page.servicesExpertHeading }}</h2>
+      {% endif %}
+      {% if page.servicesExpertText %}
+        <div class="prose">{{ page.servicesExpertText | markdown | safe }}</div>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% if page.servicesPodcastHeading or page.servicesPodcastText %}
+    <section class="section wrapper flow">
+      {% if page.servicesPodcastHeading %}
+        <h2>{{ page.servicesPodcastHeading }}</h2>
+      {% endif %}
+      {% if page.servicesPodcastText %}
+        <div class="prose">{{ page.servicesPodcastText | markdown | safe }}</div>
+      {% endif %}
+      {% if page.servicesPodcastCtaText and page.servicesPodcastCtaLink %}
+        <div style="margin-block-start: var(--space-l);">
+          <a href="{{ page.servicesPodcastCtaLink }}" class="button button-primary">{{ page.servicesPodcastCtaText }}</a>
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
 
 {% else %}
   <div class="wrapper flow prose">

@@ -28,7 +28,33 @@
 @custom-media --nav-visible (width > 62rem);
 
 html {
+  overflow-y: scroll !important;
   scrollbar-gutter: stable;
+}
+
+/* Force visible scrollbar on macOS (overlay scrollbars don't show by default) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-pink) 50%, transparent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-pink);
+}
+
+@supports (scrollbar-width: auto) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--color-pink) 50%, transparent) transparent;
+  }
 }
 
 :root {
@@ -126,4 +152,5 @@ html {
   --measure-small: 42rem;
   --measure-medium: 56rem;
   --measure-large: 78rem;
+  --measure-wide: 80rem;
 }

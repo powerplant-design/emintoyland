@@ -7,7 +7,7 @@
       <h2 class="newsletter-block__heading | color-sploosh">{{ nl.newsletterHeading }}</h2>
     {% endif %}
     {% if nl.newsletterText %}
-      <div class="newsletter-block__text" style="max-width: var(--measure-small);">
+      <div class="newsletter-block__text">
         {{ nl.newsletterText | markdown | safe }}
       </div>
     {% endif %}

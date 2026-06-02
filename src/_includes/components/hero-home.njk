@@ -1,4 +1,4 @@
-<section class="hero" data-layout="split" data-image="left">
+<section class="section hero" data-layout="split" data-image="left">
   <div class="hero__image">
     {% if imageSrc %}
       <img src="{{ imageSrc }}" alt="{{ imageAlt }}" sizes="100vw" {% if loading == "eager" %}loading="eager"{% endif %}>
@@ -16,7 +16,7 @@
     </svg>
   </div>
   <div class="hero__content">
-    <div class="hero__content-inner | flow">
+    <div class="hero__content-inner | prose flow ">
     {% if title %}
       <h1 class="hero__heading">{{ title }}</h1>
     {% elif heroTagline %}

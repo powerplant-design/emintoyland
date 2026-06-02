@@ -209,6 +209,10 @@
   background-color: var(--color-dark);
 }
 
+.bg-pink {
+  background: linear-gradient(169deg, var(--color-pink-light), var(--color-pink-light), var(--color-pink-light), var(--color-pink));
+}
+
 .bg-honeydew {
   background: linear-gradient(169deg, var(--color-honeydew-light), var(--color-honeydew-light), var(--color-honeydew));
 }

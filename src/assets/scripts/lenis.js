@@ -117,6 +117,13 @@ function initLenis() {
   heroToyLeft = document.querySelector('[data-lenis-hero-toy="left"]');
   heroToyRight = document.querySelector('[data-lenis-hero-toy="right"]');
 
+  // Force native scrollbar visible (macOS hides overlay scrollbars by default)
+  document.documentElement.style.overflowY = "scroll";
+  // Re-apply after Lenis fully settles
+  setTimeout(function() {
+    document.documentElement.style.overflowY = "scroll";
+  }, 50);
+
   lenis.on("scroll", updateToys);
   lenis.on("scroll", updateHeroToys);
   initScrollReveal();

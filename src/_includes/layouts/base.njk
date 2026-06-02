@@ -46,6 +46,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles/styles.css">
+  <style>html{overflow-y:scroll!important}html::-webkit-scrollbar{width:8px}html::-webkit-scrollbar-track{background:transparent}html::-webkit-scrollbar-thumb{background:rgba(252,71,179,0.5);border-radius:4px}html::-webkit-scrollbar-thumb:hover{background:#FC47B3}</style>
   <script type="module" src="/assets/scripts/app.js"></script>
 
   {% if site.googleAnalyticsId %}
@@ -112,12 +113,13 @@
   <main id="swup" class="transition-fade">
     <div class="main-content
       {% if page.uri == 'about' %} bg-pizzaz
+      {% elif page.uri == 'services' %} bg-pink
       {% elif page.uri == 'work' %} bg-honeydew
       {% elif page.uri == 'blog' %} bg-sploosh
       {% elif page.uri == 'contact' %} bg-seafoam
       {% endif %}">
       {{ content | safe }}
-      {% if page.uri != "contact" and page.uri != "work" and page.uri != "blog" %}
+      {% if page.uri != "contact" and page.uri != "work" and page.uri != "blog" and page.uri != "services" %}
         {% include "components/newsletter-block.njk" %}
       {% endif %}
     </div>

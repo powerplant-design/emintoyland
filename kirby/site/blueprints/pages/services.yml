@@ -1,0 +1,154 @@
+title: Services
+tabs:
+  intro:
+    label: Intro
+    columns:
+      - width: 1/1
+        fields:
+          servicesIntroHeading:
+            label: Page Heading
+            type: text
+            default: Work with me
+          servicesIntroText:
+            label: Tagline
+            type: textarea
+            default: Like what you see? Here's how we can work together for tailored sex and pleasure education or expert opinion.
+          servicesIntroImage:
+            label: Intro Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+  writing:
+    label: Writing
+    columns:
+      - width: 1/1
+        fields:
+          servicesWritingHeading:
+            label: Heading
+            type: text
+            default: Writing
+          servicesWritingText:
+            label: Body Text
+            type: textarea
+            size: large
+          servicesWritingRates:
+            label: Example Rates
+            type: structure
+            columns:
+              ratePrice: true
+              rateDescription: true
+            fields:
+              ratePrice:
+                label: Price
+                type: text
+                placeholder: "$200"
+              rateDescription:
+                label: Description
+                type: text
+                placeholder: "for a 600-word blog post"
+          servicesWritingRatesNote:
+            label: Rates Note
+            type: text
+            default: All rates are in NZD.
+          servicesWritingCta:
+            label: Contact CTA
+            type: textarea
+            size: small
+          servicesWritingCtaImage:
+            label: CTA Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+  expert:
+    label: Expert Opinion
+    columns:
+      - width: 1/1
+        fields:
+          servicesExpertHeading:
+            label: Heading
+            type: text
+            default: Expert opinion or commentary
+          servicesExpertText:
+            label: Body Text
+            type: textarea
+            size: large
+          servicesExpertCta:
+            label: Contact CTA
+            type: textarea
+            size: small
+            help: Email address or call to action text
+  podcast:
+    label: Podcast
+    columns:
+      - width: 1/1
+        fields:
+          servicesPodcastHeading:
+            label: Heading
+            type: text
+            default: Have me as a guest on your podcast
+          servicesPodcastText:
+            label: Body Text
+            type: textarea
+            size: large
+          servicesPodcastCtaText:
+            label: CTA Button Text
+            type: text
+            width: 1/2
+            default: Get in touch
+          servicesPodcastCtaLink:
+            label: CTA Button Link
+            type: text
+            width: 1/2
+            default: /contact/
+  seo:
+    label: SEO
+    columns:
+      - width: 1/1
+        fields:
+          seoTitle:
+            label: Browser Title
+            type: text
+            help: Overrides the page title in the browser tab
+          seoDescription:
+            label: Meta Description
+            type: textarea
+            help: Search result and social card description
+          seoOgTitle:
+            label: Social Title
+            type: text
+            help: Title shown on Facebook/Twitter cards
+          seoOgDescription:
+            label: Social Description
+            type: textarea
+            help: Description shown on Facebook/Twitter cards
+          seoOgImage:
+            label: Social Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
+            help: 1200x630px recommended for social sharing
+          seoRobots:
+            label: Search Indexing
+            type: select
+            options:
+              - value: index, follow
+                text: Index & Follow
+              - value: noindex, nofollow
+                text: No Index
+          seoSchema:
+            label: Custom JSON-LD
+            type: textarea
+            size: small
+            help: Override auto-generated schema with custom JSON
+  media:
+    label: Media
+    sections:
+      uploads:
+        type: files
+        label: Images
+        template: image
+        layout: cards
+        upload: true

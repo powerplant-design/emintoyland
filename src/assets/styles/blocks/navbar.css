@@ -8,15 +8,17 @@
   transition: background-color 0.3s, border-bottom 0.3s, box-shadow 0.3s;
 }
 
-.navbar--about   { --navbar-bg: var(--color-pizzaz-light); }
-.navbar--work    { --navbar-bg: var(--color-honeydew-light); }
-.navbar--blog    { --navbar-bg: var(--color-sploosh-light); }
-.navbar--contact { --navbar-bg: var(--color-seafoam-light); }
+.navbar--about    { --navbar-bg: var(--color-pizzaz-light); }
+.navbar--services { --navbar-bg: var(--color-pink-light); }
+.navbar--work     { --navbar-bg: var(--color-honeydew-light); }
+.navbar--blog     { --navbar-bg: var(--color-sploosh-light); }
+.navbar--contact  { --navbar-bg: var(--color-seafoam-light); }
 
-.navbar__link--about { --link-hover: var(--color-pizzaz); --link-hover-text: var(--color-light); }
-.navbar__link--work  { --link-hover: var(--color-honeydew); }
-.navbar__link--blog  { --link-hover: var(--color-sploosh); --link-hover-text: var(--color-light); }
-.navbar__link--contact { --link-hover: var(--color-seafoam); }
+.navbar__link--about    { --link-hover: var(--color-pizzaz); --link-hover-text: var(--color-light); }
+.navbar__link--services { --link-hover: var(--color-pink); --link-hover-text: var(--color-light); }
+.navbar__link--work     { --link-hover: var(--color-honeydew); }
+.navbar__link--blog     { --link-hover: var(--color-sploosh); --link-hover-text: var(--color-light); }
+.navbar__link--contact  { --link-hover: var(--color-seafoam); }
 
 .navbar.scrolled {
   background-color: var(--navbar-bg, var(--color-bg-light));

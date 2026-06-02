@@ -1,0 +1,120 @@
+Title: Services
+
+----
+
+Servicesintroheading: Work with me
+
+----
+
+Servicesintrotext:
+
+Like what you see? Here's how we can work together for tailored sex and pleasure education or expert opinion.
+
+## Writing
+
+I'm an experienced writer & editor with over a decade of experience writing about sex. I've written for Women's Health, Fashion Journal, Stuff, The Sunday Star Times and Beducated, to name a few. 
+
+I can write SEO-optimised blog posts, articles and in-depth features for your magazine, website or brand. 
+
+I'm an expert in writing about sexual health, pleasure, masturbation, pornography, and sex and intimacy during and post-pregnancy.
+
+----
+
+Servicesintroimage: - file://sb81umzajehktac5
+
+----
+
+Serviceswritingheading: Pricing Guide
+
+----
+
+Serviceswritingtext: 
+
+----
+
+Serviceswritingrates:
+
+- 
+  rateprice: $200
+  ratedescription: for a 600-word blog post
+- 
+  rateprice: $350
+  ratedescription: for a 1000-word SEO-optimised article
+- 
+  rateprice: $500+
+  ratedescription: >
+    for in-depth features requiring
+    research, statistics, interviews or
+    expert opinions
+
+----
+
+Serviceswritingratesnote: All rates are in NZD.
+
+----
+
+Serviceswritingcta: Check out my writing portfolio [here](/work/). Get in touch to talk about rates for your project. Email [emintoyland@gmail.com](mailto:emintoyland@gmail.com) or fill out the form on my [contact page](/contact-me).
+
+----
+
+Serviceswritingctaimage: - file://sb81umzajehktac5
+
+----
+
+Servicesexpertheading: Expert opinion or commentary
+
+----
+
+Servicesexperttext: I frequently comment on sex related topics in global media. I've been featured in Stuff, Women's Health, Glamour & Cosmopolitan, to name a few. If you're a journalist or host needing expert commentary for articles, news pieces or radio interviews, email me at [emintoyland@gmail.com](mailto:emintoyland@gmail.com)
+
+----
+
+Servicesexpertcta: email emintoyland@gmail.com
+
+----
+
+Servicespodcastheading: Have me as a guest on your podcast
+
+----
+
+Servicespodcasttext: I love podcasts as much as any white guy! I co-host my own podcast, but I also make a great guest to talk about sex, pleasure, toys and sexual politics. Get in touch and let's make some audio magic.
+
+----
+
+Servicespodcastctatext: Get in touch
+
+----
+
+Servicespodcastctalink: /contact/
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Seoogtitle: 
+
+----
+
+Seoogdescription: 
+
+----
+
+Seoogimage: 
+
+----
+
+Seorobots: 
+
+----
+
+Seoschema: 
+
+----
+
+Uuid: 2gmltmmlhz8fdva4

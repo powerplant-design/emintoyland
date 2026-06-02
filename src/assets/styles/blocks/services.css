@@ -1,0 +1,27 @@
+.services__rate {
+  font-family: var(--font-heading-condensed);
+  font-size: var(--step-5);
+  letter-spacing: -0.05em;
+  line-height: var(--leading-tight);
+  padding-top: var(--space-l);
+  border-top: 10px dotted var(--color-bg);
+}
+
+.services__rate + .services__rate {
+  margin-block-start: var(--space-s);
+}
+
+.services__rate__desc {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: var(--weight-regular);
+  letter-spacing: normal;
+  line-height: var(--leading-normal);
+  color: var(--color-text-light);
+  display: block;
+  margin-block-start: var(--space-3xs);
+}
+
+.services__rates-note {
+  margin-block-start: var(--space-s);
+}

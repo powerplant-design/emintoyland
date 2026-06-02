@@ -184,6 +184,14 @@ export default async function () {
         aboutPodcastHeading: true, aboutPodcastText: true, aboutPodcastImage: true,
         aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
         contactHeading: true, contactText: true,
+        servicesIntroHeading: true, servicesIntroText: true, servicesIntroImage: true,
+        servicesWritingHeading: true, servicesWritingText: true,
+        servicesWritingRates: true, servicesWritingRatesNote: true,
+        servicesWritingCta: true, servicesWritingCtaImage: true,
+        servicesExpertHeading: true, servicesExpertText: true,
+        servicesExpertCta: true,
+        servicesPodcastHeading: true, servicesPodcastText: true,
+        servicesPodcastCtaText: true, servicesPodcastCtaLink: true,
       },
     }),
     query({
@@ -272,6 +280,14 @@ export default async function () {
         const img = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutIntroImage, p.aboutIntroHeading || p.title);
         updates.aboutIntroImage = img.url;
       }
+      if (p.servicesIntroImage) {
+        const img = await resolveFileWithMeta(`page("${p.uri}")`, p.servicesIntroImage, p.servicesIntroHeading || p.title);
+        updates.servicesIntroImage = img.url;
+      }
+      if (p.servicesWritingCtaImage) {
+        const img = await resolveFileWithMeta(`page("${p.uri}")`, p.servicesWritingCtaImage, p.servicesWritingCta || p.title);
+        updates.servicesWritingCtaImage = img.url;
+      }
       if (p.aboutPodcastImage) {
         const img = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutPodcastImage, p.aboutPodcastHeading || p.title);
         updates.aboutPodcastImage = img.url;
@@ -301,6 +317,14 @@ export default async function () {
           ? parseStructure(p.aboutSpecialiseItems)
           : p.aboutSpecialiseItems;
         updates.aboutSpecialiseItems = Array.isArray(items) ? items.map(i => i.item).filter(Boolean) : [];
+      }
+      if (p.servicesWritingRates) {
+        const items = typeof p.servicesWritingRates === "string"
+          ? parseStructure(p.servicesWritingRates)
+          : p.servicesWritingRates;
+        if (Array.isArray(items)) {
+          updates.servicesWritingRates = items;
+        }
       }
       if (p.seoOgImage) {
         const ogImage = await resolveFileWithMeta(`page("${p.uri}")`, p.seoOgImage, p.title);
