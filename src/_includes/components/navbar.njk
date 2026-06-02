@@ -1,6 +1,7 @@
 {% set logoUrl = kirby.settings.siteImages.logoPink.url %}
 {% set logoAlt = kirby.settings.siteImages.logoPink.alt %}
-<nav class="navbar" data-state="idle" role="navigation">
+{% set navPage = (page.uri | default('home')).split('/')[0] %}
+<nav class="navbar navbar--{{ navPage }}" data-state="idle" role="navigation">
   <div class="navbar__inner">
     <a href="/" class="navbar__logo" aria-label="Home">
       {% if logoUrl %}
@@ -19,9 +20,9 @@
         {% set currentUri = page.uri %}
         {% for link in kirby.settings.nav %}
           <li>
-            <a href="{{ link.href }}" class="navbar__link"
-              {% set linkPath = link.href | replace('/', '') %}
-              {% if currentUri == linkPath or (link.href != '/' and linkPath and currentUri and linkPath in currentUri) %}
+            {% set linkSlug = link.href | replace('/', '') %}
+            <a href="{{ link.href }}" class="navbar__link{% if linkSlug %} navbar__link--{{ linkSlug }}{% endif %}"
+              {% if currentUri == linkSlug or (link.href != '/' and linkSlug and currentUri and linkSlug in currentUri) %}
                 aria-current="page"
               {% endif %}>
               {{ link.label }}

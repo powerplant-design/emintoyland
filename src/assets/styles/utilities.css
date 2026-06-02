@@ -222,7 +222,7 @@
 }
 
 .bg-pizzaz {
-  background: linear-gradient(169deg, var(--color-pizzaz-light), var(--color-pizzaz-light), var(--color-pizzaz-light), var(--color-pizzaz));
+  background: linear-gradient(169deg, var(--color-pizzaz-light), var(--color-pizzaz-light), var(--color-pizzaz));
 }
 
 /* Visual utilities */
