@@ -22,7 +22,7 @@
   font-size: var(--step-4);
   font-weight: 500;
   line-height: var(--leading-tight);
-  color: var(--color-pink);
+  /* color: var(--color-pink); */
   margin: 0;
 }
 

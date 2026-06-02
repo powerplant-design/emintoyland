@@ -1,7 +1,7 @@
 {% set nl = kirby.settings %}
 {% if nl.newsletterHeading or nl.newsletterText %}
 <section class="newsletter-block bg-sploosh">
-  <div class="wrapper stack flow" style="--stack-vertical: center; text-align: center; --stack-horizontal: center;" data-space="xs">
+  <div class="wrapper stack flow | text-align-center" style="--stack-vertical: center; --stack-horizontal: center;" data-space="xs">
     {% if nl.newsletterHeading %}
       <span class="text-step-5 leading-flat">📧</span>
       <h2 class="newsletter-block__heading | color-sploosh">{{ nl.newsletterHeading }}</h2>

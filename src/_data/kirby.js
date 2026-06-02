@@ -134,6 +134,7 @@ export default async function () {
         aboutSpecialiseHeading: true, aboutSpecialiseItems: true,
         aboutPodcastHeading: true, aboutPodcastText: true, aboutPodcastImage: true,
         aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
+        contactHeading: true, contactText: true,
       },
     }),
     query({

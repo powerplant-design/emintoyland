@@ -218,11 +218,11 @@
 }
 
 .bg-seafoam {
-  background: linear-gradient(169deg, var(--color-seafoam-light), var(--color-seafoam-light), var(--color-seafoam));
+  background: linear-gradient(169deg, var(--color-seafoam-light), var(--color-seafoam-light), var(--color-seafoam-light), var(--color-seafoam));
 }
 
 .bg-pizzaz {
-  background: linear-gradient(169deg, var(--color-pizzaz-light), var(--color-pizzaz-light), var(--color-pizzaz));
+  background: linear-gradient(169deg, var(--color-pizzaz-light), var(--color-pizzaz-light), var(--color-pizzaz-light), var(--color-pizzaz));
 }
 
 /* Visual utilities */

@@ -6,9 +6,11 @@ Metadescription: Contact Emma Hewitt-Johnson | Sexologist
 
 ----
 
-Text:
+Contactheading: Get in touch, let's chat!
 
-## Get in touch, let's chat!
+----
+
+Contacttext:
 
 Hire me to create written content, be a guest on your podcast or provide expert comment for your brand or publication.
 

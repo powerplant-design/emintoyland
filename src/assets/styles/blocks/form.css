@@ -3,6 +3,18 @@
   gap: var(--space-s-m);
 }
 
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-s-m);
+}
+
+@media (width > 48rem) {
+  .form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .form__field {
   display: grid;
   gap: var(--space-2xs);
@@ -20,9 +32,9 @@
   font-size: var(--step-0);
   font-family: var(--font-body);
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: var(--color-bg-light);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   transition: border-color 0.2s;
 }
 
@@ -33,6 +45,7 @@
 }
 
 .form__textarea {
+  border-radius: var(--radius-xl);
   min-height: 8rem;
   resize: vertical;
 }
