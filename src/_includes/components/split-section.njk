@@ -18,7 +18,7 @@
     </div>
     <div class="split-section__image">
       {% if imageSrc %}
-        <img src="{{ imageSrc }}" alt="{{ imageAlt if imageAlt else heading }}" sizes="(min-width: 48rem) 50vw, 100vw">
+        <img src="{{ imageSrc }}" alt="{{ imageAlt if imageAlt else heading }}" sizes="(min-width: 48rem) 50vw, 100vw"{% if ".gif" in imageSrc %} eleventy:ignore{% endif %}>
       {% endif %}
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="split-section__mask">
         <defs>

@@ -1,7 +1,7 @@
 title: Services
 tabs:
-  intro:
-    label: Intro
+  writing:
+    label: Writing
     columns:
       - width: 1/1
         fields:
@@ -19,8 +19,17 @@ tabs:
             multiple: false
             layout: cards
             parent: page
-  writing:
-    label: Writing
+          servicesIntroCtaText:
+            label: CTA Button Text
+            type: text
+            width: 1/2
+          servicesIntroCtaLink:
+            label: CTA Button Link
+            type: text
+            width: 1/2
+            default: /work/?type=writing
+  pricing:
+    label: Pricing
     columns:
       - width: 1/1
         fields:
@@ -51,16 +60,6 @@ tabs:
             label: Rates Note
             type: text
             default: All rates are in NZD.
-          servicesWritingCta:
-            label: Contact CTA
-            type: textarea
-            size: small
-          servicesWritingCtaImage:
-            label: CTA Image
-            type: files
-            multiple: false
-            layout: cards
-            parent: page
   expert:
     label: Expert Opinion
     columns:
@@ -73,12 +72,18 @@ tabs:
           servicesExpertText:
             label: Body Text
             type: textarea
-            size: large
+            size: medium
           servicesExpertCta:
             label: Contact CTA
             type: textarea
             size: small
             help: Email address or call to action text
+          servicesExpertPodcastImage:
+            label: Hero Image
+            type: files
+            multiple: false
+            layout: cards
+            parent: page
   podcast:
     label: Podcast
     columns:
@@ -91,7 +96,7 @@ tabs:
           servicesPodcastText:
             label: Body Text
             type: textarea
-            size: large
+            size: medium
           servicesPodcastCtaText:
             label: CTA Button Text
             type: text

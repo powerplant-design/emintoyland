@@ -223,12 +223,14 @@ layout: base.njk
   {% endif %}
 
 {% elif page.uri == "contact" %}
-  <div class="section wrapper flow" data-size="small">
+  <section class="section wrapper flow" data-size="small">
     {% if page.contactHeading %}
       <h1 class="text-align-center">{{ page.contactHeading }}</h1>
     {% endif %}
     {% if page.contactText %}
+      <div class=" flow" data-space="xs">
       {{ page.contactText | markdown | safe }}
+      </div>
     {% endif %}
     <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
       <input type="hidden" name="form-name" value="contact" />
@@ -259,7 +261,7 @@ layout: base.njk
       </div>
       <button class="button button-primary" type="submit">Send</button>
     </form>
-  </div>
+  </section>
 
 {% elif page.uri == "services" %}
   {% if page.servicesIntroHeading or page.servicesIntroText or page.servicesIntroImage %}
@@ -268,26 +270,28 @@ layout: base.njk
     {% set imageSrc = page.servicesIntroImage %}
     {% set imageAlt = page.servicesIntroHeading %}
     {% set loading = "eager" %}
-    {% set ctaText = "" %}
-    {% set ctaLink = "" %}
+    {% set ctaText = page.servicesIntroCtaText %}
+    {% set ctaLink = page.servicesIntroCtaLink %}
     {% include "components/hero-home.njk" %}
   {% endif %}
 
   {% if page.servicesWritingHeading or page.servicesWritingText or page.servicesWritingRates %}
-    <section class="section wrapper flow">
+    <section class="section wrapper flow | text-align-center" data-space="xs">
       {% if page.servicesWritingHeading %}
         <h2>{{ page.servicesWritingHeading }}</h2>
       {% endif %}
       {% if page.servicesWritingText %}
-        <div class="prose">{{ page.servicesWritingText | markdown | safe }}</div>
+        <div class="pricing-card__description">{{ page.servicesWritingText | markdown | safe }}</div>
       {% endif %}
       {% if page.servicesWritingRates %}
-        <div class="services__rates" style="margin-block-start: var(--space-l);">
+        <div class="grid" data-layout="3col" style="margin-block-start: var(--space-m);">
           {% for item in page.servicesWritingRates %}
-            <p class="services__rate" data-reveal>
-              {{ item.rateprice or item.ratePrice }}
-              <span class="services__rate__desc">{{ item.ratedescription or item.rateDescription }}</span>
-            </p>
+            <article class="card pricing-card">
+              <div class="card__body pricing-card__body">
+                <p class="pricing-card__price">{{ item.rateprice or item.ratePrice }}</p>
+                <p class="pricing-card__desc">{{ item.ratedescription or item.rateDescription }}</p>
+              </div>
+            </article>
           {% endfor %}
         </div>
         {% if page.servicesWritingRatesNote %}
@@ -297,42 +301,29 @@ layout: base.njk
     </section>
   {% endif %}
 
-  {% if page.servicesWritingCta or page.servicesWritingCtaImage %}
-    {% set heading = "" %}
-    {% set text = page.servicesWritingCta %}
-    {% set imageSrc = page.servicesWritingCtaImage %}
-    {% set imageAlt = "Writing services" %}
+  {% if page.servicesExpertHeading or page.servicesExpertText or page.servicesPodcastHeading or page.servicesPodcastText %}
+    {% set heroBody = "" %}
+    {% if page.servicesExpertHeading %}
+      {% set heroBody = heroBody + "## " + page.servicesExpertHeading + "\n\n" %}
+    {% endif %}
+    {% if page.servicesExpertText %}
+      {% set heroBody = heroBody + page.servicesExpertText + "\n\n" %}
+    {% endif %}
+    {% if page.servicesPodcastHeading %}
+      {% set heroBody = heroBody + "## " + page.servicesPodcastHeading + "\n\n" %}
+    {% endif %}
+    {% if page.servicesPodcastText %}
+      {% set heroBody = heroBody + page.servicesPodcastText %}
+    {% endif %}
+    {% set title = "" %}
+    {% set body = heroBody %}
+    {% set imageSrc = page.servicesExpertPodcastImage %}
+    {% set imageAlt = page.servicesExpertHeading if page.servicesExpertHeading else page.servicesPodcastHeading %}
+    {% set loading = "lazy" %}
     {% set imageSide = "right" %}
-    {% set ctaText = "" %}
-    {% set ctaLink = "" %}
-    {% include "components/split-section.njk" %}
-  {% endif %}
-
-  {% if page.servicesExpertHeading or page.servicesExpertText %}
-    <section class="section wrapper flow">
-      {% if page.servicesExpertHeading %}
-        <h2>{{ page.servicesExpertHeading }}</h2>
-      {% endif %}
-      {% if page.servicesExpertText %}
-        <div class="prose">{{ page.servicesExpertText | markdown | safe }}</div>
-      {% endif %}
-    </section>
-  {% endif %}
-
-  {% if page.servicesPodcastHeading or page.servicesPodcastText %}
-    <section class="section wrapper flow">
-      {% if page.servicesPodcastHeading %}
-        <h2>{{ page.servicesPodcastHeading }}</h2>
-      {% endif %}
-      {% if page.servicesPodcastText %}
-        <div class="prose">{{ page.servicesPodcastText | markdown | safe }}</div>
-      {% endif %}
-      {% if page.servicesPodcastCtaText and page.servicesPodcastCtaLink %}
-        <div style="margin-block-start: var(--space-l);">
-          <a href="{{ page.servicesPodcastCtaLink }}" class="button button-primary">{{ page.servicesPodcastCtaText }}</a>
-        </div>
-      {% endif %}
-    </section>
+    {% set ctaText = page.servicesPodcastCtaText %}
+    {% set ctaLink = page.servicesPodcastCtaLink %}
+    {% include "components/hero-home.njk" %}
   {% endif %}
 
 {% else %}

@@ -185,11 +185,11 @@ export default async function () {
         aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
         contactHeading: true, contactText: true,
         servicesIntroHeading: true, servicesIntroText: true, servicesIntroImage: true,
+        servicesIntroCtaText: true, servicesIntroCtaLink: true,
         servicesWritingHeading: true, servicesWritingText: true,
         servicesWritingRates: true, servicesWritingRatesNote: true,
-        servicesWritingCta: true, servicesWritingCtaImage: true,
         servicesExpertHeading: true, servicesExpertText: true,
-        servicesExpertCta: true,
+        servicesExpertCta: true, servicesExpertPodcastImage: true,
         servicesPodcastHeading: true, servicesPodcastText: true,
         servicesPodcastCtaText: true, servicesPodcastCtaLink: true,
       },
@@ -284,9 +284,9 @@ export default async function () {
         const img = await resolveFileWithMeta(`page("${p.uri}")`, p.servicesIntroImage, p.servicesIntroHeading || p.title);
         updates.servicesIntroImage = img.url;
       }
-      if (p.servicesWritingCtaImage) {
-        const img = await resolveFileWithMeta(`page("${p.uri}")`, p.servicesWritingCtaImage, p.servicesWritingCta || p.title);
-        updates.servicesWritingCtaImage = img.url;
+      if (p.servicesExpertPodcastImage) {
+        const img = await resolveFileWithMeta(`page("${p.uri}")`, p.servicesExpertPodcastImage, p.servicesExpertPodcastImage || p.title);
+        updates.servicesExpertPodcastImage = img.url;
       }
       if (p.aboutPodcastImage) {
         const img = await resolveFileWithMeta(`page("${p.uri}")`, p.aboutPodcastImage, p.aboutPodcastHeading || p.title);

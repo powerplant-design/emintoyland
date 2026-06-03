@@ -31,6 +31,10 @@
   font-size: var(--step-5);
 }
 
+.text-step-6 {
+  font-size: var(--step-6);
+}
+
 .text-weight-light {
   font-weight: var(--weight-light);
 }

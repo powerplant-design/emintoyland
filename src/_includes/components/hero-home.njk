@@ -1,7 +1,7 @@
-<section class="section hero" data-layout="split" data-image="left">
+<section class="section hero" data-layout="split" data-image="{{ imageSide if imageSide else "left" }}">
   <div class="hero__image">
     {% if imageSrc %}
-      <img src="{{ imageSrc }}" alt="{{ imageAlt }}" sizes="100vw" {% if loading == "eager" %}loading="eager"{% endif %}>
+      <img src="{{ imageSrc }}" alt="{{ imageAlt }}" sizes="100vw" {% if loading == "eager" %}loading="eager"{% endif %}{% if ".gif" in imageSrc %} eleventy:ignore{% endif %}>
     {% endif %}
     <svg class="hero__frame" viewBox="0 0 908 1114" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>

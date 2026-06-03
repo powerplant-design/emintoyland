@@ -58,7 +58,7 @@ html {
 }
 
 :root {
-  /* Utopia fluid type scale — generated from utopia.fyi with Poppins, ratio 1.333 (Perfect Fourth) */
+  /* Utopia fluid type scale — generated from utopia.fyi with Plus Jakarta Sans, ratio 1.333 (Perfect Fourth) */
   --step--2: clamp(0.6944rem, 0.6907rem + 0.0164vw, 0.7035rem);
   --step--1: clamp(0.8333rem, 0.7906rem + 0.1898vw, 0.9377rem);
   --step-0: clamp(1rem, 0.8977rem + 0.4545vw, 1.25rem);
@@ -67,6 +67,7 @@ html {
   --step-3: clamp(1.728rem, 1.2237rem + 2.2413vw, 2.9607rem);
   --step-4: clamp(2.0736rem, 1.3073rem + 3.4056vw, 3.9467rem);
   --step-5: clamp(2.4883rem, 1.3541rem + 5.0411vw, 5.2609rem);
+  --step-6: clamp(3.3178rem, 1.8056rem + 6.721vw, 7.0145rem);
   --step-0-1: clamp(1rem, 0.7274rem + 1.2114vw, 1.6663rem);
 
   /* Utopia fluid space scale */
@@ -118,9 +119,9 @@ html {
   --shadow: rgba(0, 0, 0, 0.15);
 
   /* Fonts */
-  --font-body: 'Poppins', sans-serif;
-  --font-heading: 'Gooper Black', 'Poppins', serif;
-  --font-heading-condensed: 'Gooper Semi Condensed', 'Poppins', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Gooper Black', 'Plus Jakarta Sans', serif;
+  --font-heading-condensed: 'Gooper Semi Condensed', 'Plus Jakarta Sans', sans-serif;
 
   /* Font weights */
   --weight-light: 300;
@@ -149,7 +150,7 @@ html {
   --navbar-height: 79px;
 
   /* Max widths */
-  --measure-small: 42rem;
+  --measure-small: 46rem;
   --measure-medium: 56rem;
   --measure-large: 78rem;
   --measure-wide: 80rem;

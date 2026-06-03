@@ -16,7 +16,7 @@ I'm an experienced writer & editor with over a decade of experience writing abou
 
 I can write SEO-optimised blog posts, articles and in-depth features for your magazine, website or brand. 
 
-I'm an expert in writing about sexual health, pleasure, masturbation, pornography, and sex and intimacy during and post-pregnancy.
+I'm an expert in writing about **sexual health, pleasure, masturbation, pornography,** and **sex and intimacy during and post-pregnancy.**
 
 ----
 
@@ -24,11 +24,19 @@ Servicesintroimage: - file://sb81umzajehktac5
 
 ----
 
+Servicesintroctatext: Read my work
+
+----
+
+Servicesintroctalink: /work/?type=writing
+
+----
+
 Serviceswritingheading: Pricing Guide
 
 ----
 
-Serviceswritingtext: 
+Serviceswritingtext: Here's my standard rates or get in touch to discuss your project
 
 ----
 
@@ -49,15 +57,7 @@ Serviceswritingrates:
 
 ----
 
-Serviceswritingratesnote: All rates are in NZD.
-
-----
-
-Serviceswritingcta: Check out my writing portfolio [here](/work/). Get in touch to talk about rates for your project. Email [emintoyland@gmail.com](mailto:emintoyland@gmail.com) or fill out the form on my [contact page](/contact-me).
-
-----
-
-Serviceswritingctaimage: - file://sb81umzajehktac5
+Serviceswritingratesnote: All rates are in NZD not including GST.
 
 ----
 
@@ -70,6 +70,10 @@ Servicesexperttext: I frequently comment on sex related topics in global media. 
 ----
 
 Servicesexpertcta: email emintoyland@gmail.com
+
+----
+
+Servicesexpertpodcastimage: - file://cofmj5u7ha3cbyxv
 
 ----
 

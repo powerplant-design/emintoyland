@@ -91,6 +91,7 @@
 }
 
 .credential__title {
+  color: var(--color-pizzaz);
   font-size: var(--step-2);
   font-weight: var(--weight-bold);
   margin: 0;

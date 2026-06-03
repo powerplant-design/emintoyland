@@ -40,7 +40,7 @@ h5 {
 body {
   font-family: var(--font-body);
   font-size: var(--step-0);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-medium);
   line-height: var(--leading-normal);
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -65,7 +65,7 @@ ul, ol {
 
 /* Rich text / prose */
 .prose {
-  max-width: var(--measure-medium);
+  max-width: var(--measure-small);
   line-height: var(--leading-relaxed);
 }
 

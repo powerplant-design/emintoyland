@@ -5,7 +5,7 @@
   gap: var(--space-2xs);
   padding: var(--space-xs) var(--space-m);
   font-size: var(--step-0);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-bold);
   font-family: var(--font-body);
   text-decoration: none;
   text-transform: uppercase;
