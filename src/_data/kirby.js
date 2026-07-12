@@ -253,9 +253,10 @@ export default async function () {
         resolveFileWithMeta(`page("work/${item.slug}")`, item.workHeroImage, item.title),
         resolveFileWithMeta(`page("work/${item.slug}")`, item.seoOgImage, item.title),
       ]);
+      const fallbackImage = workImage.url || workHeroImage.url;
       return {
         ...item,
-        workImage: workImage.url, workImageAlt: workImage.alt,
+        workImage: fallbackImage, workImageAlt: workImage.alt || workHeroImage.alt,
         workHeroImage: workHeroImage.url,
         seoOgImage: seoOgImage.url,
       };
