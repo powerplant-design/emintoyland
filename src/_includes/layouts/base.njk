@@ -127,20 +127,5 @@
     </div>
     {% include "components/footer.njk" %}
   </main>
-  <script>
-    (function() {
-      var urls = {{ kirby.preloadImages | json | safe }};
-      if (!urls || !urls.length) return;
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function() {
-          urls.forEach(function(u) { var i = new Image(); i.src = u; });
-        }, { timeout: 2000 });
-      } else {
-        setTimeout(function() {
-          urls.forEach(function(u) { var i = new Image(); i.src = u; });
-        }, 1000);
-      }
-    })();
-  </script>
 </body>
 </html>
