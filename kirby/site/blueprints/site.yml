@@ -21,6 +21,8 @@ tabs:
               - work
               - work-item
               - category
+              - thanks
+              - contact
             create:
               - home
               - default

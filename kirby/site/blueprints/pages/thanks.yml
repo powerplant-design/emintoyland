@@ -1,0 +1,22 @@
+title: Thanks
+tabs:
+  content:
+    label: Content
+    columns:
+      - width: 1/1
+        fields:
+          thanksheading:
+            label: Heading
+            type: text
+          thanksctatext:
+            label: Button Text
+            type: text
+  media:
+    label: Media
+    sections:
+      uploads:
+        type: files
+        label: Images
+        template: image
+        layout: cards
+        upload: true
