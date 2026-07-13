@@ -85,6 +85,17 @@
   .footer__toys {
     display: none;
   }
+
+  .footer__nav {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer__nav a {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 @keyframes toy-pulse {
