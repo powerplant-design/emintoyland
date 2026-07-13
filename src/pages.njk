@@ -232,58 +232,35 @@ layout: base.njk
       {{ page.contactText | markdown | safe }}
       </div>
     {% endif %}
-    <div class="form" id="contact-form">
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-no-swup class="form__fields">
-        <input type="hidden" name="form-name" value="contact" />
-        <p class="hide">
-          <label>
-            Don't fill this in: <input name="bot-field" tabindex="-1" autocomplete="off" />
-          </label>
-        </p>
-        <div class="form__row">
-          <div class="form__field">
-            <label class="form__label" for="name">Name</label>
-            <input class="form__input" type="text" name="name" id="name" required />
-          </div>
-          <div class="form__field">
-            <label class="form__label" for="email">Email</label>
-            <input class="form__input" type="email" name="email" id="email" required />
-          </div>
-        </div>
-        <div class="form__field">
-          <label class="form__label" for="message">Message</label>
-          <textarea class="form__input form__textarea" name="message" id="message" required></textarea>
-        </div>
-        <button class="button button-primary" type="submit">Send</button>
-      </form>
-      <div class="form__success" style="display:none;">
+    <form name="contact" method="POST" action="/contact/" data-netlify="true" netlify-honeypot="bot-field" data-no-swup class="form">
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="hide">
+        <label>
+          Don't fill this in: <input name="bot-field" tabindex="-1" autocomplete="off" />
+        </label>
+      </p>
+      <div class="form__success" data-visible="{{ 'true' if success else 'false' }}">
         Thank you! Your message has been received.
       </div>
-      <div class="form__error" style="display:none;">
+      <div class="form__error" data-visible="{{ 'true' if error else 'false' }}">
         Oops! Something went wrong while submitting the form.
       </div>
-    </div>
-    <script>
-      (function() {
-        var form = document.querySelector('#contact-form form');
-        if (!form) return;
-        form.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          var data = new FormData(form);
-          try {
-            var res = await fetch('/', { method: 'POST', body: data });
-            if (res.ok || res.redirected) {
-              form.style.display = 'none';
-              document.querySelector('#contact-form .form__success').style.display = 'block';
-            } else {
-              document.querySelector('#contact-form .form__error').style.display = 'block';
-            }
-          } catch {
-            document.querySelector('#contact-form .form__error').style.display = 'block';
-          }
-        });
-      })();
-    </script>
+      <div class="form__row">
+        <div class="form__field">
+          <label class="form__label" for="name">Name</label>
+          <input class="form__input" type="text" name="name" id="name" required />
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="email">Email</label>
+          <input class="form__input" type="email" name="email" id="email" required />
+        </div>
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="message">Message</label>
+        <textarea class="form__input form__textarea" name="message" id="message" required></textarea>
+      </div>
+      <button class="button button-primary" type="submit">Send</button>
+    </form>
   </section>
 
 {% elif page.uri == "services" %}
