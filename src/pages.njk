@@ -222,14 +222,6 @@ layout: base.njk
     {% include "components/split-section.njk" %}
   {% endif %}
 
-{% elif page.uri == "thanks" %}
-  <section class="section" style="min-height: 80vh; display: flex; align-items: center;">
-    <div class="wrapper flow text-align-center">
-      <h1>Thanks, I'll be in touch shortly!</h1>
-      <a href="/" class="button button-primary">Home Again</a>
-    </div>
-  </section>
-
 {% elif page.uri == "contact" %}
   <section class="section wrapper flow" data-size="small">
     {% if page.contactHeading %}
@@ -240,7 +232,7 @@ layout: base.njk
       {{ page.contactText | markdown | safe }}
       </div>
     {% endif %}
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-success-url="/thanks/" data-no-swup class="form">
+    <form name="contact" method="POST" action="/contact/" data-netlify="true" netlify-honeypot="bot-field" data-no-swup class="form">
       <input type="hidden" name="form-name" value="contact" />
       <p class="hide">
         <label>
