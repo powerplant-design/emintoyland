@@ -24,6 +24,7 @@ export default function (eleventyConfig) {
     htmlOptions: {
       imgAttributes: {
         decoding: "async",
+        sizes: "100vw",
       },
     },
   });
