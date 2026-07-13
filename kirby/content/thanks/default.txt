@@ -6,4 +6,12 @@ Metadescription: Thanks for getting in touch
 
 ----
 
+Thanksheading: Thanks, I'll be in touch shortly!
+
+----
+
+Thanksctatext: Home Again
+
+----
+
 Uuid: thx8fgk7h3jqid

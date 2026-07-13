@@ -210,6 +210,7 @@ export default async function () {
         aboutPodcastHeading: true, aboutPodcastText: true, aboutPodcastImage: true,
         aboutPodcastCtaText: true, aboutPodcastCtaLink: true,
         contactHeading: true, contactText: true,
+        thanksHeading: true, thanksCtaText: true,
         servicesIntroHeading: true, servicesIntroText: true, servicesIntroImage: true,
         servicesIntroCtaText: true, servicesIntroCtaLink: true,
         servicesWritingHeading: true, servicesWritingText: true,
