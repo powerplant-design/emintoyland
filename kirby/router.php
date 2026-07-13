@@ -40,6 +40,17 @@ if (preg_match('#^/media/(.+)#', $uri, $matches)) {
     }
 }
 
+// Serve any other static file that exists on disk
+$filePath = __DIR__ . $uri;
+if ($uri !== '/' && file_exists($filePath) && is_file($filePath)) {
+    $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+    $mime = $mimeTypes[$ext] ?? mime_content_type($filePath);
+    header('Content-Type: ' . $mime);
+    header('Content-Length: ' . filesize($filePath));
+    readfile($filePath);
+    return true;
+}
+
 // Let Kirby handle everything else.
 // PHP built-in server sets SCRIPT_NAME/PHP_SELF to the request URI when the
 // router is inside docroot, breaking Kirby's URL/path detection. Reset them.
