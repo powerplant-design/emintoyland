@@ -106,7 +106,7 @@
     margin-block-end: calc(-1 * var(--space-xl));
   }
 
-  .hero-splash__toy {
+  .hero-splash__toys {
     display: none;
   }
 

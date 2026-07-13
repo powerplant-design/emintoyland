@@ -50,44 +50,26 @@ function updateToys({ scroll, limit }) {
 
 function updateHeroToys({ scroll }) {
   if (!heroToyLeft || !heroToyRight) return;
+  if (window.innerWidth <= 768) return;
 
   const vh = window.innerHeight;
   const progress = Math.max(0, Math.min(1, scroll / vh));
-  const isMobile = window.innerWidth <= 768;
 
-  if (isMobile) {
-    heroToyLeft.style.transform = `rotate(90deg) translateY(${50 * progress}%)`;
-    heroToyLeft.style.top = "0";
-    heroToyLeft.style.left = "0";
-    heroToyLeft.style.right = "";
-    heroToyLeft.style.bottom = "";
-    heroToyLeft.style.transformOrigin = "top left";
-    heroToyLeft.style.transition = "none";
+  heroToyLeft.style.transform = `translateX(${-50 * progress}%)`;
+  heroToyLeft.style.top = "0";
+  heroToyLeft.style.left = "0";
+  heroToyLeft.style.right = "";
+  heroToyLeft.style.bottom = "";
+  heroToyLeft.style.transformOrigin = "top left";
+  heroToyLeft.style.transition = "none";
 
-    heroToyRight.style.transform = `rotate(90deg) translateY(${-50 * progress}%)`;
-    heroToyRight.style.top = "0";
-    heroToyRight.style.right = "0";
-    heroToyRight.style.left = "";
-    heroToyRight.style.bottom = "";
-    heroToyRight.style.transformOrigin = "top right";
-    heroToyRight.style.transition = "none";
-  } else {
-    heroToyLeft.style.transform = `translateX(${-50 * progress}%)`;
-    heroToyLeft.style.top = "0";
-    heroToyLeft.style.left = "0";
-    heroToyLeft.style.right = "";
-    heroToyLeft.style.bottom = "";
-    heroToyLeft.style.transformOrigin = "top left";
-    heroToyLeft.style.transition = "none";
-
-    heroToyRight.style.transform = `translateX(${50 * progress}%)`;
-    heroToyRight.style.top = "0";
-    heroToyRight.style.right = "0";
-    heroToyRight.style.left = "";
-    heroToyRight.style.bottom = "";
-    heroToyRight.style.transformOrigin = "top right";
-    heroToyRight.style.transition = "none";
-  }
+  heroToyRight.style.transform = `translateX(${50 * progress}%)`;
+  heroToyRight.style.top = "0";
+  heroToyRight.style.right = "0";
+  heroToyRight.style.left = "";
+  heroToyRight.style.bottom = "";
+  heroToyRight.style.transformOrigin = "top right";
+  heroToyRight.style.transition = "none";
 }
 
 function initScrollReveal() {
