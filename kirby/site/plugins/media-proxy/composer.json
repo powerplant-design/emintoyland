@@ -1,0 +1,19 @@
+{
+    "name": "author/media-proxy",
+    "description": "Serves media files via /media-proxy/{filename} bypassing Kirby's media hashing for headless/static builds",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Power Plant",
+            "email": "hotline@powerplant.design"
+        }
+    ],
+    "require": {
+        "getkirby/composer-installer": "^1.2"
+    },
+    "extra": {
+        "installer-name": "media-proxy"
+    }
+}
