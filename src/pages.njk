@@ -240,7 +240,7 @@ layout: base.njk
       {{ page.contactText | markdown | safe }}
       </div>
     {% endif %}
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-success-url="/thanks/" data-no-swup class="form">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/" data-no-swup class="form">
       <input type="hidden" name="form-name" value="contact" />
       <p class="hide">
         <label>
