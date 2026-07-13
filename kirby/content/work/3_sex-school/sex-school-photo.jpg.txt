@@ -1,8 +1,21 @@
-Template:
-
-image
-Uuid: 236de5d8e71c4b8a
+Alt: 
 
 ----
 
-Uuid: ccpiaqhu7xyincnr
+Credit: 
+
+----
+
+Caption: 
+
+----
+
+Sort: 1
+
+----
+
+Uuid: smktod49j8sjk2sz
+
+----
+
+Template: image
