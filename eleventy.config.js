@@ -11,9 +11,18 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     formats: ["avif", "webp", "png"],
     widths: [320, 640, 960, 1280, 1600, "auto"],
+    urlPath: "/img/",
+    remoteUrl: (src) => {
+      const base = process.env.KIRBY_API_URL || "http://localhost:8000";
+      if (src.includes("/media-proxy/")) {
+        return new URL(src, base).href;
+      }
+    },
+    cacheOptions: {
+      duration: "30d",
+    },
     htmlOptions: {
       imgAttributes: {
-        loading: "lazy",
         decoding: "async",
       },
     },
