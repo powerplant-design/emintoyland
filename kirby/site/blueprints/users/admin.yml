@@ -1,32 +1,5 @@
 title: Admin
 description: Full access to all Panel sections
-sections:
-  pages:
-    type: pages
-    label: Pages
-    status: all
-    templates:
-      - home
-      - default
-      - about
-      - blog
-      - blog-post
-      - work
-      - work-item
-      - category
-    create:
-      - home
-      - default
-      - category
-  site:
-    type: site
-    label: Site Settings
-  users:
-    type: users
-    label: Users
-  system:
-    type: system
-    label: System
 permissions:
   access:
     site: true

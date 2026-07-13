@@ -43,7 +43,7 @@
 
   /* === BUTTONS === */
   --button-filled-color-back: #FC47B3;
-  --button-color-back: #FFF0F5;
+  --button-color-back: #FFFFFF;
   --button-color-text: #FC47B3;
   --button-color-icon: #FC47B3;
 
@@ -60,6 +60,8 @@
   --color-text-light: #C0809E;      /* lighter pink text */
   --color-black: #3D1A2B;
   --color-white: #FFFFFF;
+  --dropdown-color-text: #3D1A2B;   /* dropdown menu text */
+  --dropdown-color-hr: #FFEAF1;     /* dropdown item hover bg */
 
   /* === BORDERS === */
   --color-border: #F5D6E5;
