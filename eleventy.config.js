@@ -41,7 +41,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("src/assets/styles");
   eleventyConfig.addPassthroughCopy("src/assets/fonts");
-  eleventyConfig.addPassthroughCopy({ "public/favicon.ico": "/favicon.ico" });
+  eleventyConfig.addPassthroughCopy({ "public/favicon.ico": "/favicon.ico", "public/favicon-large.ico": "/favicon-large.ico" });
 
   eleventyConfig.addWatchTarget("kirby/content");
 

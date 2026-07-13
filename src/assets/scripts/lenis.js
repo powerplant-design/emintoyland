@@ -7,45 +7,27 @@ let revealObserver;
 
 function updateToys({ scroll, limit }) {
   if (!toyLeft || !toyRight) return;
+  if (window.innerWidth <= 768) return;
 
   const vh = window.innerHeight;
   const revealStart = limit - vh;
   const progress = Math.max(0, Math.min(1, (scroll - revealStart) / vh));
-  const isMobile = window.innerWidth <= 768;
 
-  if (isMobile) {
-    toyRight.style.transform = `rotate(90deg) translateY(${-50 + 50 * progress}%)`;
-    toyRight.style.bottom = "";
-    toyRight.style.top = "0";
-    toyRight.style.right = "0";
-    toyRight.style.left = "";
-    toyRight.style.transformOrigin = "top right";
-    toyRight.style.transition = "none";
+  toyLeft.style.transform = `translateX(${-50 + 50 * progress}%)`;
+  toyLeft.style.bottom = "0";
+  toyLeft.style.left = "0";
+  toyLeft.style.top = "";
+  toyLeft.style.right = "";
+  toyLeft.style.transformOrigin = "bottom left";
+  toyLeft.style.transition = "none";
 
-    toyLeft.style.transform = `rotate(90deg) translateY(${50 - 50 * progress}%)`;
-    toyLeft.style.bottom = "0";
-    toyLeft.style.top = "";
-    toyLeft.style.left = "0";
-    toyLeft.style.right = "";
-    toyLeft.style.transformOrigin = "bottom left";
-    toyLeft.style.transition = "none";
-  } else {
-    toyLeft.style.transform = `translateX(${-50 + 50 * progress}%)`;
-    toyLeft.style.bottom = "0";
-    toyLeft.style.left = "0";
-    toyLeft.style.top = "";
-    toyLeft.style.right = "";
-    toyLeft.style.transformOrigin = "bottom left";
-    toyLeft.style.transition = "none";
-
-    toyRight.style.transform = `translateX(${50 - 50 * progress}%)`;
-    toyRight.style.bottom = "0";
-    toyRight.style.right = "0";
-    toyRight.style.top = "";
-    toyRight.style.left = "";
-    toyRight.style.transformOrigin = "bottom right";
-    toyRight.style.transition = "none";
-  }
+  toyRight.style.transform = `translateX(${50 - 50 * progress}%)`;
+  toyRight.style.bottom = "0";
+  toyRight.style.right = "0";
+  toyRight.style.top = "";
+  toyRight.style.left = "";
+  toyRight.style.transformOrigin = "bottom right";
+  toyRight.style.transition = "none";
 }
 
 function updateHeroToys({ scroll }) {

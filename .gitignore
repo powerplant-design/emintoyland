@@ -24,3 +24,4 @@ kirby/content/**/_changes
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+kirby/router-debug.log

@@ -82,19 +82,8 @@
 }
 
 @media (width <= 48rem) {
-  .footer__toy--left {
-    bottom: 0;
-    left: 0;
-    top: auto;
-    transform-origin: bottom left;
-  }
-
-
-  .footer__toy--right {
-    bottom: 0;
-    right: 0;
-    top: auto;
-    transform-origin: bottom right;
+  .footer__toys {
+    display: none;
   }
 }
 
