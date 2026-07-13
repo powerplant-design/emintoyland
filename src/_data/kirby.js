@@ -425,5 +425,14 @@ export default async function () {
     blogPosts.flatMap(p => (p.tags || "").split(",").map(t => t.trim().toLowerCase()).filter(Boolean))
   )];
 
-  return { all, blogTags, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, newsletterImage: newsletterImage.url, newsletterImageAlt: newsletterImage.alt, siteImages, nav: parseStructure(settings.nav) } };
+  const preloadImages = [...new Set([
+    logo.url,
+    seoDefaultImage.url,
+    ...Object.values(siteImages).filter(v => v && typeof v.url === "string").map(v => v.url),
+    ...resolvedPages.flatMap(p => [p.heroImage, p.aboutImage, p.aboutIntroImage, p.servicesIntroImage, p.servicesExpertPodcastImage, p.aboutPodcastImage, p.seoOgImage].filter(Boolean)),
+    ...workItems.flatMap(w => [w.workImage, w.workHeroImage, w.seoOgImage].filter(Boolean)),
+    ...blogPosts.flatMap(b => [b.featuredImage, b.seoOgImage].filter(Boolean)),
+  ].filter(Boolean))];
+
+  return { all, blogTags, preloadImages, settings: { ...settings, logo: logo.url, logoAlt: logo.alt, seoDefaultImage: seoDefaultImage.url, newsletterImage: newsletterImage.url, newsletterImageAlt: newsletterImage.alt, siteImages, nav: parseStructure(settings.nav) } };
 }

@@ -61,7 +61,7 @@ layout: base.njk
       {% for item in kirby.all %}{% if item.parentSlug == "work" %}
         <article class="card" data-filter="{{ item.workType | lower | replace(' ', '-') }}">
           <a href="/{{ item.uri }}/">
-            <div class="card__image-wrap">
+            <div class="card__image-wrap frame" style="--_ratio: 1/1;">
               {% if item.workImage %}
                 <img src="{{ item.workImage }}" alt="{{ item.workImageAlt if item.workImageAlt else item.title }}" sizes="(min-width: 62rem) 33vw, 100vw">
               {% endif %}
@@ -107,7 +107,7 @@ layout: base.njk
       {% for item in kirby.all %}{% if item.parentSlug == "blog" %}
         <article class="card" data-filter="{{ item.tagsSlug }}">
           <a href="/{{ item.uri }}/">
-            <div class="card__image-wrap">
+            <div class="card__image-wrap frame" style="--_ratio: 1/1;">
               {% if item.featuredImage %}
                 <img src="{{ item.featuredImage }}" alt="{{ item.featuredImageAlt if item.featuredImageAlt else item.title }}" sizes="(min-width: 62rem) 33vw, 100vw">
               {% endif %}

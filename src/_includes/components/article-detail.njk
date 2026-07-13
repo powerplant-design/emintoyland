@@ -10,7 +10,7 @@
       {% endif %}
       <h1 class="article-detail__title">{{ title }}</h1>
     </div>
-    <div class="article-detail__image">
+    <div class="article-detail__image frame" style="--_ratio: 1.2/1;">
       {% if image %}
         <img src="{{ image }}" alt="{{ imageAlt if imageAlt else title }}" sizes="(min-width: 48rem) 50vw, 100vw">
       {% endif %}

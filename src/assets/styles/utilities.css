@@ -233,6 +233,20 @@
   background: linear-gradient(169deg, var(--color-pizzaz-light), var(--color-pizzaz-light), var(--color-pizzaz));
 }
 
+/* Media utilities */
+.frame {
+  aspect-ratio: var(--_ratio, 1/1);
+  display: grid;
+  overflow: hidden;
+}
+
+.frame > img,
+.frame > picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Visual utilities */
 .visually-hidden {
   border: 0;
