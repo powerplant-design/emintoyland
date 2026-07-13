@@ -1,8 +1,34 @@
 import { $fetch } from "ofetch";
 
-const api = process.env.KIRBY_API_URL
-  ? `${process.env.KIRBY_API_URL}/api/query`
-  : "http://localhost:8000/api/query";
+const kirbyBase = process.env.KIRBY_API_URL || "http://localhost:8000";
+const api = `${kirbyBase}/api/query`;
+
+// Rewrite localhost URLs to KIRBY_API_URL so Netlify build can fetch images
+function rewriteUrl(url) {
+  if (!url || typeof url !== "string") return url;
+  if (url.startsWith("http://localhost:8000")) {
+    return url.replace("http://localhost:8000", kirbyBase);
+  }
+  return url;
+}
+
+// Build a media-proxy URL from a filename — bypasses Kirby's broken media hashing
+// Uses our custom /media-proxy/{filename} plugin route
+function proxyUrl(filename) {
+  if (!filename) return filename;
+  return `${kirbyBase}/media-proxy/${filename}`;
+}
+
+// Rewrite media URLs embedded in HTML (e.g., from KirbyText body content)
+// Converts http://localhost:8000/media/{type}/{path}/{hash-version}/{filename}
+// to {kirbyBase}/media-proxy/{filename}
+function rewriteMediaUrlsInHtml(html) {
+  if (!html || typeof html !== "string") return html;
+  return html.replace(
+    /https?:\/\/[^/]+\/media\/[^"'\s]+\/([^"'\s/]+\.\w+)/g,
+    (match, filename) => proxyUrl(filename)
+  );
+}
 
 const auth = process.env.KIRBY_USER && process.env.KIRBY_PASS
   ? { headers: { Authorization: "Basic " + btoa(`${process.env.KIRBY_USER}:${process.env.KIRBY_PASS}`) } }
@@ -36,11 +62,11 @@ async function resolveFileWithMeta(pageQuery, fieldValue, defaultAlt) {
       return f.filename === filename;
     });
     return {
-      url: match?.url || fieldValue,
+      url: match ? proxyUrl(match.filename) : rewriteUrl(fieldValue),
       alt: match?.alt || defaultAlt || "",
     };
   } catch {
-    return { url: fieldValue, alt: defaultAlt || "" };
+    return { url: rewriteUrl(fieldValue), alt: defaultAlt || "" };
   }
 }
 
@@ -59,9 +85,9 @@ async function resolveUrl(pageQuery, fieldValue) {
       if (isUuid) return f.uuid === val;
       return f.filename === filename;
     });
-    return match?.url || fieldValue;
+    return match ? proxyUrl(match.filename) : rewriteUrl(fieldValue);
   } catch {
-    return fieldValue;
+    return rewriteUrl(fieldValue);
   }
 }
 
@@ -239,6 +265,7 @@ export default async function () {
         ...item,
         featuredImage: featuredImage.url, featuredImageAlt: featuredImage.alt,
         seoOgImage: seoOgImage.url,
+        body: rewriteMediaUrlsInHtml(item.body),
         tagsSlug: tagSlugs.join(" "),
         tagArray: tagList,
       };
@@ -357,7 +384,7 @@ export default async function () {
   function siteFile(name, defaultAlt) {
     const found = siteFiles.find((f) => f.filename === name);
     return {
-      url: found?.url || `/images/${name}`,
+      url: found ? proxyUrl(found.filename) : `/images/${name}`,
       alt: found?.alt || defaultAlt || "",
     };
   }
