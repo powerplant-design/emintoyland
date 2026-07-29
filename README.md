@@ -92,9 +92,22 @@ content.emintoyland.com              emintoyland.com
 7. **Update Kirby config** (`kirby/site/config/config.php`):
    - Set `baseUrl: https://content.emintoyland.com`
    - Enable KQL auth (`kql.auth: true`)
-   - Set up deploy hook URL to trigger Netlify builds
-8. **Re-deploy Eleventy** — trigger a Netlify build to verify KQL API works
-9. **Switch main domain** — `emintoyland.com` already points to Netlify
+   - Create a Panel user for the client (Emma)
+8. **Activate auto-rebuilds** (`netlify-hook` plugin):
+   - In Netlify: Site settings → Build & deploy → Deploy hooks → "Add deploy hook"
+     - Name: `Kirby Panel save`
+     - Branch to deploy: `main`
+   - Copy the generated URL (looks like `https://api.netlify.com/build_hooks/XXXX`)
+   - Add to `kirby/site/config/config.php`:
+     ```php
+     'powerplant' => [
+         'deployHook' => 'https://api.netlify.com/build_hooks/XXXX'
+     ]
+     ```
+   - FTP the updated `config.php` to the server
+   - Test: make a small Panel edit and save → watch Netlify build log
+9. **Re-deploy Eleventy** — trigger a Netlify build to verify KQL API works
+10. **Switch main domain** — `emintoyland.com` already points to Netlify
 
 ### Deploying Code Changes (post-migration)
 
