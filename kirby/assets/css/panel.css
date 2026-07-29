@@ -48,8 +48,10 @@
   --button-color-icon: #FC47B3;
 
 /* Filled (primary) buttons — white text/icons on pink bg.
-   Higher-specificity rule keeps sidebar buttons unaffected. */
-[data-variant="filled"] {
+   Higher-specificity rule keeps sidebar buttons unaffected.
+   :not([data-theme]) excludes green positive buttons (save, publish)
+   so they keep their near-black theme text for legibility. */
+[data-variant="filled"]:not([data-theme]) {
   --button-color-text: #FFFFFF;
   --button-color-icon: #FFFFFF;
 }

@@ -98,18 +98,35 @@ content.emintoyland.com              emintoyland.com
 
 ### Deploying Code Changes (post-migration)
 
-Since MyHost shared hosting doesn't include SSH, use **FTP/SFTP** (Transmit, Cyberduck, or cPanel File Manager) to upload changed files:
+Since MyHost shared hosting doesn't include SSH, use **FTP/SFTP** (Transmit, Cyberduck, or cPanel File Manager) to upload changed files.
+
+#### Routine code changes (plugins, config, templates)
 
 ```bash
-# Files to deploy when Kirby code changes:
 kirby/site/plugins/     # Custom plugins
-kirby/site/templates/   # Nunjucks templates (if using Kirby for rendering)
+kirby/site/templates/   # Nunjucks templates
 kirby/site/config/      # Config changes
 kirby/site/blueprints/  # Panel blueprints
 kirby/assets/           # Panel CSS, JS
 ```
 
-Kirby code changes infrequently after setup, so FTP is manageable.
+#### Kirby version updates (e.g. 5.5.2 → 5.5.3)
+
+Do this locally first (download, replace `kirby/kirby/`, test), then upload to the server:
+
+| Upload (safe to overwrite) | Do NOT upload (keep server's copy) |
+|---|---|
+| `kirby/kirby/` — core engine | `kirby/content/` — all Panel edits, pages, images |
+| `kirby/vendor/` — dependencies | `kirby/site/accounts/` — admin user accounts |
+| `kirby/index.php` — entry point | `kirby/media/` — cached thumbnails (regenerated) |
+| `kirby/router.php` — dev router | |
+| `kirby/.htaccess` — Apache rules | |
+
+The safe rule: **always exclude `content/`, `site/accounts/`, and `media/`** when uploading from local to server. Everything else is replaceable code.
+
+#### Before first FTP upload
+
+Download a full copy of the server's `kirby/` directory via FTP as a safety net (MyHost also keeps daily backups).
 
 ### Content Backups
 

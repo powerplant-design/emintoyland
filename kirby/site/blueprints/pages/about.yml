@@ -70,7 +70,7 @@ tabs:
                 label: Description
                 type: textarea
   specialise:
-    label: I Specialise In
+    label: Specialties
     columns:
       - width: 1/1
         fields:

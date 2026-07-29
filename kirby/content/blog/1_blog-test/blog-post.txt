@@ -1,4 +1,4 @@
-Title: Blog Test
+Title: Coming soon!
 
 ----
 
@@ -10,25 +10,15 @@ Featuredimage: - file://8deeelwek7jwoqs4
 
 ----
 
-Excerpt: Blog post excerpt test text
+Excerpt: Soon you'll find my regular writings here.
 
 ----
 
-Tags: Test
+Tags: 
 
 ----
 
-Body:
-
-## Test heading
-Test blog content goes here
-(image: file://8deeelwek7jwoqs4)
-
-Test adding image here
-
-- Tesdt list
-- item 2 
-- and three
+Body: 
 
 ----
 
